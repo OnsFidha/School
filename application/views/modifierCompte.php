@@ -1,9 +1,10 @@
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4 text-center"> modifier Compte</h4>
     <div class="card mb-4">
                    
-                    <div class="card-body">
+                   <div class="card-body">
+    <h4 class="fw-bold py-3 mb-4 text-center"> modifier Compte</h4>
+    
                     <div class="card-body">
                       <form id="formAccountSettings" action="<?php echo base_url('listeComptes/editer/'.$user->id)?>" method="POST">
                      
@@ -95,8 +96,7 @@
                          
                     </div><small><?php echo form_error('Cmot_de_passe'); ?></small></div> -->
                     
-                    <img width="157" height="145" src="https://www.kidzy.tn/wp-content/uploads/2019/11/fox-color.svg" class="attachment-full size-full" alt="" loading="lazy">
-                    <div class="mt-2"><button type="submit" class="btn btn-primary ">modifier</button>
+                   <div class="mt-2"><button type="submit" class="btn btn-primary ">modifier</button>
                     </div>   <!-- <button type="reset" class="btn btn-outline-secondary">annuler</button> -->
                         </div>
                       </form>

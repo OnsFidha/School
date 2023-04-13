@@ -3,9 +3,10 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 text-center " > Ajouter un compte</h4>
     <div class="card mx-auto " style='width:750px'>
                 <div class="card-body" >
+    <h4 class="fw-bold py-3 text-center " > Ajouter un compte</h4>
+ 
                                            
                 <form id="form" class="mb-3" action="<?php echo base_url('ajouterCompte/register') ?>" method="POST">
                         

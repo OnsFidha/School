@@ -1,8 +1,9 @@
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card">
     <h4 class="fw-bold py-3 mb-4 text-center"> Liste des comptes</h4>
 </br></br>
-      <div class="card">
+      
         <div class ="card-header">  
           <a href="<?php echo base_url('ajouterCompte')?>"><span class="badge bg-label-primary me-1">ajouter un compte</span></a>
         </div>

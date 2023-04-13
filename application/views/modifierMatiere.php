@@ -1,6 +1,6 @@
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 text-center " > Ajouter une matiére</h4>
+    <h4 class="fw-bold py-3 text-center " > Modifier une matiére</h4>
     <div class="card mx-auto " style='width:750px'>
                 <div class="card-body" >
                                            

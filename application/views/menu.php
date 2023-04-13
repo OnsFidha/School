@@ -45,25 +45,20 @@
   </head>
 
   <body>
-    <script> 
-    <?php if($this->session->flashdata('erreur')) { ?>
-    var msg=<?php echo json_encode($this->session->flashdata('erreur'))  ?>;
-        Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: msg,
-        })
-    <?php } ?>
-    <?php if($this->session->flashdata('status')) { ?>
-    var msg=<?php echo json_encode($this->session->flashdata('status'))  ?>;
-        Swal.fire(msg)
-    <?php } ?>
-  </script>
-        <?php if($this->session->flashdata('status')):?>
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <?= $this->session->flashdata('status'); ?>
-           </div>           
-        <?php endif ?>
+      <script> 
+        <?php if($this->session->flashdata('erreur')) { ?>
+        var msg=<?php echo json_encode($this->session->flashdata('erreur'))  ?>;
+            Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: msg,
+            })
+        <?php } ?>
+        <?php if($this->session->flashdata('status')) { ?>
+        var msg=<?php echo json_encode($this->session->flashdata('status'))  ?>;
+            Swal.fire(msg)
+        <?php } ?>
+    </script>
      
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
@@ -88,33 +83,31 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item ">
-              <a href="index.html" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">éléves</div>
-              </a>
-            </li>
-
+                <li class="menu-item ">
+                  <a href="index.html" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                    <div data-i18n="Analytics">éléves</div>
+                  </a>
+                </li>
             <!-- Layouts -->
-            <li class="menu-item">
-              <a href="javascript:void(0);" class="menu-link ">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">parents</div>
-              </a>
-            </li>
-              
-            <li class="menu-item">
-              <a href="<?php echo base_url('listeEnseignants') ?>" class="menu-link ">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">enseignants</div>
-              </a>
-            </li>
-            <li class="menu-item">
-              <a href="<?php echo base_url('listeComptes') ?>" class="menu-link ">
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div data-i18n="Layouts">comptes</div>
-              </a>
-            </li>
+                <li class="menu-item">
+                  <a href="javascript:void(0);" class="menu-link ">
+                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <div data-i18n="Layouts">parents</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?php echo base_url('listeEnseignants') ?>" class="menu-link ">
+                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <div data-i18n="Layouts">enseignants</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?php echo base_url('listeComptes') ?>" class="menu-link ">
+                    <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <div data-i18n="Layouts">comptes</div>
+                  </a>
+                </li>
                 <li class="menu-item">
                   <a href="layouts-container.html" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-layout"></i>
@@ -133,8 +126,6 @@
                     <div data-i18n="Blank">matiéres</div>
                   </a>
                 </li>
-           
-
                 <li class="menu-item">
                   <a href="layouts-blank.html" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-layout"></i>
@@ -170,7 +161,7 @@
                   <i class="menu-icon tf-icons bx bx-layout"></i>
                     <div data-i18n="Blank">réclamations</div>
                   </a>
-            </li>
+                </li>
           </ul>
         </aside>
         <!-- / Menu -->
@@ -241,6 +232,15 @@
               </ul>
             </div>
           </nav>
+          <head>
+            <style>
+              body {
+                background-image: url("../../assets/img/backgrounds/bg2.png");
+                background-repeat: no-repeat;
+                background-size: cover;
+              }
+            </style>
+          </head>
 
           <!-- / Navbar 11-->
 

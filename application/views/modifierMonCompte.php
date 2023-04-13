@@ -1,8 +1,8 @@
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4 text-center"> modifier Compte</h4>
+    
     <div class="card mb-4">
-                   
+    <h4 class="fw-bold py-3 mb-4 text-center"> modifier Compte</h4>
                     <div class="card-body">
                     <div class="card-body">
                       <form id="formAccountSettings" action="<?php echo base_url('modifier/'.$user->id)?>" method="POST">

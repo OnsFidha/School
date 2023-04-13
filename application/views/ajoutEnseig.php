@@ -1,8 +1,9 @@
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4 text-center"> ajouter Enseignant</h4>
     <div class="card mb-4">
-                  <h5 class="card-header"> Ajouter Enseignant</h5>
+    <h4 class="fw-bold py-3 mb-4 text-center"> Ajouter Enseignant</h4>
+    
+                  <!-- <h5 class="card-header">  Enseignant</h5> -->
                   <div class="card-body">
                     <div class="card-body">
                       <form id="formAccountSettings" action="<?php echo base_url('enseignant/ajouter') ?>" method="POST">
