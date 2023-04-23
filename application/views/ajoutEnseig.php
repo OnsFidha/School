@@ -2,8 +2,6 @@
     <div class="container-xxl flex-grow-1 container-p-y">
     <div class="card mb-4">
     <h4 class="fw-bold py-3 mb-4 text-center"> Ajouter Enseignant</h4>
-    
-                  <!-- <h5 class="card-header">  Enseignant</h5> -->
                   <div class="card-body">
                     <div class="card-body">
                       <form id="formAccountSettings" action="<?php echo base_url('enseignant/ajouter') ?>" method="POST">
@@ -134,14 +132,24 @@
                               <option value="1">club1</option>
                              
                             </select>
-                          </div>
+                          </div>-->
                           <div class="mb-3 col-md-6">
                             <label for="matiere" class="form-label">Matiéres</label>
-                            <select name="idMatiere" id="matiere" class="select2 form-select">
+                            <select name="matiere[]" id="matiere" class="multiple-select form-select" multiple>
                               <option value="">--Select matiéres</option>
-                              <option value="1">club1</option>
+                                <?php foreach($matieres as $row): ?>
+                                <option value="<?php echo $row->id ?>"><?php echo $row->nom ?></option>
+                                <?php endforeach; ?>
                             </select>
+                            <script>
+                                $(document).ready(function() {
+                                $('#matiere').select2({
+                                     theme: 'bootstrap'
+                                })
+                                });
+                            </script>
                           </div>
+                          <!--
                           <div class="mb-3 col-md-6">
                             <label for="classe" class="form-label">Classes</label>
                             <select name="idClasse" id="classe" class="select2 form-select">

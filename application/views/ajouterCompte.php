@@ -13,8 +13,8 @@
                     <div class="mb-3">
                         <label for="role" class="form-label">Role</label>
                         <div class="form-group">
-                        <select  class="form-control" name="role" id="role">
-                                <option value="">--choisir un role--</option>
+                        <select  class=" select2 form-control" name="role" id="role">
+                                <option value=""> --choisir un role--</option>
                                 <option value="parent">parent</option>
                                 <option value="enseignant">enseignant</option>
                             </select></div>
@@ -24,20 +24,31 @@
                     <div class="mb-3">
                         <label for="role" class="form-label">Profile</label>
                         <div class="form-group">
-                         <select class="form-control"  name="profil" id="profil">
-                         <option value=""> -- choisir un profil --</option>
+                         <select class=" select2 form-control"  data-placeholder="--choisir un profil--" name="profil" id="profil">
+                         <option value=""></option>
                             <?php foreach($enseignants as $row): ?>
                           
                          <option value="<?php echo $row->id ?>"><?php echo $row->email ?></option>
                          
-                         <?php endforeach; ?> -->
+                         <?php endforeach; ?>
                          <option value="parent">parent</option>
                     </select>
                      <!-- <?php if ($row->idProfil != 0): ?> 
                      <?php endif; ?>    -->
  
                     </div>
-                        
+                    <script>
+                                $(document).ready(function() {
+                                $('#profil').select2({
+                                theme: 'Bootstrap'})
+                                });
+                                $(document).ready(function() {
+                                $('#role').select2({
+                                theme: 'Bootstrap',
+                                minimumResultsForSearch: Infinity
+                            })
+                                });
+                            </script>
                          <small><?php echo form_error('profil'); ?></small>
                     </div>
                 

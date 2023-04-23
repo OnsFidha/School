@@ -12,7 +12,9 @@ class ajoutEnseigContr extends CI_Controller {
         if ($this->session->userdata('role') == 'admin')
         {
             $this->load->view('menu');
-            $this->load->view('ajoutEnseig');
+            $this->load->model('MatiereModel');
+            $data['matieres']= $this->MatiereModel->getAll();
+            $this->load->view('ajoutEnseig',$data);
             $this->load->view('footer');
         }
         else
@@ -49,36 +51,37 @@ class ajoutEnseigContr extends CI_Controller {
         $this->form_validation->set_rules('adresse','adresse','required', array(
             'required' => 'le %s est obligatoire')); 
         if($this->form_validation->run()==FALSE)
-        {
-            //failed 
-            $this->index();
-        }
-        else 
-        {
-            $data=array(
-                'adresse'=>$this->input->post('adresse'),
-                'nom'=>$this->input->post('nom'),
-                'prenom'=>$this->input->post('prenom'),
-                'email'=>$this->input->post('email'),
-                'genre'=>$this->input->post('genre'),
-                'telephone'=>$this->input->post('telephone'),
-                'dateNaissance'=>$this->input->post('dateNaissance'),
-                'salaire'=>$this->input->post('salaire'),
-                'typeSalaire'=>$this->input->post('typeSalaire'),
-                'photo'=>$this->input->post('photo'),
-                'cin'=>$this->input->post('cin')
-               );
-            var_dump( $data);
-            $enseignant= new EnseigModel;
-            $cheking=$enseignant->creer($data);
-            if ($cheking)
-                {
-                    $this->session->set_flashdata('status',' Enseignant ajouté avec succès');
-
-                 redirect('listeEnseignants');
-                }
+            {   //failed 
+                $this->index();
+            }
             else 
-                { }
-        }
+            {
+                $data=array(
+                    'adresse'=>$this->input->post('adresse'),
+                    'nom'=>$this->input->post('nom'),
+                    'prenom'=>$this->input->post('prenom'),
+                    'email'=>$this->input->post('email'),
+                    'genre'=>$this->input->post('genre'),
+                    'telephone'=>$this->input->post('telephone'),
+                    'dateNaissance'=>$this->input->post('dateNaissance'),
+                    'salaire'=>$this->input->post('salaire'),
+                    'typeSalaire'=>$this->input->post('typeSalaire'),
+                    'photo'=>$this->input->post('photo'),
+                    'cin'=>$this->input->post('cin'),
+                
+                );
+            
+                $enseignant= new EnseigModel;
+                $matieres=$_POST['matiere'];
+                var_dump($matieres);
+                $cheking=$enseignant->creer($data,$matieres);
+                if ($cheking)
+                    {
+                        $this->session->set_flashdata('status',' Enseignant ajouté avec succès');
+                        redirect('listeEnseignants');
+                    }
+                else 
+                    { }
+            }
     }
 }

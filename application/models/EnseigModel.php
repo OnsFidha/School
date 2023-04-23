@@ -1,8 +1,16 @@
 <?php 
 class EnseigModel extends CI_Model {
-    public function creer($data)
+    public function creer($data,$matieres)
     {
-        return $this->db->insert('enseignants',$data);
+        $this->db->insert('enseignants',$data);
+        $id = $this->db->insert_id();
+        foreach($matieres as $m){
+            $d=array(
+                'id_matiere'=>$m,
+                'id_enseignant'=>$id);
+         $this->db->insert('mat-enseig',$d);
+        }
+        return true;
     }
     public function supprimer($id){
         $this->db->where("id", $id);

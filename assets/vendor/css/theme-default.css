@@ -306,12 +306,13 @@ button.list-group-item-primary.active {
 }
 
 .form-control:focus,
-.form-select:focus {
+.form-select:focus,.select2:focus {
   border-color: #696cff;
 }
 
 .input-group:focus-within .form-control,
-.input-group:focus-within .input-group-text {
+.input-group:focus-within .input-group-text
+.select2:focus-within  {
   border-color: #696cff;
 }
 

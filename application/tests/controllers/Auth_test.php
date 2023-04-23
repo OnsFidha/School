@@ -22,10 +22,10 @@ public function test_login()
     //insert user 
     $this->CI->userModel->registerUser($user_data);
     
-    //call check  to see if it is logged in
+    //call the check function to see if the user exist and can log in 
     $this->assertTrue($this->CI->userModel->check($user_data));
 
-     // Check that the user's email is stored in the session 
+     // Check that the user's email is stored in the session correctly
      $this->assertEquals($email, $this->CI->session->userdata('email'));
     
 }

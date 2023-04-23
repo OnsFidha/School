@@ -73,6 +73,10 @@ $route['listeEnseignants'] = 'listeEnseigContr/index';
 $route['listeEnseignants/effacer/(:any)'] = 'listeEnseigContr/effacer/$1';
 $route['listeEnseignants/modifier/(:any)'] = 'listeEnseigContr/modifier/$1';
 $route['listeEnseignants/editer/(:any)'] ['POST']= 'listeEnseigContr/editer/$1';
+$route['listeClasses'] = 'classeContr/index';
+$route['listeClasses/ajouter'] = 'classeContr/ajouter';
+$route['listeClasses/add'] = 'classeContr/add';
+$route['emplois'] = 'emploisContr';
 // partie enseignant
 $route['enseigZone'] = 'enseignantContr';
 $route['404_override'] = '';

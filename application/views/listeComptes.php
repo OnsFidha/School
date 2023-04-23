@@ -29,10 +29,30 @@
                           <td>
                             <a href=""><span class="badge bg-label-info me-1"><i class='bx bx-info-circle'></i></a>
                             <a href="<?php echo base_url('listeComptes/modifier/'.$row->id) ?>"><span class="badge bg-label-warning me-1"><i class='bx bxs-edit'></i></a>
-                            <a href="<?php echo base_url('listeComptes/supprimer/'.$row->id) ?>"><span class="badge bg-label-danger me-1"><i class='bx bxs-trash'></i></a>
+                            <a class="deleteBtn" href="<?php echo base_url('listeComptes/supprimer/'.$row->id) ?>" ><span class="badge bg-label-danger me-1"><i class='bx bxs-trash'></i></a>
                           </td>
                         </tr>
-              
+                        <script>
+                            $(document).ready(function() {
+                            $('.deleteBtn').click(function(e) {
+                              e.preventDefault();
+
+                              Swal.fire({
+                                title: 'Êtes-vous sûr de vouloir supprimer ce compte ?',
+                                text: "Cette action ne peut pas être annulée !",
+                                icon: 'warning',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Oui, supprimez-le !'
+                              }).then((result) => {
+                                if (result.isConfirmed) {
+                                  window.location.href = $(this).attr('href');
+                                }
+                              })
+                            });
+                          });
+                        </script>
                             <?php endforeach;?>
                       </tbody>
                     </table>

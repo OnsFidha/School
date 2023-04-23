@@ -2175,8 +2175,30 @@ progress {
   font-size: 85%;
   color: #b4bdc6;
 }
-
-.form-control {
+/* ons */
+/* serach mte3 aady ma8ir multi  */
+/* input.select2-search__field{
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  color:red;
+  border-color: red;
+} */
+.select2-search__field:focus{
+  outline: none;
+  border-color: #696cff;
+}
+.select2-selection__choice {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 2px 6px;
+  background-color: #C9BDFF;
+  border-radius: 4px;
+}
+.select2-container {
+  max-width: 100%;
+}
+.form-control ,.select2{
   display: block;
   width: 100%;
   padding: 0.4375rem 0.875rem;
@@ -3886,6 +3908,10 @@ textarea.form-control-lg {
 
 .card-link + .card-link {
   margin-left: 1.5rem;
+}
+.select2-container .select2-results__option--highlighted {
+  background-color: #C9BDFF;
+  color: #fff;
 }
 
 .card-header {
