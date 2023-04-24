@@ -152,11 +152,78 @@
                 </div>
                             </br>
              
-            <button class="btn btn-primary d-grid" >ajouter une séance</button>
-            
+            <button id="popup-link" class="btn btn-primary d-grid" >ajouter une séance</button>
+            <!DOCTYPE html>
+
+            <div id="popup">
+                <div id="popup-container">
+                    <div id="popup-content"></div>
+                    <div id="popup-close">fermer</div>
+                </div>
             </div>
-            
-            </div>
+            <script>
+                $(document).ready(function() {
+                $("#popup-link").click(function() {
+                    $.ajax({
+                        url: '<?php echo base_url(); ?>emploisContr/btn',
+                        success: function(data) {
+                            $("#popup-content").html(data);
+                            $("#popup").show();
+                            $("#form-post").submit(function(e) {
+                                e.preventDefault(); //prevent default form submission
+                                $.ajax({
+                                    url: '<?php echo base_url(); ?>emploisContr/post',
+                                    type: 'post',
+                                    data: $("#form-post").serialize(),
+                                    success: function(response) {
+                                        alert(response); //show success message
+                                        $("#popup").hide(); //hide popup
+                                    },
+                                    error: function(jqXHR, textStatus, errorThrown) {
+                                        alert('Error: ' + errorThrown); //show error message
+                                    }
+                                });
+                            });
+                        }
+                    });
+                });
+                $("#popup-close").click(function() {
+                    $("#popup").hide();
+                    });
+                });
+            </script>
+            <style>
+                    #popup {
+                        display: none;
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0,0,0,0.5);
+                    }
+                    #popup-container {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%,-50%);
+                        width: 700px;
+                        height: 500px;
+                        background-color: #fff;
+                        padding: 20px;
+                        box-sizing: border-box;
+                        text-align: center;
+                        border-radius: 10px;
+                        box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+                    }
+                    #popup-close {
+                        position: absolute;
+                        top: 5px;
+                        right: 10px;
+                        cursor: pointer;
+                    }
+            </style>                
+        </div>
             
     </div>
 </div>

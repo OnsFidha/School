@@ -9,18 +9,19 @@ class compteContr extends CI_Controller {
         $this->load->model('UserModel');
     }
     
-    public function index(){
-    
-    if ($this->session->userdata('role') == 'admin') {
-        $this->load->view('menu');
-        $data['users']= $this->UserModel->getAll();
-        $this->load->view('listeComptes',$data);
-        $this->load->view('footer');
-    }
-      else{
-        
-        $this->session->set_flashdata('erreur',"désolez vous n'avez pas l'acces a cette espace");
-      }}
+    public function index()
+    {
+      if ($this->session->userdata('role') == 'admin') {
+          $this->load->view('menu');
+          $data['users']= $this->UserModel->getAll();
+          $this->load->view('listeComptes',$data);
+          $this->load->view('footer');
+      }
+        else{
+          
+          $this->session->set_flashdata('erreur',"désolez vous n'avez pas l'acces a cette espace");
+        }
+      }
     public function supprimer($id){
       $this->load->model('UserModel');
       $this->UserModel->supprimer($id);
@@ -89,11 +90,11 @@ class compteContr extends CI_Controller {
           }
         
           redirect(base_url('admin'));}
-      // }
-      // else {
-      //    return $this->modifier($id);
-      // }
-    }}
+      }
+      else {
+         return $this->edit();
+      }
+    }
     
     public function editer($id)
     {

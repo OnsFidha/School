@@ -7,8 +7,8 @@ class emploisContr extends CI_Controller {
       parent::__construct();
       $this->load->model('classeModel');
   }
-  public function index(){
-    
+  public function index()
+  {
         if ($this->session->userdata('role') == 'admin') {
             $this->load->view('menu');
             $this->load->model('EnseigModel');
@@ -22,4 +22,11 @@ class emploisContr extends CI_Controller {
           }
     
              
-        }}
+  }
+  public function btn()
+  {
+      $this->load->model('MatiereModel');
+      $data['matieres']= $this->MatiereModel->getAll();
+      $this->load->view('ajoutEmploi',$data);
+  }
+}

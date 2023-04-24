@@ -118,11 +118,19 @@
                           </div>
                           <div class="mb-3 col-md-6">
                             <label class="form-label" for="country">Type salaire</label>
-                            <select id="typeSalaire" name="typeSalaire" class="select2 form-select">
-                              <option value="">--select le type</option>
+                            <select id="typeSalaire" name="typeSalaire"   data-placeholder="--Select le type--" class="select2 form-select">
+                              <option></option>
                               <option value="menseul">Menseul</option>
                               <option value="horaire">Horaire</option>
                             </select>
+                            <script>
+                                $(document).ready(function() {
+                                $('#typeSalaire').select2({
+                                     theme: 'bootstrap',
+                                     minimumResultsForSearch: Infinity
+                                })
+                                });
+                            </script>
                             <small><?php echo form_error('typeSalaire'); ?></small>
                           </div>
                           <!-- <div class="mb-3 col-md-6">
@@ -135,8 +143,8 @@
                           </div>-->
                           <div class="mb-3 col-md-6">
                             <label for="matiere" class="form-label">Matiéres</label>
-                            <select name="matiere[]" id="matiere" class="multiple-select form-select" multiple>
-                              <option value="">--Select matiéres</option>
+                            <select name="matiere[]" id="matiere"  data-placeholder="-- Select matiéres --" class="multiple-select form-select" multiple>
+                              <option></option>
                                 <?php foreach($matieres as $row): ?>
                                 <option value="<?php echo $row->id ?>"><?php echo $row->nom ?></option>
                                 <?php endforeach; ?>
