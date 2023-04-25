@@ -252,40 +252,24 @@
               
     $(document).ready(function() 
     {
-        // Afficher le formulaire dans une popup au clic sur le lien "ajouter une séance"
-        $("#popup-link").click(function()
+         $("#popup-link").click(function()
          {
-            // Charger le contenu de la popup avec une requête AJAX
             $.ajax({
                 url: '<?php echo base_url(); ?>emploisContr/btn',
                 success: function(data) {
                     $("#popup-content").html(data);
                     $("#popup").show();
-
                         }
                     });
-        })
-        $("#form").submit(function(event) {
-            event.preventDefault(); // prevent default form submission behavior
-
-            $.ajax({
-            url: '/emploisContr/add',
-            type: 'post',
-            data: $('#form').serialize(),
-            success: function(response) {
-                alert(response); // display success message
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert('Error: ' + errorThrown); // display error message
-            }
-            });
+         })
+   
         });
         $("#popup-close").click(function() 
         {
             $("#popup").hide();
         });
 
-    });
+  
 </script>
 
                 <style>

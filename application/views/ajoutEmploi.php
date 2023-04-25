@@ -1,7 +1,7 @@
 
     <h4 class="fw-bold py-3 text-center " >ajouter une séance</h4>                         
         <div class=''>        
-        <form id="form"  accept-charset="UTF-8"  >
+        <form id="form"  accept-charset="UTF-8" action="<?php echo base_url('emploisContr/add') ?>" method="POST" >
                     <div class="mb-3 col-6 mx-auto ">
                         <label for="jour" class="form-label ">jour</label>
                         <select  class="select2 form-control " data-placeholder="--choisir jour--"  name="jour" id="jour" >
@@ -67,8 +67,8 @@
                             <label for="enseignant" class="form-label">Enseignant</label>
                             <select name="enseignant" id="enseignant"  data-placeholder="-- Select enseignant --" class="select2 form-select" >
                               <option></option>
-                                <?php foreach($matieres as $row): ?>
-                                <option value="<?php echo $row->id ?>"><?php echo $row->nom ?></option>
+                                <?php foreach($enseignants as $row): ?>
+                                <option value="<?php echo $row->id ?>"><?php echo $row->nom ?> <?php echo $row->prenom ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <script>
@@ -79,7 +79,8 @@
                                 });
                             </script>
                           </div>
+                          <button class="btn btn-primary d-grid " type="submit">Créer</button>
                 </form>
-                <button  form="form" class="btn btn-primary d-grid " type="submit">Créer</button>
+                
 
         </div>

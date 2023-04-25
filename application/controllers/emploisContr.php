@@ -6,6 +6,10 @@ class emploisContr extends CI_Controller {
   {
       parent::__construct();
       $this->load->model('classeModel');
+      $this->load->model('emploisModel');
+      $this->load->model('enseigModel');
+      
+      
   }
   public function index()
   {
@@ -27,6 +31,7 @@ class emploisContr extends CI_Controller {
   {
       $this->load->model('MatiereModel');
       $data['matieres']= $this->MatiereModel->getAll();
+      $data['enseignants']= $this->enseigModel->getAll();
       $this->load->view('ajoutEmploi',$data);
   }
   public function fetchClasse($id)
@@ -40,15 +45,23 @@ class emploisContr extends CI_Controller {
     
    
   }
-  public function add($data){
+  public function add(){
     $data = array(
         "jour" => $this->input->post("jour"),
         "heure_debut" => $this->input->post("heure_debut"),
         "heure_fin" => $this->input->post("heure_fin"),
-        "matiere" => $this->input->post("matiere"),
-        "enseignant" => $this->input->post("enseignant")
+        "id_matiere" => $this->input->post("matiere"),
+        "id_enseignant" => $this->input->post("enseignant"),
+        "id_classe" => $this->input->post("classe")
     );
-    $this->emploisModel->creer($data); // appeler la méthode insert du modèle
-    echo "Séance ajoutée avec succès";
+    $result=$this->emploisModel->creer($data); 
+    if ($result)
+     {
+      $this->session->set_flashdata('status','Séance ajoutée avec succès');
+      $this->index();
+  } else {
+    $this->session->set_flashdata('erreur','echec');
+  }
+    
   }
 }
