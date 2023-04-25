@@ -1,7 +1,7 @@
 
     <h4 class="fw-bold py-3 text-center " >ajouter une séance</h4>                         
         <div class=''>        
-        <form id="form"  accept-charset="UTF-8"  action="<?php echo base_url('') ?>" method="POST">
+        <form id="form"  accept-charset="UTF-8"  >
                     <div class="mb-3 col-6 mx-auto ">
                         <label for="jour" class="form-label ">jour</label>
                         <select  class="select2 form-control " data-placeholder="--choisir jour--"  name="jour" id="jour" >
@@ -25,31 +25,31 @@
                          <small><?php echo form_error('jour'); ?></small>
                     </div>
                     <div class="mb-3 col-6 mx-auto text-center">
-                        <label for="date_Debut" class="form-label">date début</label>
+                        <label for="heure_debut" class="form-label">heure début</label>
                         <input style="text-align: center;"
                             type="time" 
                             class="form-control "
                             id="timepicker"
-                            name="date_Debut"
-                            value="<?php echo set_value('date_Debut')?>"
+                            name="heure_debut"
+                            value="<?php echo set_value('heure_debut')?>"
                             autofocus
-                        /> <small><?php echo form_error('date_Debut'); ?></small>
+                        /> <small><?php echo form_error('heure_debut'); ?></small>
                     </div>
                     <div class="mb-3 col-6 mx-auto">
-                        <label for="date_Fin" class="form-label">date fin</label>
+                        <label for="heure_fin" class="form-label">date fin</label>
                         <input
                             style="text-align: center;"
-                            type="date"
+                            type="time"
                             class="form-control"
-                            id="date_Fin"
-                            name="date_Fin"
-                            value="<?php echo set_value('date_Fin')?>"
+                            id="heure_fin"
+                            name="heure_fin"
+                            value="<?php echo set_value('heure_fin')?>"
                             autofocus
-                        /> <small><?php echo form_error('date_Fin'); ?></small>
+                        /> <small><?php echo form_error('heure_fin'); ?></small>
                     </div>
                     <div class="mb-3 col-6 mx-auto">
                             <label for="matiere" class="form-label">Matiéres</label>
-                            <select name="matiere" id="matiere"  data-placeholder="-- Select matiéres --" class="select2 form-select" >
+                            <select name="matiere" id="matiere"  data-placeholder="-- Select matiére --" class="select2 form-select" >
                               <option></option>
                                 <?php foreach($matieres as $row): ?>
                                 <option value="<?php echo $row->id ?>"><?php echo $row->nom ?></option>
@@ -63,5 +63,23 @@
                                 });
                             </script>
                           </div>
+                          <div class="mb-3 col-6 mx-auto">
+                            <label for="enseignant" class="form-label">Enseignant</label>
+                            <select name="enseignant" id="enseignant"  data-placeholder="-- Select enseignant --" class="select2 form-select" >
+                              <option></option>
+                                <?php foreach($matieres as $row): ?>
+                                <option value="<?php echo $row->id ?>"><?php echo $row->nom ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <script>
+                                $(document).ready(function() {
+                                $('#enseignant').select2({
+                                     theme: 'bootstrap'
+                                })
+                                });
+                            </script>
+                          </div>
                 </form>
+                <button  form="form" class="btn btn-primary d-grid " type="submit">Créer</button>
+
         </div>
