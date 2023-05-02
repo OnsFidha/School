@@ -2,12 +2,14 @@
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
     <div class="card mx-auto " >
-                <div class="card-body" >
+    <div class="card-body" >
     <h4 class="fw-bold py-3 text-center "> Ajouter un emplois de temps</h4>
         <div class="container">
         <div class="row">
         <div class="mb-3 col-md-3">
+          <form >
             <label for="classe" class="form-label">classe</label>
+            
             <select name="classe" id="classe" class="select form-select">
                 <option value=""></option>
                 <optgroup label="préscolaire">
@@ -61,50 +63,45 @@
                 </optgroup>
             </select>
             <script>
-                 $(document).ready(function() {
-    $('#classe').select2({
-        theme: 'bootstrap'
-    });
-    
-    $('#classe').on('change', function() {
-        if($(this).val() == '') {
-            $('#popup-link').prop('disabled', true);
-        } else {
-            $('#popup-link').prop('disabled', false);
-        }
-        
-        var classe_id = $(this).val();
-        
-        $.ajax({
-            url: "<?php echo base_url(); ?>emploisContr/fetchClasse/" + classe_id,
-            method: "POST",
-            dataType: "json",
-            success: function(data) {
-                $('#annee_scolaire').val(data.annee_Scolaire);
-            }
-        });
-     });
-});
-
-                
+                $(document).ready(function() {
+                    $('#classe').select2({
+                        theme: 'bootstrap'
+                    });
+                    
+                    $('#classe').on('change', function() {
+                        if($(this).val() == '') {
+                            $('#popup-link').prop('disabled', true);
+                        } else {
+                            $('#popup-link').prop('disabled', false);
+                        }
+                        
+                    var classe_id = $(this).val();
+                        
+                    $.ajax({
+                        url: "<?php echo base_url(); ?>emploisContr/fetchClasse/" + classe_id,
+                        method: "POST",
+                        dataType: "json",
+                        success: function(data) {
+                            $('#annee_scolaire').val(data.annee_Scolaire);
+                            }
+                        });
+                    });
+                });
             </script>                 
-        </div>
-        <div class="mb-3 col-md-3"></div>
-        <div class="mb-3 col-md-3"></div>
-        <div class="mb-3 col-md-3">
-        <label for="annee_scolaire" class="form-label">Année scolaire </label>
-            <input 
-            class="form-control"
-            type="text"
-            readonly
-            id="annee_scolaire"
-            name="annee_scolaire"
-            />
-        </div>
+            </div>
+            <div class="mb-3 col-md-3"></div>
+            <div class="mb-3 col-md-3"></div>
+            <div class="mb-3 col-md-3">
+                <label for="annee_scolaire" class="form-label">Année scolaire </label>
+                    <input 
+                    class="form-control"
+                    type="text"
+                    readonly
+                    id="annee_scolaire"
+                    name="annee_scolaire"
+                    />
+            </div>
                     </div>
-                <div class="timetable-img text-center">
-                    <img src="img/content/timetable.png" alt="">
-                </div>
                 <div class="table-responsive">
                     <table class="table table-bordered text-center">
                         <thead>
@@ -241,68 +238,19 @@
                 </div>
                             </br>
              
-                  <button id="popup-link" class="btn btn-primary" disabled>ajouter une séance</button>
-                <div id="popup">
-                    <div id="popup-container">
-                        <div id="popup-content"></div>
-                        <div id="popup-close">fermer</div>
-                    </div>
-                </div>
-                <script>
-              
-    $(document).ready(function() 
-    {
-         $("#popup-link").click(function()
-         {
-            $.ajax({
-                url: '<?php echo base_url(); ?>emploisContr/btn',
-                success: function(data) {
-                    $("#popup-content").html(data);
-                    $("#popup").show();
-                        }
+            <button id="popup-link" href='' type='button'class="btn btn-primary" disabled>ajouter une séance</button>
+            <script>
+                $(document).ready(function() {
+                    $("#popup-link").click(function() {
+                        var id = $("#classe").val()
+                        var url = "<?php echo base_url('emplois/add/'); ?>";
+                        window.location.href = url+id ;
+                    } ) 
                     });
-         })
-   
-        });
-        $("#popup-close").click(function() 
-        {
-            $("#popup").hide();
-        });
+            </script>
 
-  
-</script>
-
-                <style>
-                        #popup {
-                            display: none;
-                            position: fixed;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            background-color: rgba(0,0,0,0.5);
-                        }
-                        #popup-container {
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%,-50%);
-                            width: 700px;
-                            height: 500px;
-                            background-color: #fff;
-                            padding: 20px;
-                            box-sizing: border-box;
-                            text-align: center;
-                            border-radius: 10px;
-                            box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
-                        }
-                        #popup-close {
-                            position: absolute;
-                            top: 5px;
-                            right: 10px;
-                            cursor: pointer;
-                        }
-                </style>                
+                        
         </div>     
+                    </form>
     </div>
 </div>

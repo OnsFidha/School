@@ -24,7 +24,7 @@ class EnseigModel extends CI_Model {
     public function getWithNoAcc(){
         $this->db->select('*');
         $this->db->from('enseignants');
-        $this->db->where('id NOT IN (SELECT idProfil FROM users WHERE idProfil IS NOT NULL)');
+        $this->db->where('id_user IS  NULL');
         $query = $this->db->get();
         return $query->result();
         
@@ -34,7 +34,11 @@ class EnseigModel extends CI_Model {
         $query= $this->db->get('enseignants');
         return $query->row();
     }
-    
+    public function getByIdUser($id){
+        $this->db->where('id_user',$id);
+        $query= $this->db->get('enseignants');
+        return $query->row();
+    }
     public function modifierEnseignant($data,$id){
         return $this->db->update('enseignants',$data,['id'=>$id]);
         

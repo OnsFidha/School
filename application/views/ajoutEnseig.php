@@ -39,7 +39,7 @@
                              id="Prenom" 
                              value="<?php echo set_value('prenom')?>"  />
                             <small><?php echo form_error('prenom'); ?></small>
-                          </div>
+                           </div>
                           <div class="mb-3 col-md-6">
                             <label for="cin" class="form-label">CIN</label>
                             <input

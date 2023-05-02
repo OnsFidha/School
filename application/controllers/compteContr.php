@@ -103,10 +103,10 @@ class compteContr extends CI_Controller {
         'alpha' => 'le %s doit contient des caractéres seulement'));
       $this->form_validation->set_rules('prenom','prenom','trim|required');
       $this->form_validation->set_rules('email','email','trim|required');
-    //   $this->form_validation->set_rules('Amot_de_passe','Amot_de_passe','trim|required|md5');
-    //   $this->form_validation->set_rules('mot_de_passe','mot_de_passe','trim|required|md5');
-    //   $this->form_validation->set_rules('Cmot_de_passe','Cmot_de_passe','trim|required|matches[mot_de_passe]|md5'); 
-      $this->form_validation->set_rules('role','role','trim|required');
+      //   $this->form_validation->set_rules('Amot_de_passe','Amot_de_passe','trim|required|md5');
+      //   $this->form_validation->set_rules('mot_de_passe','mot_de_passe','trim|required|md5');
+      //   $this->form_validation->set_rules('Cmot_de_passe','Cmot_de_passe','trim|required|matches[mot_de_passe]|md5'); 
+        $this->form_validation->set_rules('role','role','trim|required');
 
       if($this->form_validation->run()){
         // $data=array(

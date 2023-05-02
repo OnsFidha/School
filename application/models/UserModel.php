@@ -6,9 +6,13 @@ class UserModel extends CI_Model {
         return $query->row();
     }
     public function supprimer($id){
-        
+        $this->db->set('id_user', NULL);
+        $this->db->where('id_user', $id);
+        $this->db->update('enseignants');
         $this->db->where("id", $id);
-        return $this->db->delete("users");
+        $this->db->delete("users");
+   
+        return true;
         
     }
     public function getAll(){
@@ -58,10 +62,15 @@ class UserModel extends CI_Model {
         }
         
     
-    public function registerUser($data)
+    public function registerUser($data,$id_enseign)
     {
-        return $this->db->insert('users',$data);
-    }
+        $this->db->insert('users',$data);
+        $id = $this->db->insert_id();
+        $this->db->set('id_user', $id);
+        $this->db->where('id', $id_enseign);
+        $this->db->update('enseignants');
+return true;
+    }   
 
 }
 

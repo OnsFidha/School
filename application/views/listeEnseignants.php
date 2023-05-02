@@ -16,7 +16,8 @@
                         <th>prenom</th>
                         <th>email</th>
                         <th>classe</th>
-                        <th>Actions</th>
+                        <th>Actions</th> 
+                        <th>Compte</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
@@ -29,13 +30,27 @@
                          <td><?php    echo $row->prenom;?></td>
                          <td><?php    echo $row->email;?></td>
                          <td>
-                          <!-- <?php    echo $row->idClasse;?> -->
+                        <?php echo $this->classeModel->getClasseByEnseignant($row->id) ?>
                         </td>
                          <td> 
                          <a href=""><span class="badge bg-label-info me-1"><i class='bx bx-info-circle'></i></a>
                           <a href="<?php echo base_url('listeEnseignants/modifier/'.$row->id) ?>"><span class="badge bg-label-warning me-1"><i class='bx bxs-edit'></i></a>
                           <a class="deleteBtn" href="<?php echo base_url('listeEnseignants/effacer/'.$row->id) ?>"><span class="badge bg-label-danger me-1"><i class='bx bxs-trash'></i></a>
                         </td>
+                        <td>   
+                        <?php if ($row->id_user == NULL) : ?>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onchange="window.location.href='<?php echo base_url('listeEnseignants/compte/'.$row->id) ?>'">
+                                <label class="form-check-label" for="flexSwitchCheckDefault">no compte</label>
+                            </div>
+                        <?php else: ?>
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked disabled>
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Compte</label>
+                            </div>
+                        <?php endif; ?>
+                        </td>
+                       
                         <script>
                             $(document).ready(function() {
                             $('.deleteBtn').click(function(e) {

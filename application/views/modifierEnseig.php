@@ -138,21 +138,28 @@
                               <option value="1">club1</option>
                              
                             </select>
-                          </div>
+                          </div>-->
+<!--                         
                           <div class="mb-3 col-md-6">
                             <label for="matiere" class="form-label">Matiéres</label>
-                            <select name="idMatiere" id="matiere"  value='<?php echo $enseignant->idMatiere?>' class="select2 form-select">
-                              <option value="">--Select matiéres</option>
-                              <option value="1">club1</option>
+                            <select name="matiere[]" id="matiere"  data-placeholder="-- Select matiéres --" class="multiple-select form-select" multiple>
+                              <option></option>
+                              <?php foreach($matieres as $row): ?>
+                                
+                                <?php if (in_array($row->id, $selected->id)) : ?>
+                                    <option value="<?php echo $row->id ?>" selected><?php echo $row->nom ?></option>
+                                <?php else: ?>
+                                    <option value="<?php echo $row->id ?>"><?php echo $row->nom ?></option>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                             </select>
-                          </div>
-                          <div class="mb-3 col-md-6">
-                            <label for="classe" class="form-label">Classes</label>
-                            <select name="idClasse" id="classe" class="select2 form-select"  value='<?php echo $enseignant->idClasse?>'>
-                              <option value="">--Select classes</option>
-                              <option value="1">club1</option>
-                        
-                            </select>
+                            <script>
+                                $(document).ready(function() {
+                                $('#matiere').select2({
+                                     theme: 'bootstrap'
+                                })
+                                });
+                            </script>
                           </div> -->
                         </div>
                         <div class="mt-2">

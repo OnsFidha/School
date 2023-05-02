@@ -6,6 +6,9 @@ class listeEnseigContr extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('EnseigModel');
+        $this->load->model('UserModel');
+        $this->load->model('MatiereModel');
+        $this->load->model('classeModel');
         $this->load->library("form_validation");
         $this->load->helper("form");
     }
@@ -14,6 +17,7 @@ class listeEnseigContr extends CI_Controller {
           {
             $this->load->view('menu');
             $data['enseignant']= $this->EnseigModel->getAll();
+            $data['enseignantNo']= $this->EnseigModel->getWithNoAcc();
             $this->load->view('listeEnseignants',$data);
             $this->load->view('footer');
           }
@@ -26,10 +30,44 @@ class listeEnseigContr extends CI_Controller {
         $this->EnseigModel->supprimer($id);
         redirect(base_url('listeEnseignants'));
     }
+    public function creer($id)
+    {
+      $enseig= $this->EnseigModel->getById($id);
+      
+      $data=array(
+      'nom'=>$enseig->nom,
+      'prenom'=>$enseig->prenom,
+      'email'=>$enseig->email,
+      'mot_de_passe'=> password_hash($enseig->cin, PASSWORD_DEFAULT),
+      'role'=>'enseignant',
+     );
+     $register_user= new UserModel;
+     $cheking=$register_user->registerUser($data,$enseig->id);
+     if ($cheking)
+     {
+      $this->session->set_flashdata('status',' Compte créé avec succès');
+      $this->index();
+      } 
+    
+      }
     public function modifier($id)
     {   if ($this->session->userdata('role') == 'admin') {
             $this->load->view('menu');
             $enseignant= new EnseigModel;
+            $this->matiereModel = $this->MatiereModel;
+            $data['matieres']= $this->MatiereModel->getAll();
+            $m=   $this->MatiereModel->getSelectedMatieresByEnseignant($id);
+          // // print_r($m[0]->id);
+          // $tabid = [];
+          // $t=[];
+          // foreach ($m as $row) {
+          //     $tabid[] = $row->id;
+          //     foreach($tabid as $i){
+          //       $t[]=$i;
+          //     }
+          // }
+          //  $data['selected']=$t;
+          // // print_r($t);
             $data['enseignant']=$enseignant->getById($id);
             $this->load->view('modifierEnseig', $data);
             $this->load->view('footer');
@@ -49,8 +87,8 @@ class listeEnseigContr extends CI_Controller {
       $this->form_validation->set_rules('salaire','salaire','required'); 
      // $this->form_validation->set_rules('photo','photo'); 
       $this->form_validation->set_rules('typeSalaire','typeSalaire','required'); 
-    //  $this->form_validation->set_rules('idClub','idClub',''); 
-     // $this->form_validation->set_rules('idMatiere','idMatiere',''); 
+      //  $this->form_validation->set_rules('idClub','idClub',''); 
+      // $this->form_validation->set_rules('idMatiere','idMatiere',''); 
       //$this->form_validation->set_rules('idClasse','idClasse',''); 
       $this->form_validation->set_rules('adresse','adresse','required'); 
       if($this->form_validation->run()){

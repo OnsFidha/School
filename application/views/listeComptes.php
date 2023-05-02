@@ -5,7 +5,7 @@
 </br></br>
       
         <div class ="card-header">  
-          <a href="<?php echo base_url('ajouterCompte')?>"><span class="badge bg-label-primary me-1">ajouter un compte</span></a>
+          <!-- <a href="<?php echo base_url('ajouterCompte')?>"><span class="badge bg-label-primary me-1">ajouter un compte</span></a> -->
         </div>
                   <div class="table-responsive text-nowrap">
                     <table class="table">
