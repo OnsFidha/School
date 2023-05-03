@@ -5,22 +5,16 @@ class compteContr extends CI_Controller {
     public function __construct() 
     {
         parent::__construct();
-        $this->load->model('AuthentificationModel');
+        $this->load->model('AdminAcces');
         $this->load->model('UserModel');
     }
     
     public function index()
     {
-      if ($this->session->userdata('role') == 'admin') {
           $this->load->view('menu');
           $data['users']= $this->UserModel->getAll();
           $this->load->view('listeComptes',$data);
           $this->load->view('footer');
-      }
-        else{
-          
-          $this->session->set_flashdata('erreur',"désolez vous n'avez pas l'acces a cette espace");
-        }
       }
     public function supprimer($id){
       $this->load->model('UserModel');
@@ -29,13 +23,13 @@ class compteContr extends CI_Controller {
       
     }
     public function modifier($id)
-    {   if ($this->session->userdata('role') == 'admin') {
+    {
             $this->load->view('menu');
             $user= new UserModel;
             $data['user']=$user->getById($id);
             $this->load->view('modifierCompte', $data);
             $this->load->view('footer');
-        }
+        
     }
     public function edit()
     {   $this->load->view('menu');

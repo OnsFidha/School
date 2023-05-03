@@ -43,4 +43,16 @@ class EnseigModel extends CI_Model {
         return $this->db->update('enseignants',$data,['id'=>$id]);
         
     }
+    public function nonChefEnseignants()
+    {
+        // Get the ids of the enseignants assigned to clubs
+        $assignedEnseignantIds = $this->db->select('id_enseignant')->get('club')->result_array();
+        $assignedEnseignantIds = array_column($assignedEnseignantIds, 'id_enseignant');
+
+        // Get the enseignants that are not assigned to any club
+        $this->db->where_not_in('id', $assignedEnseignantIds);
+        $unassignedEnseignants = $this->db->get('enseignants')->result();
+
+        return $unassignedEnseignants;
+    }
 }

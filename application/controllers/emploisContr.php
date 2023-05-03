@@ -5,6 +5,7 @@ class emploisContr extends CI_Controller {
   public function __construct() 
   {
       parent::__construct();
+      $this->load->model('AdminAcces');
       $this->load->model('classeModel');
       $this->load->model('emploisModel');
       $this->load->model('enseigModel');
@@ -12,7 +13,6 @@ class emploisContr extends CI_Controller {
   }
   public function index()
   {
-        if ($this->session->userdata('role') == 'admin') {
             $this->load->view('menu');
             $this->load->model('EnseigModel');
             $this->load->model('MatiereModel');
@@ -20,12 +20,7 @@ class emploisContr extends CI_Controller {
             $data['enseignants']= $this->enseigModel->getAll();
             $data['classes']= $this->classeModel->selectAll();
             $this->load->view('emplois',$data);
-            $this->load->view('footer');
-        }
-          else{
-            
-            $this->session->set_flashdata('erreur',"désolez vous n'avez pas l'acces a cette espace");
-          }         
+            $this->load->view('footer');  
   }
   public function getEnseign(){
       $id=$this->input->post('matiere');
@@ -133,18 +128,11 @@ class emploisContr extends CI_Controller {
   }
   public function get()
   {
-    if ($this->session->userdata('role') == 'admin') {
       $this->load->view('menu');
       $this->load->model('EmploisModel');
       $data['emplois'] =$this->emploisModel->getEmploisByClasse('');
       $this->load->view('listEmplois',$data);
-      $this->load->view('footer');
-    
-    }
-    else{
-      
-      $this->session->set_flashdata('erreur',"désolez vous n'avez pas l'acces a cette espace");
-    }  
+      $this->load->view('footer');   
   }
   public function consulter($id)
   {

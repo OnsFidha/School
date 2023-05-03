@@ -4,7 +4,7 @@
     <h4 class="fw-bold py-3 mb-4 text-center"> Ajouter Enseignant</h4>
                   <div class="card-body">
                     <div class="card-body">
-                      <form id="formAccountSettings" action="<?php echo base_url('enseignant/ajouter') ?>" method="POST">
+                      <form id="formAccountSettings" action="<?php echo base_url('enseignant/ajout') ?>" method="POST">
                         <div class="row">
                           <div class="mb-3 col-md-6">
                                 <label class="form-label" for="photoId">photo</label>
@@ -118,7 +118,8 @@
                           </div>
                           <div class="mb-3 col-md-6">
                             <label class="form-label" for="country">Type salaire</label>
-                            <select id="typeSalaire" name="typeSalaire"   data-placeholder="--Select le type--" class="select2 form-select">
+                            <select id="typeSalaire" name="typeSalaire" 
+                              data-placeholder="--Select le type--" class="select2 form-select">
                               <option></option>
                               <option value="menseul">Menseul</option>
                               <option value="horaire">Horaire</option>

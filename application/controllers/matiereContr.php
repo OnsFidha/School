@@ -5,7 +5,7 @@ class matiereContr extends CI_Controller {
     public function __construct() 
     {
         parent::__construct();
-        $this->load->model('AuthentificationModel');
+        $this->load->model('AdminAcces');
         $this->load->model('MatiereModel');
     }
     

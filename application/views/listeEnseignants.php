@@ -5,7 +5,7 @@
 </br></br>
        
         <div class ="card-header">
-       <a href="<?php echo base_url('enseignant')?>"><span class="badge bg-label-primary me-1">ajouter un enseignant</span></a>
+       <a href="<?php echo base_url('listeEnseignant/ajouter')?>"><span class="badge bg-label-primary me-1">ajouter un enseignant</span></a>
         </div>
                 <div class="table-responsive text-nowrap">
                   <table class="table">
@@ -30,7 +30,8 @@
                          <td><?php    echo $row->prenom;?></td>
                          <td><?php    echo $row->email;?></td>
                          <td>
-                        <?php echo $this->classeModel->getClasseByEnseignant($row->id) ?>
+                        <?php foreach( $this->classeModel->getClasseByEnseignant($row->id) as $a):
+                          echo $a->nom.'</br>' ; endforeach; ?>
                         </td>
                          <td> 
                          <a href=""><span class="badge bg-label-info me-1"><i class='bx bx-info-circle'></i></a>

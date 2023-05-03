@@ -6,19 +6,14 @@ class classeContr extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('classeModel');
+        $this->load->model('AdminAcces');
     }
     public function index()
     {
-        if ($this->session->userdata('role') == 'admin')
-        {
             $this->load->view('menu');
             $data['classe']= $this->classeModel->selectAll();
             $this->load->view('listeClasses',$data);
-            $this->load->view('footer');
-        }
-        else
-        {   $this->session->set_flashdata('erreur',"désolez vous n'avez pas l'acces a cette espace");
-        }     
+            $this->load->view('footer');   
     }
     public function ajouter()
     {

@@ -5,9 +5,14 @@ class loginContr extends CI_Controller {
     public function __construct() 
     {parent::__construct();
       if($this->session->has_userdata('authenticated')){
+        if($this->session->userdata('role')=='admin'){
         $this->session->set_flashdata('status','déja connecté');
         redirect(base_url('admin'));
       }
+    else{
+      $this->session->set_flashdata('status','déja connecté');
+      redirect(base_url('espaceEnseignant'));
+    }}
       
          $this->load->library('session');
          $this->load->library("form_validation");
@@ -60,7 +65,7 @@ class loginContr extends CI_Controller {
              if($auth_userdetails['role']=='admin'){
               redirect(base_url('admin'));}
               else if($auth_userdetails['role']=='enseignant'){
-                redirect(base_url('enseigZone'));
+                redirect(base_url('espaceEnseignant'));
               }
             } 
              
