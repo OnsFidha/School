@@ -18,7 +18,8 @@ class compteContr extends CI_Controller {
       }
     public function supprimer($id){
       $this->load->model('UserModel');
-      $this->UserModel->supprimer($id);
+      $role=$this->UserModel->getById($id)->role;
+      $this->UserModel->supprimer($id,$role);
        redirect(base_url('listeComptes'));
       
     }
@@ -39,8 +40,8 @@ class compteContr extends CI_Controller {
       $this->load->view('modifierMonCompte', $data);
       $this->load->view('footer');
     }
-    public function update($id){
-      
+    public function update($id)
+    {
       $this->form_validation->set_rules('nom','nom','trim|required', array(
         'required' => 'le %s est obligatoire',
         'alpha' => 'le %s doit contient des caractéres seulement'));
@@ -49,8 +50,6 @@ class compteContr extends CI_Controller {
       $this->form_validation->set_rules('Amot_de_passe','Amot_de_passe','trim|required');
       $this->form_validation->set_rules('mot_de_passe','mot_de_passe','trim|required');
       $this->form_validation->set_rules('Cmot_de_passe','Cmot_de_passe','trim|required|matches[mot_de_passe]'); 
-     
-
       if($this->form_validation->run()){
         $data=array(
           'nom'=>$this->input->post('nom'),

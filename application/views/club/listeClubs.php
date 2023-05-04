@@ -1,12 +1,9 @@
-
-            <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="fw-bold py-3 mb-4"><span class="fw-light"></span>Clubs</h4>
-
-
-                <div class="card">
-
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card mx-auto " >
+    <div class="card-body" >
+            <h4 >Liste des clubs</h4>
                     <div class="card-header d-flex justify-content-between align-items-center">
-
                         <a href="<?php echo base_url('club/creer')?>" class="badge bg-label-primary me-1">Ajouter Club</a>
                     </div>
                         <div class="table-responsive text-nowrap">

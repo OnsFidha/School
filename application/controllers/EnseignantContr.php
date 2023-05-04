@@ -31,18 +31,57 @@ class enseignantContr extends CI_Controller {
     public function creer($id)
     {
       $enseig= $this->EnseigModel->getById($id);
-      
+      $this->load->helper('string');
+      $password = random_string('alnum', 8);  
+      echo $password;
       $data=array(
       'nom'=>$enseig->nom,
       'prenom'=>$enseig->prenom,
       'email'=>$enseig->email,
-      'mot_de_passe'=> password_hash($enseig->cin, PASSWORD_DEFAULT),
+      'mot_de_passe'=> password_hash($password, PASSWORD_DEFAULT),
       'role'=>'enseignant',
      );
      $register_user= new UserModel;
-     $cheking=$register_user->registerUser($data,$enseig->id);
+     $cheking=$register_user->registerUser($data,$enseig->id,$data['role']);
      if ($cheking)
      {
+        
+		$config=[
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.gmail.com', // Example SMTP host
+            'smtp_port' => 465, // Example SMTP port
+            'smtp_user' => 'hvh912326@gmail.com', // Example SMTP username
+            'smtp_pass' => 'cartwknilrpeyhbc', // Example SMTP password
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'wordwrap' => TRUE
+        ];
+
+
+		$this->load->library('email',$config);
+		$this->email->set_newline("\r\n");
+
+		$this->email->initialize($config);
+		
+		$this->email->from('hvh912326@gmail.com','admin');
+		$this->email->to('onsfidha3@gmail.com');
+		
+		
+		$this->email->subject('Creation compte');
+		$this->email->message("Bonjour,
+
+        Nous sommes heureux de vous informer que votre compte a été créé avec succès. Veuillez trouver ci-dessous vos informations de connexion :<br><br>
+        
+        Nom d'utilisateur : ".$data['email'].' <br><br>Mot de passe : '
+         .$password ." <br><br> Nous vous rappelons que vous pouvez changer votre mot de passe à tout moment en accédant à votre profil sur notre site. Si vous avez des questions ou des préoccupations, n'hésitez pas à nous contacter.
+
+         <br><br> Cordialement.");
+		
+		//$this->email->send();
+		if (!$this->email->send())
+		show_error($this->email->print_debugger());
+		else
+		echo 'Your e-mail has been sent!';
       $this->session->set_flashdata('status',' Compte créé avec succès');
       redirect(base_url('listeEnseignants'));
       } 

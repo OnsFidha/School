@@ -71,6 +71,7 @@ $route['parent/create']= 'ParentController/create';
 $route['parent/supprimer/(:any)'] = 'ParentController/supprimer/$1';
 $route['parent/consulter/(:any)'] = 'ParentController/consulter/$1';
 $route['parent/enfant/(:any)'] = 'ParentController/consulterEnfants/$1';
+$route['parent/compte/(:any)']= 'ParentController/creer/$1';
 //$route['parent/enfant'] = 'ParentController/consulterEnfants';
 // demande
 $route['demande/liste'] = 'demandeController/index';

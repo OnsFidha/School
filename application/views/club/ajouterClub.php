@@ -1,13 +1,12 @@
-
-            <div class="container-xxl flex-grow-1 container-p-y">
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card mx-auto " >
+    <div class="card-body" >
+      <h4>Ajout club</h4>
               <!-- Basic Layout -->
               <div class="row">
                 <div class="col-xl">
-                  <div class="card mb-4">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                      <h5 class="mb-0">Ajouter Club</h5>
-                      <small class="text-muted float-end">Merged input group</small>
-                    </div>
+                 
                   <div class="button-wrapper">
                             <div class="card-body">
                     <div class="d-flex align-items-start align-items-sm-center gap-4">
@@ -82,7 +81,6 @@
                         <div class="mt-2">
                           <input type="submit" class="btn btn-primary" value="Créer" />
                           <!-- <a href="<?php echo base_url('eleve/consulter/'.$row->id)?>"><span class="badge bg-label-info me-1"><i class='bx bx-info-circle'></i></a> -->
-                          <a href="<?php echo base_url('eleve/consulter/')?>"><span class="badge bg-label-info me-1"><i class='bx bx-info-circle'></i></a>
                           </div>
                         </div>
                        </div> 

@@ -5,12 +5,19 @@ class UserModel extends CI_Model {
         $query= $this->db->get('users');
         return $query->row();
     }
-    public function supprimer($id){
+    public function supprimer($id,$role){
+        if($role=='parent'){
         $this->db->set('id_user', NULL);
         $this->db->where('id_user', $id);
-        $this->db->update('enseignants');
+        $this->db->update('parent');
         $this->db->where("id", $id);
-        $this->db->delete("users");
+        $this->db->delete("users");}
+        else if($role=='enseignant') {
+            $this->db->set('id_user', NULL);
+            $this->db->where('id_user', $id);
+            $this->db->update('enseignants');
+            $this->db->where("id", $id);
+            $this->db->delete("users");}
    
         return true;
         
@@ -62,13 +69,23 @@ class UserModel extends CI_Model {
         }
         
     
-    public function registerUser($data,$id_enseign)
+    public function registerUser($data,$id_enseign,$role)
     {
-        $this->db->insert('users',$data);
-        $id = $this->db->insert_id();
-        $this->db->set('id_user', $id);
-        $this->db->where('id', $id_enseign);
-        $this->db->update('enseignants');
+        
+        if($role=='parent'){
+            $this->db->insert('users',$data);
+            $id = $this->db->insert_id();
+            $this->db->set('id_user', $id);
+            $this->db->where('id', $id_enseign);
+            $this->db->update('parent');
+        }
+        else if($role=='enseignant') {
+            $this->db->insert('users',$data);
+            $id = $this->db->insert_id();
+            $this->db->set('id_user', $id);
+            $this->db->where('id', $id_enseign);
+            $this->db->update('enseignants');
+        }else return false;
 return true;
     }   
 

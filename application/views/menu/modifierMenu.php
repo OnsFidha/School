@@ -1,55 +1,46 @@
-
-            <div class="content-wrapper">
-            <div class="container-xxl flex-grow-1 container-p-y">
-
-                <div class="card mt-3">
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card mx-auto " >
+        <div class="card-body" >
+            <h4> Modifier menu cantine</h4>
                 <form action =" <?php echo base_url('menu/modifier')?> " method="POST" enctype="multipart/form-data">
-
                     <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="fw-bold py-3 mb-4"><span class="fw-light"></span> Menu Cantine</h4>
-                    <button type="button" class="btn rounded-pill btn-danger">
-                            <span class="tf-icons bx bx-bell"></span>&nbsp; Notifier
-                    </button>
-                    
                     </div>
                     <div class="card-body">
-                        
-                    <div class="row">
-                        <div class="mb-3 col-md-6">
                         <div class="row">
-                            <label  class="form-label col-md-3" for="dateDebutId">Du </label>
-                            <div  class="dateDebutId col-md-6">
-                            <input 
-                                type="date"
-                                id="dateDebutId"
-                                name="dateDebut"
-                                class="form-control phone-mask"
-                                placeholder="15/05/6063"
-                                value="<?php echo $semaine->dateDebut; ?>"
+                            <div class="mb-3 col-md-6">
+                                <div class="row">
+                                    <label  class="form-label col-md-3" for="dateDebutId">Du </label>
+                                    <div  class="dateDebutId col-md-6">
+                                        <input 
+                                            type="date"
+                                            id="dateDebutId"
+                                            name="dateDebut"
+                                            class="form-control phone-mask"
+                                            placeholder="15/05/6063"
+                                            value="<?php echo $semaine->dateDebut; ?>"
 
-                            />
+                                        />
+                                    </div>
+                                    <small class="error"><?php echo form_error('dateDebut') ?></small>
+                                </div>
                             </div>
-                            <small class="error"><?php echo form_error('dateDebut') ?></small>
-                        </div>
-                        </div>
-                        <div class="mb-3 col-md-4" >
-                        <div class="row">
-                            <label  class="form-label col-md-3" for="dateFintId">Jusqu'au </label>
-                            <div  class="dateFinId col-md-6">
-                            <input 
-                                type="text"
-                                id="dateFinId"
-                                name="dateFin"
-                                class="form-control phone-mask"
-                                placeholder="15/05/6063"
-                                value="<?php echo $semaine->dateFin; ?>"
-
-                            />
+                            <div class="mb-3 col-md-4" >
+                                <div class="row">
+                                    <label  class="form-label col-md-3" for="dateFintId">Jusqu'au </label>
+                                    <div  class="dateFinId col-md-6">
+                                        <input 
+                                            type="text"
+                                            id="dateFinId"
+                                            name="dateFin"
+                                            class="form-control phone-mask"
+                                            placeholder="15/05/6063"
+                                            value="<?php echo $semaine->dateFin; ?>"/>
+                                    </div>
+                                </div> 
+                                <small class="error"><?php echo form_error('dateFin') ?></small>
                             </div>
-                        </div> 
-                            <small class="error"><?php echo form_error('dateFin') ?></small>
                         </div>
-                    </div>
                         <div class="table-responsive text-nowrap">
                             <table class="table">
                                 <thead>
@@ -189,9 +180,10 @@
                         <div class="mt-2">
                           <input type="submit" class="btn btn-primary" value="modifier" />
                         </div>
-            </form >
-
-                </div>
+                    </div>
                         
-            </div>
+        </div>
+    </div>
+    </div>
+</div>
          

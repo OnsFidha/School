@@ -1,9 +1,8 @@
-
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
     <div class="card mx-auto " >
     <div class="card-body" >
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Eleves /</span> liste</h4>
+    <h4 > Ajout d'un élève</h4>
 
                     <div class="d-flex align-items-start align-items-sm-center gap-4">
                           <!-- <img

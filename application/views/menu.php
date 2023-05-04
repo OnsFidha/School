@@ -68,7 +68,7 @@
         var msg=<?php echo json_encode($this->session->flashdata('status'))  ?>;
             Swal.fire(msg)
         <?php } ?>
-    </script>
+      </script>
      
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
@@ -94,82 +94,82 @@
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
                 <li class="menu-item ">
-                  <a href="index.html" class="menu-link">
+                  <a href="<?php echo base_url('eleve/liste') ?>" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                    <div data-i18n="Analytics">éléves</div>
+                    <div data-i18n="Analytics">Eléves</div>
                   </a>
                 </li>
             <!-- Layouts -->
                 <li class="menu-item">
-                  <a href="javascript:void(0);" class="menu-link ">
+                  <a href="<?php echo base_url('parent/liste') ?>" class="menu-link ">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Layouts">parents</div>
+                    <div data-i18n="Layouts">Parents</div>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a href="<?php echo base_url('listeEnseignants') ?>" class="menu-link ">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Layouts">enseignants</div>
+                    <div data-i18n="Layouts">Enseignants</div>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a href="<?php echo base_url('listeComptes') ?>" class="menu-link ">
                     <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Layouts">comptes</div>
+                    <div data-i18n="Layouts">Comptes</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="layouts-container.html" class="menu-link">
+                  <a href="<?php echo base_url('demande/liste') ?>" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Container">demandes</div>
+                    <div data-i18n="Container">Demandes</div>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a href="<?php  echo base_url('listeClasses')?>" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Fluid">classes</div>
+                    <div data-i18n="Fluid">Classes</div>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a href="<?php echo base_url('listeMatieres') ?>" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Blank">matiéres</div>
+                    <div data-i18n="Blank">Matiéres</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?php echo base_url('club/liste') ?>" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <div data-i18n="Blank">Clubs</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?php echo base_url('listeEmplois') ?>" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <div data-i18n="Blank">Emplois</div>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a href="layouts-blank.html" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Blank">clubs</div>
+                    <div data-i18n="Blank">Bulletins des notes</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="<?php echo base_url('menu/liste') ?>" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-layout"></i>
+                    <div data-i18n="Blank">Menu cantine</div>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a href="layouts-blank.html" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Blank">emplois</div>
+                    <div data-i18n="Blank">Caisses</div>
                   </a>
                 </li>
                 <li class="menu-item">
                   <a href="layouts-blank.html" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Blank">bulletins des notes</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-blank.html" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Blank">menu cantine</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-blank.html" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Blank">caisses</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="layouts-blank.html" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-layout"></i>
-                    <div data-i18n="Blank">réclamations</div>
+                    <div data-i18n="Blank">Réclamations</div>
                   </a>
                 </li>
           </ul>

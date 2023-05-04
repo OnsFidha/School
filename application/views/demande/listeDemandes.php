@@ -1,15 +1,14 @@
-
-            <div class="content-wrapper">
-            <div class="container-xxl flex-grow-1 container-p-y">
-
-                
-
-                <div class="card">
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card mx-auto " >
+    <div class="card-body" >
                     <!-- <div class="card-header d-flex justify-content-between align-items-center">
                         <a href="<?php echo base_url('demande/liste')?>" class="badge bg-label-primary me-1">Ajouter Eleve</a>
                     </div> -->
-                    <h4 class="fw-bold py-3 mb-4 text-center">  Liste des Demandes d'Inscriptions</h4>
-
+                  
+                    <h4 >  Liste des demandes d'inscriptions</h4>
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                    </div>
                         <div class="table-responsive text-nowrap">
                             <table class="table">
                                 <thead>

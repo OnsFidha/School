@@ -1,9 +1,8 @@
-
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
-    <div class="card mx-auto " >
+    <div class="card mx-auto ">
     <div class="card-body" >
-    <h4 class="fw-bold py-3 text-center "> Ajouter un emplois de temps</h4>
+    <h4 class="f text-center "> Ajouter un emplois de temps</h4>
         <div class="container">
         <div class="row">
         <div class="mb-3 col-md-3">

@@ -1,11 +1,11 @@
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 text-center " > Modifier une matiére</h4>
-    <div class="card mx-auto " style='width:750px'>
-                <div class="card-body" >
-                                           
+    <div class="card mx-auto ">
+    <div class="card-body" >
+    <h4  > Modifier une matiére</h4>
+    <div class="card mx-auto " style='width:750px'>   
                 <form id="form"  accept-charset="UTF-8" class="mb-3" action="<?php echo base_url('listeMatieres/add') ?>" method="POST">
-                <div class="mb-3">
+                 <div class="mb-3">
                         <label for="nom" class="form-label">Nom</label>
                         <input
                             type="text"
@@ -69,7 +69,8 @@
                     <button class="btn btn-primary d-grid " type="submit">Créér</button>
                     </div>
                 </form>
-                </div>
-            </div>
+    </div>
+    </div>
+    </div>
     </div>
 </div>

@@ -1,15 +1,11 @@
-
 <div class="content-wrapper">
-            <div class="container-xxl flex-grow-1 container-p-y">
-
-
-  <!-- Borderless Table -->
-  <div class="card">
-    <h5 class="card-header">
-
+    <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card mx-auto " >
+    <div class="card-body" >
+    <h4 >
       Club <?php echo $club->nom?>
-      
-    </h5>
+    </h4>
+    <div class="card-body" >
     <div class="table-responsive text-nowrap">
       <table class="table table-borderless">
         <thead>

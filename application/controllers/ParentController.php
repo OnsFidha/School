@@ -5,16 +5,18 @@ class ParentController extends CI_Controller {
     public function __construct() 
     {
         parent::__construct();
-        $this->load->model('AdminAcces');}
-    public function index(){
+        $this->load->model('AdminAcces');
+		$this->load->model('parentEleve');
+		$this->load->model('userModel');
+	}
+    public function index()
+	{
 		$this->load->model('ParentEleve');
 		$data=$this->ParentEleve->getParents();
 		$this->load->view('menu');
 		$this->load->view('parentEleve/listeParents',['parent'=>$data]);
 		$this->load->view('footer');
-
 	}
-    
 	public function create(){
 		$this->load->model('Eleve');
 		$data['eleves']=$this->Eleve->getEleves();
@@ -29,8 +31,8 @@ class ParentController extends CI_Controller {
 	// 	$this->load->view('parentEleve/ajouterParent',$data);
 	// }
 
-    public function ajouter() {
-
+    public function ajouter() 
+	{
         $this->form_validation->set_rules(
 			'prenom','prenom',
 			'required|min_length[3]',
@@ -84,18 +86,18 @@ class ParentController extends CI_Controller {
 		}
     }
 
-	public function supprimer($id){
+	public function supprimer($id)
+	{
 		$this->load->model('ParentEleve');
 		$this->ParentEleve->deleteParent($id);
 		redirect(base_url('parent/liste'));
 	}
 
-	public function consulterEnfants($id){
+	public function consulterEnfants($id)
+	{
 		// $this->load->model('ParentEleve');
-
 		$this->load->model('Eleve');
 		$dataEnfants=$this->Eleve->getEnfantsParent($id);
-
 		// //echo($dataEleves[0]);
 		$data=[
 			'enfants'=>$dataEnfants
@@ -106,6 +108,64 @@ class ParentController extends CI_Controller {
 
 		//redirect(base_url('parent/liste'));
 	}
+	public function creer($id)
+    {
+      $parent= $this->parentEleve->getParentById($id);
+      $this->load->helper('string');
+      $password = random_string('alnum', 8);  
+      $data=array(
+      'nom'=>$parent->nom,
+      'prenom'=>$parent->prenom,
+      'email'=>$parent->email,
+      'mot_de_passe'=> password_hash($password, PASSWORD_DEFAULT),
+      'role'=>'parent',
+     );
+     $register_user= new UserModel;
+     $cheking=$register_user->registerUser($data,$parent->id,$data['role']);
+     if ($cheking)
+     {
+        
+		$config=[
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.gmail.com', // Example SMTP host
+            'smtp_port' => 465, // Example SMTP port
+            'smtp_user' => 'hvh912326@gmail.com', // Example SMTP username
+            'smtp_pass' => 'cartwknilrpeyhbc', // Example SMTP password
+            'mailtype' => 'html',
+            'charset' => 'utf-8',
+            'wordwrap' => TRUE
+        ];
 
+
+		$this->load->library('email',$config);
+		$this->email->set_newline("\r\n");
+
+		$this->email->initialize($config);
+		
+		$this->email->from('hvh912326@gmail.com','admin');
+		$this->email->to('onsfidha3@gmail.com');
+		
+		
+		$this->email->subject('Creation compte');
+		$this->email->message("Bonjour,
+
+        Nous sommes heureux de vous informer que votre compte a été créé avec succès. Veuillez trouver ci-dessous vos informations de connexion :<br><br>
+        
+        Nom d'utilisateur : ".$data['email'].' <br><br>Mot de passe : '
+         .$password ." <br><br> Nous vous rappelons que vous pouvez changer votre mot de passe à tout moment en accédant à votre profil sur notre site. Si vous avez des questions ou des préoccupations, n'hésitez pas à nous contacter.
+
+         <br><br> Cordialement.");
+		
+		//$this->email->send();
+		if (!$this->email->send())
+		show_error($this->email->print_debugger());
+		else
+		echo 'Your e-mail has been sent!';
+      $this->session->set_flashdata('status',' Compte créé avec succès');
+      redirect(base_url('parent/liste'));
+      } 
+    
+      }
+    
 	
 }

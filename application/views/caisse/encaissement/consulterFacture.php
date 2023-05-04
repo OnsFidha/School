@@ -1,13 +1,13 @@
-
 <div class="content-wrapper">
-            <div class="container-xxl flex-grow-1 container-p-y">
-
+    <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card mx-auto " >
+    <div class="card-body" >
 
             <?php
         // foreach ($factures as $facture) {
         // ?>
   <!-- Borderless Table -->
-  <div class="card">
+
 
     <h5 class="card-header">
       Facture <strong><?php echo $facture->type?>le</strong>

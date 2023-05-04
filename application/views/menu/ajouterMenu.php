@@ -1,16 +1,10 @@
-
-            <div class="content-wrapper">
-            <div class="container-xxl flex-grow-1 container-p-y">
-
-                <div class="card mt-3">
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+    <div class="card mx-auto " >
+      <div class="card-body" >
+      <h4 > Menu Cantine</h4>
                 <form action =" <?php echo base_url('menu/ajouter')?> " method="POST" enctype="multipart/form-data">
-
                     <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="fw-bold py-3 mb-4"><span class="fw-light"></span> Menu Cantine</h4>
-                    <button type="button" class="btn rounded-pill btn-danger">
-                            <span class="tf-icons bx bx-bell"></span>&nbsp; Notifier
-                    </button>
-                    
                         <!-- <a href="<?php echo base_url('parent/create')?>" class="badge bg-label-primary me-1">Ajouter Parent</a> -->
                     </div>
                     <div class="card-body">

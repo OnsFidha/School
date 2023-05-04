@@ -24,7 +24,7 @@ class loginContr extends CI_Controller {
     {
           $this->load->view('login.php');
      
-    }
+    }   
     public function login()
     {
       
