@@ -4,7 +4,7 @@
     <div class="card mx-auto " style='width:750px'>
                 <div class="card-body" >
                     <h4 class=" text-center " > Ajouter une matiére</h4>                    
-                    <form id="form"  accept-charset="UTF-8" class="mb-3" action="<?php echo base_url('listeMatieres/add') ?>" method="POST">
+                    <form id="form"  enctype="multipart/form-data" class="mb-3" action="<?php echo base_url('listeMatieres/add') ?>" method="POST">
                         <div class="mb-3">
                             <label for="nom" class="form-label">Nom</label>
                             <input
@@ -54,6 +54,18 @@
                             
                                 autofocus
                             /> <small><?php echo form_error('nombre_heures'); ?></small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fiche_matiere" class="form-label">fiche matiére </label>
+                            <input
+                                type="file"
+                                class="form-control"
+                                id="fiche_matiere"
+                                name="fiche_matiere"
+                                value="<?php echo set_value('fiche_matiere')?>"
+                            
+                                autofocus
+                            /> <small><?php echo form_error('fiche_matiere'); ?></small>
                         </div>
                         <!-- <div class="mb-3">
                         <label for="niveau" class="form-label">Niveau scolaire</label>

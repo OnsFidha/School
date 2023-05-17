@@ -2,21 +2,25 @@
 
 class Demande extends CI_Model {
 
-    public function insert($data){
+    public function insert($data)
+    {
         $this->db->insert('demande',$data);
     }
 
-    public function getDemandes(){
+    public function getDemandes()
+    {
         $query= $this->db->get('demande');
         return $query->result();
     }
 
-    public function getDemandeById($id){
+    public function getDemandeById($id)
+    {
         $query= $this->db->get_where('demande',['id'=>$id]);
         return $query->row();
     }
 
-    public function updateDemandeEtat($id, $etat) {
+    public function updateDemandeEtat($id, $etat)
+    {
         $data = ['etat' => $etat];
         $this->db->where('id', $id);
         $this->db->update('demande', $data);

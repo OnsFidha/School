@@ -21,7 +21,6 @@ class enseignantContr extends CI_Controller {
             $this->load->view('listeEnseignants',$data);
             $this->load->view('footer');   
     }
-   
     public function effacer($id)
     {   
         $this->load->model('UserModel');

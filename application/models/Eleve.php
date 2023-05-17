@@ -27,5 +27,12 @@ class Eleve extends CI_Model {
     public function insertEleve($data){
         return $this->db->insert('eleve', $data);
     }
+    public function getEleveByClasse($id){
+        $this->db->select('eleve.*');
+        $this->db->join('classes', 'eleve.id_classe = classes.id');
+       $this->db->where("id_classe", $id);
+        $query= $this->db->get('eleve');
+        return $query->result_array();
+    }
    
 }

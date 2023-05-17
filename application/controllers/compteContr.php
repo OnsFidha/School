@@ -33,7 +33,8 @@ class compteContr extends CI_Controller {
         
     }
     public function edit()
-    {   $this->load->view('menu');
+    {  
+       $this->load->view('menu');
       $user= new UserModel;
       $id=$this->session->userdata('auth_user')['id'];
       $data['user']=$user->getById($id);

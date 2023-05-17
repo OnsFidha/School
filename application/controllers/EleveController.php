@@ -5,17 +5,21 @@ class EleveController extends CI_Controller {
     public function __construct() 
     {
         parent::__construct();
-        $this->load->model('AdminAcces');
+        
     }
-	public function index(){
+	public function index()
+	{
 		$this->load->view('menu');
 		$this->load->model('Eleve');
 		$data=$this->Eleve->getEleves();
 		$this->load->view('eleve/listeEleves',['eleve'=>$data]);
 		$this->load->view('footer');
+		$this->load->model('AdminAcces');
 	}
 
-	public function create(){
+	public function create()
+	{
+		$this->load->model('AdminAcces');
 		$this->load->view('menu');
 		$this->load->model('ClasseModel');
 		$this->load->model('parentEleve');
@@ -27,8 +31,9 @@ class EleveController extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function store(){
-
+	public function store()
+	{
+		$this->load->model('AdminAcces');
 		$this->form_validation->set_rules(
 			'prenom','prenom',
 			'required|min_length[3]|alpha',
@@ -138,7 +143,9 @@ class EleveController extends CI_Controller {
 		}	
 	}
 
-	public function edit($id){
+	public function edit($id)
+	{
+		$this->load->model('AdminAcces');
 		$this->load->model('Eleve');
 		$dataEleve= $this->Eleve->getEleveById($id);
 
@@ -167,7 +174,8 @@ class EleveController extends CI_Controller {
 		return $data;
 	}
 	
-	public function getEleve($id){
+	public function getEleve($id)
+	{
 		$this->load->model('Eleve');
 		$dataEleve= $this->Eleve->getEleveById($id);
 
@@ -183,7 +191,9 @@ class EleveController extends CI_Controller {
 		$this->load->view('footer');
 	}
 
-	public function update($id){
+	public function update($id)
+	{
+		$this->load->model('AdminAcces');
 		$this->form_validation->set_rules(
 			'prenom','prenom',
 			'required|min_length[3]|alpha',
@@ -265,7 +275,9 @@ class EleveController extends CI_Controller {
       }
     }
 
-	public function updatee($id){
+	public function updatee($id)
+	{
+		$this->load->model('AdminAcces');
 		$this->form_validation->set_rules('prenom', 'prenom', 'required');
 		$this->form_validation->set_rules('nom', 'nom', 'required');
 		$this->form_validation->set_rules('dateNaissance', 'Phone Number', 'required');
@@ -289,13 +301,17 @@ class EleveController extends CI_Controller {
 		}
 	}
 
-	public function delete($id){
+	public function delete($id)
+	{
+		$this->load->model('AdminAcces');
 		$this->load->model('Eleve');
 		$this->Eleve->deleteEleve($id);
 		redirect(base_url('eleve/liste'));
 	}
 
-	public function upload_file(){
+	public function upload_file()
+	{
+		$this->load->model('AdminAcces');
 		$config['upload_path'] = './uploads';
 		$config['allowed_types'] = 'jpg|png';
 		$config['max_size']  = '10000';
@@ -314,7 +330,9 @@ class EleveController extends CI_Controller {
 		}
 	}
 
-	public function uploadf($f){
+	public function uploadf($f)
+	{
+		$this->load->model('AdminAcces');
 		if($f["name"]== ""){
 			
 			return "";
@@ -342,11 +360,13 @@ class EleveController extends CI_Controller {
 			echo "Sorry, there was an error uploading your file.";
 			
 		}
-	}	return $newfilename;
+		}	return $newfilename;
 
+		}
 	}
-	}
-	public function storeee(){
+	public function storeee()
+	{
+		$this->load->model('AdminAcces');
 
 		 $file1=$this->uploadf($_FILES["photo"]);
 

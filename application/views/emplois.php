@@ -8,7 +8,6 @@
         <div class="mb-3 col-md-3">
           <form >
             <label for="classe" class="form-label">classe</label>
-            
             <select name="classe" id="classe" class="select form-select">
                 <option value=""></option>
                 <optgroup label="préscolaire">

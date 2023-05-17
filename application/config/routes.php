@@ -52,8 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'loginContr';
 //login
 $route['login'] = 'loginContr';
-$route['login'] = 'loginContr/login';
-$route['admin']['GET']= 'adminPageContr/index';
+$route['login/connecter'] = 'loginContr/login';
+$route['admin']= 'adminPageContr/index';
 $route['logout']= 'adminPageContr/logout';
 // eleve
 $route['eleve/create'] = 'eleveController/create';
@@ -63,6 +63,15 @@ $route['eleve/modifier/(:any)'] = 'eleveController/edit/$1';
 $route['eleve/update/(:any)'] = 'eleveController/update/$1';
 $route['eleve/supprimer/(:any)'] = 'eleveController/delete/$1';
 $route['eleve/consulter/(:any)'] = 'eleveController/getEleve/$1';
+//evenement
+$route['listeEvenement'] = 'evenementContr/index';
+$route['listeEvenement/ajouter'] = 'evenementContr/ajouter';
+$route['listeEvenement/add'] = 'evenementContr/add';
+$route['listeEvenement/modifier/(:any)'] = 'evenementContr/modifier/$1';
+$route['listeEvenement/editer/(:any)'] = 'evenementContr/editer/$1';
+$route['listeEvenement/supprimer/(:any)'] = 'evenementContr/supprimer/$1';
+$route['listeEvenement/details/(:any)'] = 'evenementContr/consulter/$1';
+
 
 //parent
 $route['parent/liste']= 'ParentController/index';
@@ -121,6 +130,7 @@ $route['listeClasses/add'] = 'classeContr/add';
 $route['listeMatieres']= 'matiereContr';
 $route['listeMatieres/ajouter']= 'matiereContr/ajouter';
 $route['listeMatieres/add']= 'matiereContr/register';
+$route['listeMatieres/effacer/(:any)']= 'matiereContr/delete/$1';
 //emplois
 $route['listeEmplois']= 'emploisContr/get';
 $route['listeEmplois/consulter/(:any)']= 'emploisContr/consulter/$1';
@@ -135,12 +145,11 @@ $route['encaissement/liste'] = 'EncaissementController/listeEncaissements';
 
 //notification 
 $route['menu/notification/(:any)'] = 'MenuController/notifierMenu/$1';
-
 //
 $route['register']['GET'] = 'registerContr/index';
 $route['register']['POST'] = 'registerContr/register';
-
-$route['ficheAppel']='assiduiteContr';
+//assiduit
+$route['ficheAppel']='assiduiteContr/index';
 // partie enseignant
 $route['enseigZone'] = 'enseignantContr';
 $route['404_override'] = '';

@@ -3,7 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class loginContr extends CI_Controller {
     public function __construct() 
-    {parent::__construct();
+    {
+      parent::__construct();
       if($this->session->has_userdata('authenticated')){
         if($this->session->userdata('role')=='admin'){
         $this->session->set_flashdata('status','déja connecté');
@@ -47,7 +48,7 @@ class loginContr extends CI_Controller {
           // $this->load->library('session');
            $user= new UserModel;
            $result=$user->loginUser($data);
-           if ($result!=FALSE && $result->role!='parent')
+           if ($result!=FALSE) 
            { 
             
             //echo $result->nom;
@@ -62,18 +63,39 @@ class loginContr extends CI_Controller {
               $this->session->set_userdata('auth_user',$auth_userdetails);
               $this->session->set_userdata('role', $auth_userdetails['role']);
              // $this->session->set_flashdata('status','success');
-             if($auth_userdetails['role']=='admin'){
-              redirect(base_url('admin'));}
-              else if($auth_userdetails['role']=='enseignant'){
+             if($auth_userdetails['role']=='admin')
+              {
+                redirect(base_url('admin'));
+              } 
+              else {
+                if($auth_userdetails['role']=='enseignant'){
                 redirect(base_url('espaceEnseignant'));
               }
+               else
+                {
+                  $response = array(
+                    'success' => true,
+                    'message' => 'login true.'
+                  );
+                  $this->output
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($response));
+                }
+              }
             } 
-             
+         
 
             else 
             {
                 $this->session->set_flashdata('status','mail ou mot de passe incorrecte');
-                redirect(base_url('login'));
+                $response = array(
+                  'success' => false,
+                  'message' => 'login false.'
+                );
+                $this->output
+                  ->set_content_type('application/json')
+                  ->set_output(json_encode($response));
+               // redirect(base_url('login'));
             }  
         }
     }

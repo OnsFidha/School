@@ -78,28 +78,26 @@
                                 </script>
                             </div></div>
                             <script>
-                                    $(document).ready(function() {
-                                    $('#matiere').select2({
-                                        theme: 'bootstrap'
-                                                })
-                                    $('#matiere').change(function(){
-                                        var matiere = $(this).val();
-                                    $.ajax({
-                                        url:"<?php echo base_url('emploisContr/getEnseign'); ?>",
-                                        type:'POST',
-                                        data:{matiere:matiere},
-                                        dataType:'json',
-                                        success:function(response)
-                                        {
-                                            if(response['ens']){
-                                                $("#j").html(response['ens']);
-                                            }
+                                $(document).ready(function() {
+                                $('#matiere').select2({
+                                    theme: 'bootstrap'
+                                            })
+                                $('#matiere').change(function(){
+                                    var matiere = $(this).val();
+                                $.ajax({
+                                    url:"<?php echo base_url('emploisContr/getEnseign'); ?>",
+                                    type:'POST',
+                                    data:{matiere:matiere},
+                                    dataType:'json',
+                                    success:function(response)
+                                    {
+                                        if(response['ens']){
+                                            $("#j").html(response['ens']);
                                         }
-                                        });
-                                        }); 
+                                    }
                                     });
-                        
-                        
+                                    }); 
+                                    });
                                 </script>
                             <button class="btn btn-primary d-grid " type="submit">Créer</button>
             </div> 

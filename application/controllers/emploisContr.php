@@ -5,7 +5,6 @@ class emploisContr extends CI_Controller {
   public function __construct() 
   {
       parent::__construct();
-      $this->load->model('AdminAcces');
       $this->load->model('classeModel');
       $this->load->model('emploisModel');
       $this->load->model('enseigModel');
@@ -13,14 +12,15 @@ class emploisContr extends CI_Controller {
   }
   public function index()
   {
-            $this->load->view('menu');
-            $this->load->model('EnseigModel');
-            $this->load->model('MatiereModel');
-            $data['matieres']= $this->MatiereModel->getAll();
-            $data['enseignants']= $this->enseigModel->getAll();
-            $data['classes']= $this->classeModel->selectAll();
-            $this->load->view('emplois',$data);
-            $this->load->view('footer');  
+      $this->load->model('AdminAcces');
+      $this->load->view('menu');
+      $this->load->model('EnseigModel');
+      $this->load->model('MatiereModel');
+      $data['matieres']= $this->MatiereModel->getAll();
+      $data['enseignants']= $this->enseigModel->getAll();
+      $data['classes']= $this->classeModel->selectAll();
+      $this->load->view('emplois',$data);
+      $this->load->view('footer');  
   }
   public function getEnseign(){
       $id=$this->input->post('matiere');
@@ -31,7 +31,8 @@ class emploisContr extends CI_Controller {
       echo json_encode($response);
   }
   public function btn($id)
-  {
+  { 
+      $this->load->model('AdminAcces');
       $this->load->model('MatiereModel');
       $data['matieres']= $this->MatiereModel->getAll();
       $data['enseignants']= $this->enseigModel->getAll();
@@ -41,7 +42,6 @@ class emploisContr extends CI_Controller {
   }
   public function fetchClasse($id)
   {
-
     $this->db->where('id', $id);
     $query = $this->db->get('classes');
     $classe = $query->row();
@@ -52,6 +52,7 @@ class emploisContr extends CI_Controller {
   }
   public function add()
   {
+    $this->load->model('AdminAcces');
     $this->load->library('form_validation');
     $this->form_validation->set_rules('jour', 'Jour', 'required');
     $this->form_validation->set_rules('heure_debut', 'Heure de début', 'required');
@@ -128,6 +129,7 @@ class emploisContr extends CI_Controller {
   }
   public function get()
   {
+    $this->load->model('AdminAcces');
       $this->load->view('menu');
       $this->load->model('EmploisModel');
       $data['emplois'] =$this->emploisModel->getEmploisByClasse('');

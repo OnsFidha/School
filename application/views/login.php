@@ -70,7 +70,7 @@
             <div class="card-body">
               <h4 class=" text-center mb-2">Pour accéder a votre compte</br>merci de saisir vos coordonnées.</h4>
                                           </br></br>
-              <form id="formAuthentication" class="mb-3" action="<?php echo base_url('login') ?>" method="POST">
+              <form id="formAuthentication" class="mb-3" action="<?php echo base_url('login/connecter') ?>" method="POST">
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
                   <input
