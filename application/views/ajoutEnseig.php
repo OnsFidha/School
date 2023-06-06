@@ -4,7 +4,7 @@
         <div class="card-body" >
           <h4> Ajouter Enseignant</h4>
             <div class="card-body">
-              <form id="formAccountSettings" action="<?php echo base_url('enseignant/ajout') ?>" method="POST">
+              <form id="formAccountSettings" action="<?php echo base_url('enseignant/ajout') ?>" enctype="multipart/form-data" method="POST">
                 <div class="row">
                   <div class="mb-3 col-md-6">
                         <label class="form-label" for="photoId">photo</label>

@@ -184,6 +184,9 @@ class enseignantContr extends CI_Controller {
             }
             else 
             {
+                $imageData = file_get_contents($_FILES['photo']['tmp_name']);
+                $encodedImageData = base64_encode($imageData);
+         
                 $data=array(
                     'adresse'=>$this->input->post('adresse'),
                     'nom'=>$this->input->post('nom'),
@@ -194,15 +197,15 @@ class enseignantContr extends CI_Controller {
                     'dateNaissance'=>$this->input->post('dateNaissance'),
                     'salaire'=>$this->input->post('salaire'),
                     'typeSalaire'=>$this->input->post('typeSalaire'),
-                    'photo'=>$this->input->post('photo'),
+                    'photo'=>$encodedImageData,
                     'cin'=>$this->input->post('cin'),
                 
                 );
             
                 $enseignant= new EnseigModel;
                 $matieres=$_POST['matiere'];
-                var_dump($matieres);
                 $cheking=$enseignant->creer($data,$matieres);
+              
                 if ($cheking)
                     {
                         $this->session->set_flashdata('status',' Enseignant ajouté avec succès');

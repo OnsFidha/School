@@ -72,7 +72,9 @@ $route['listeEvenement/editer/(:any)'] = 'evenementContr/editer/$1';
 $route['listeEvenement/supprimer/(:any)'] = 'evenementContr/supprimer/$1';
 $route['listeEvenement/details/(:any)'] = 'evenementContr/consulter/$1';
 
-
+//sanction
+$route['discipline'] = 'sanctionContr/index';
+$route['sanction'] = 'sanctionContr/ajout';
 //parent
 $route['parent/liste']= 'ParentController/index';
 $route['parent/ajouter']= 'ParentController/ajouter';
@@ -133,6 +135,7 @@ $route['listeMatieres/add']= 'matiereContr/register';
 $route['listeMatieres/effacer/(:any)']= 'matiereContr/delete/$1';
 //emplois
 $route['listeEmplois']= 'emploisContr/get';
+$route['emploisE']= 'emploisContr/consulterr';
 $route['listeEmplois/consulter/(:any)']= 'emploisContr/consulter/$1';
 $route['emplois'] = 'emploisContr';
 $route['emplois/add/(:any)'] = 'emploisContr/btn/$1';

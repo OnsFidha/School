@@ -3,9 +3,11 @@
     <div class="card mx-auto ">
     <div class="card-body" >
         <h4 class="text-center">Emplois du temps de la classe <?php echo $emplois[0]->nom?></h4>
-        </br></br>
+        </br>
         <div class ="card-header">
+        <h6  style="text-align: right; padding-right: 50px;">  Salle numéro <?php echo $emplois[0]->salle_classe?></h6><br>
             <div class="table-responsive">
+      
                 <table class="table table-bordered text-center">
                 <thead>
                         <tr class="bg-light-gray">
@@ -19,6 +21,12 @@
                         </tr>
                 </thead>
                 <tbody>
+                <style>
+                            table td, table th {
+                                padding: 30px;
+                                width: 150px;
+                                height: 60px;}
+                        </style>
                                     <tr>
                                         <td class="align-middle">08:00</td>
                                         <td class="bg-light-gray">

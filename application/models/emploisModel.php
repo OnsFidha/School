@@ -58,7 +58,7 @@ class emploisModel extends CI_Model {
         return $query->result();
     }
     public function getByClass($id){
-        $this->db->select('emplois.*,classes.nom, matieres.nom as nom_matiere, enseignants.nom as nom_enseignant,enseignants.prenom as prenom_enseignant');
+        $this->db->select('emplois.*,classes.nom,classes.salle_classe, matieres.nom as nom_matiere, enseignants.nom as nom_enseignant,enseignants.prenom as prenom_enseignant');
         $this->db->join('matieres', 'emplois.id_matiere = matieres.id');
         $this->db->join('classes', 'emplois.id_classe = classes.id');
         $this->db->join('enseignants', 'emplois.id_enseignant = enseignants.id');
@@ -133,6 +133,16 @@ class emploisModel extends CI_Model {
         $this->db->from('emplois');
         $this->db->join('classes', 'emplois.id_classe = classes.id');
         $this->db->group_by('id_classe');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getEmploisByEnseig($id)
+    {
+        $this->db->select('emplois.*,matieres.nom,classes.salle_classe');
+        $this->db->from('emplois');
+        $this->db->join('matieres', 'emplois.id_matiere = matieres.id');
+        $this->db->join('classes', 'emplois.id_classe = classes.id');
+        $this->db->where( 'id_enseignant ',$id);
         $query = $this->db->get();
         return $query->result();
     }

@@ -1,4 +1,7 @@
 <?php
+
+use phpDocumentor\Reflection\Types\This;
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class emploisContr extends CI_Controller {
@@ -145,6 +148,18 @@ class emploisContr extends CI_Controller {
     $this->load->view('consulterEmplois', $data);
     $this->load->view('footer');
     
+  }  public function consulterr()
+  {
+    $this->load->model('emploisModel');
+     if ($this->session->userdata('role') == 'enseignant')
+     {
+      $id=$this->session->userdata('auth_user')['id'];
+      $idE=$this->enseigModel->getByIdUser($id)->id;
+      $data['emplois'] = $this->emploisModel->getEmploisByEnseig($idE);
+      $this->load->view('menu');
+      $this->load->view('EmploisEnseig', $data);
+      $this->load->view('footer');
+    }
   }
   function getSubjectColor($subjectName) {
     switch ($subjectName) {

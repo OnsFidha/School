@@ -25,7 +25,11 @@
               
               <tr>
                 <td><i class="fab fa-angular fa-lg text-danger me-3"></i> 
-                <img src='<?php  echo $row->photo;?>'></img></td>
+                    <?php  if ($row->photo): ?>
+                      <img style='width:105px;height:105px'src="data:image;base64,<?php echo $row->photo; ?>" alt="Photo">
+                    <?php endif; ?>
+                   
+                  </td>
                   <td><?php    echo $row->nom;?></td>
                   <td><?php    echo $row->prenom;?></td>
                   <td><?php    echo $row->email;?></td>
