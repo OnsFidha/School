@@ -17,22 +17,12 @@
                             <th>Telephone</th>
                             <th>Email</th>
                             <th>Compte</th>
-                            <!-- <th>enfant</th> -->
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                         <?php
-                        foreach ($parent as $row) {
-
-                            // $this->db->select('eleve.nom, eleve.prenom');
-                            // $this->db->from('eleve');
-                            // $this->db->join('parent', 'parent.id_eleve = eleve.id');
-                            // $this->db->where('parent.id', $row->id);
-                            // $query = $this->db->get();
-                            // $eleve_nom = $query->row()->nom;
-                            // $eleve_prenom = $query->row()->prenom;
-                            // ?>  
+                        foreach ($parent as $row) { ?>  
                             <tr>
                                 <td><?php echo $row->nom;?></td>
                                 <td><?php echo $row->prenom;?></td>
@@ -53,13 +43,11 @@
                                         </div>
                                     <?php endif; ?>
                                 </td>
-                                <!-- <td><?php echo $eleve_nom." ".$eleve_prenom; ?></td> -->
                                 <td>
                                     <a href="<?php echo base_url('parent/consulter/'.$row->id)?>"><span class="badge bg-label-info me-1"><i class='bx bx-info-circle'></i></a>
                                     <a href="<?php echo base_url('parent/modifier/'.$row->id)?>"><span class="badge bg-label-warning me-1"><i class='bx bxs-edit'></i></a>
                                     <a href="<?php echo base_url('parent/enfant/'.$row->id)?>"><span class="badge bg-label-dark me-1"><i class='bx bxs-face'></i></a>
-                                    
-                                    <a href="<?php echo base_url('parent/supprimer/'.$row->id)?>" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce parents ?')"><span class="badge bg-label-danger me-1"><i class='bx bx-trash'></i></a>
+                                    <a class='deleteBtn' href="<?php echo base_url('parent/supprimer/'.$row->id)?>" ><span class="badge bg-label-danger me-1"><i class='bx bx-trash'></i></a>
                                     <br/>
                                     <!-- <a href="<?php echo base_url('parent/'.$row->id.'/facture')?>"><span class="badge bg-label-success me-1"><i class='bx bx-dollar-circle'></i> Payer</a> -->
                                 </td>
@@ -68,6 +56,27 @@
                         }
                         ?>
                     </tbody>
+                    <script>
+                        $(document).ready(function() {
+                        $('.deleteBtn').click(function(e) {
+                        e.preventDefault();
+
+                        Swal.fire({
+                            title: 'Êtes-vous sûr de vouloir supprimer cet élève ?',
+                            text: "Cette action ne peut pas être annulée !",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Oui, supprimez-le !'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                            window.location.href = $(this).attr('href');
+                            }
+                        })
+                        });
+                        });
+                    </script>
                 </table>
             </div>
     </div>

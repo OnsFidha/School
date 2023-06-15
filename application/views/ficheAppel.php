@@ -9,7 +9,7 @@
               <div class='mb-3 col-md-4'>
               <input type="hidden" name="selected_classe" id="selected_classe" value="">
                 <script>
-                $(document).ready(function() {
+                    $(document).ready(function() {
                         $('#classe').select2({
                             theme: 'bootstrap'
                         });

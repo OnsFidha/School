@@ -62,4 +62,5 @@ class assiduiteContr extends CI_Controller {
         else {$this->index(); }
       }
     }
+
 }

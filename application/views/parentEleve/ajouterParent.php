@@ -104,25 +104,14 @@
                                         id="dateNaissanceId"
                                         name="dateNaissance"
                                         class="form-control phone-mask"
-                                        placeholder="658 799 8941"
+                                      
                                       />
                                     </div>
                                     <small class="error"><?php echo form_error('dateNaissance') ?></small>
                                   </div>
-                                  <!-- eleve 
-                                  <div class="mb-3 col-md-6">
-                                    <label class="form-label" for="eleveId">Sélectionnez un élève</label>
-                                    <select id="eleveId" name="eleveId" class="form-select" >
-                                      <?php foreach ($eleves as $eleve): ?>
-                                        <option value="<?php echo $eleve->id; ?>">
-                                          <?php echo $eleve->prenom." ".$eleve->nom;  ?>
-                                        </option>
-                                      <?php endforeach; ?>  
-                                    </select>
-                                    <small class="error"><?php echo form_error('eleve') ?></small>
-                                  </div> -->
+                             
                                   <div class="mt-2">
-                                    <input type="submit" class="btn btn-primary" value="send" />
+                                    <input type="submit" class="btn btn-primary" value="Ajouter" />
                                   </div>
                                 </div>
                               </div>

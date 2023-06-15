@@ -50,11 +50,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'loginContr';
+
 //login
 $route['login'] = 'loginContr';
 $route['login/connecter'] = 'loginContr/login';
 $route['admin']= 'adminPageContr/index';
 $route['logout']= 'adminPageContr/logout';
+
 // eleve
 $route['eleve/create'] = 'eleveController/create';
 $route['eleve/store'] = 'eleveController/store';
@@ -63,6 +65,7 @@ $route['eleve/modifier/(:any)'] = 'eleveController/edit/$1';
 $route['eleve/update/(:any)'] = 'eleveController/update/$1';
 $route['eleve/supprimer/(:any)'] = 'eleveController/delete/$1';
 $route['eleve/consulter/(:any)'] = 'eleveController/getEleve/$1';
+
 //evenement
 $route['listeEvenement'] = 'evenementContr/index';
 $route['listeEvenement/ajouter'] = 'evenementContr/ajouter';
@@ -75,21 +78,33 @@ $route['listeEvenement/details/(:any)'] = 'evenementContr/consulter/$1';
 //sanction
 $route['discipline'] = 'sanctionContr/index';
 $route['sanction'] = 'sanctionContr/ajout';
+$route['sanction/add'] = 'sanctionContr/add';
+$route['sanction/effacer/(:any)'] = 'sanctionContr/effacer/$1';
+$route['sanction/modifier/(:any)'] = 'sanctionContr/modifier/$1';
+$route['gratification'] = 'sanctionContr/gratifier';
+$route['gratification/effacer/(:any)'] = 'sanctionContr/efface/$1';
+$route['gratification/add'] = 'sanctionContr/addgratif';
+
 //parent
 $route['parent/liste']= 'ParentController/index';
 $route['parent/ajouter']= 'ParentController/ajouter';
 $route['parent/create']= 'ParentController/create';
+$route['parent/modifier/(:any)']= 'ParentController/modifier/$1';
+$route['parent/update/(:any)']= 'ParentController/update/$1';
 $route['parent/supprimer/(:any)'] = 'ParentController/supprimer/$1';
 $route['parent/consulter/(:any)'] = 'ParentController/consulter/$1';
 $route['parent/enfant/(:any)'] = 'ParentController/consulterEnfants/$1';
 $route['parent/compte/(:any)']= 'ParentController/creer/$1';
 //$route['parent/enfant'] = 'ParentController/consulterEnfants';
+
 // demande
 $route['demande/liste'] = 'demandeController/index';
 $route['demande/accepter/(:any)'] = 'demandeController/accepterDemande/$1';
 $route['demande/refuser/(:any)'] = 'demandeController/refuserDemande/$1';
 $route['demande/ajouter'] = 'demandeController/ajouter';
 $route['test/store']= 'testController/store';
+$route['demande/consulter/(:any)'] = 'demandeController/get/$1';
+$route['demande/finaliser/(:any)'] = 'demandeController/finaliser/$1';
 
 //menu
 $route['menu/form']= 'MenuController/index';
@@ -98,6 +113,9 @@ $route['menu/liste']= 'MenuController/listerMenu';
 $route['menu/consulter']= 'MenuController/consulterMenu';
 $route['menu/consulter/(:any)'] = 'MenuController/consulterMenu/$1';
 $route['menu/modifier/(:any)'] = 'MenuController/consulterMenu/$1';
+//reclamation
+$route['listeReclamation'] = 'reclamationContr/index';
+
 
 //club
 $route['club/creer']= 'ClubController/creer';
@@ -108,6 +126,11 @@ $route['club/supprimer/(:any)'] = 'ClubController/supprimerClub/$1';
 $route['club/modconst/(:any)'] = 'ClubController/consulter/$1';
 $route['club/modifier/(:any)'] = 'ClubController/modifier/$1';
 
+//bulletin de notes
+$route['enseignant/classes'] = 'EnseignantContr/classesDeEnseignant';
+$route['classe/matieres/(:any)'] = 'EnseignantContr/matieresEnseignantParClasse/$1';
+$route['bulletin/ajouter'] = 'BulletinController/ajouterBulletin';
+
 //enseignant
 $route['espaceEnseignant'] = 'espaceEnseignant/index';
 $route['listeEnseignants'] = 'EnseignantContr/index';
@@ -117,6 +140,8 @@ $route['listeEnseignants/effacer/(:any)'] = 'EnseignantContr/effacer/$1';
 $route['listeEnseignants/modifier/(:any)'] = 'EnseignantContr/modifier/$1';
 $route['listeEnseignants/editer/(:any)'] ['POST']= 'EnseignantContr/editer/$1';
 $route['listeEnseignants/compte/(:any)']= 'EnseignantContr/creer/$1';
+$route['listeEnseignants/consulte/(:any)']= 'EnseignantContr/get/$1';
+
 //comptes
 $route['listeComptes'] = 'compteContr/index';
 $route['listeComptes/supprimer/(:any)'] = 'compteContr/supprimer/$1';

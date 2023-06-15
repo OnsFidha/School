@@ -12,19 +12,23 @@ class loginContr extends CI_Controller {
         
     }
     public function index()
-    {      if($this->session->has_userdata('authenticated')){
-      if($this->session->userdata('role')=='admin'){
-      $this->session->set_flashdata('status','déja connecté');
-      redirect(base_url('admin'));
-    }
-  else{
-    $this->session->set_flashdata('status','déja connecté');
-    redirect(base_url('espaceEnseignant'));
-  }}
-          $this->load->view('login.php');
-     
-    }   
-    public function loginParent(){
+    {     
+      if($this->session->has_userdata('authenticated'))
+      {
+        if($this->session->userdata('role')=='admin'){
+        $this->session->set_flashdata('status','déja connecté');
+        redirect(base_url('admin'));
+          } 
+        else{
+            $this->session->set_flashdata('status','déja connecté');
+            redirect(base_url('espaceEnseignant'));
+          }
+      }
+      $this->load->view('login.php');
+    }  
+
+    public function loginParent()
+    {
       $email=$this->input->post('email');
       $password=$this->input->post('mot_de_passe');
       $data=array(
@@ -119,12 +123,9 @@ class loginContr extends CI_Controller {
       
               }
             } 
-         
-
             else 
             {
                 $this->session->set_flashdata('status','mail ou mot de passe incorrecte');
-              
                 redirect(base_url('login'));
             }  
         }

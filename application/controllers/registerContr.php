@@ -44,17 +44,17 @@ class registerContr extends CI_Controller {
               // $this->load->model('UserModel');
                //$this->load->library('session');
                $register_user= new UserModel;
-               $cheking=$register_user->registerUser($data);
-               if ($cheking)
-               {
-                $this->session->set_flashdata('status','compte créé avec succes');
-                redirect(base_url('login'));
-                }
-                else 
-                {
-                    $this->session->set_flashdata('status','vérifier vos données');
-                    redirect(base_url(''));
-                } 
+              // $cheking=$register_user->registerUser($data);
+            //    if ($cheking)
+            //    {
+            //     $this->session->set_flashdata('status','compte créé avec succes');
+            //     redirect(base_url('login'));
+            //     }
+            //     else 
+            //     {
+            //         $this->session->set_flashdata('status','vérifier vos données');
+            //         redirect(base_url(''));
+            //     } 
             }   
         }
             

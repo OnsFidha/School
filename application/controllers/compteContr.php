@@ -5,7 +5,6 @@ class compteContr extends CI_Controller {
     public function __construct() 
     {
         parent::__construct();
-        $this->load->model('AdminAcces');
         $this->load->model('UserModel');
     }
     
@@ -23,21 +22,21 @@ class compteContr extends CI_Controller {
        redirect(base_url('listeComptes'));
       
     }
+    // old 
     public function modifier($id)
     {
             $this->load->view('menu');
             $user= new UserModel;
             $data['user']=$user->getById($id);
             $this->load->view('modifierCompte', $data);
-            $this->load->view('footer');
-        
+            $this->load->view('footer');   
     }
     public function edit()
     {  
-       $this->load->view('menu');
       $user= new UserModel;
       $id=$this->session->userdata('auth_user')['id'];
       $data['user']=$user->getById($id);
+      $this->load->view('menu');
       $this->load->view('modifierMonCompte', $data);
       $this->load->view('footer');
     }
@@ -89,7 +88,7 @@ class compteContr extends CI_Controller {
          return $this->edit();
       }
     }
-    
+    // old
     public function editer($id)
     {
       $this->form_validation->set_rules('nom','nom','trim|required', array(

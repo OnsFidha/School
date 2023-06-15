@@ -38,7 +38,7 @@
                   echo $a->nom.'</br>' ; endforeach; ?>
                 </td>
                   <td> 
-                  <a href=""><span class="badge bg-label-info me-1"><i class='bx bx-info-circle'></i></a>
+                  <a href="<?php echo base_url('listeEnseignants/consulte/'.$row->id) ?>"><span class="badge bg-label-info me-1"><i class='bx bx-info-circle'></i></a>
                   <a href="<?php echo base_url('listeEnseignants/modifier/'.$row->id) ?>"><span class="badge bg-label-warning me-1"><i class='bx bxs-edit'></i></a>
                   <a class="deleteBtn" href="<?php echo base_url('listeEnseignants/effacer/'.$row->id) ?>"><span class="badge bg-label-danger me-1"><i class='bx bxs-trash'></i></a>
                 </td>

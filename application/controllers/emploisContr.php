@@ -53,6 +53,7 @@ class emploisContr extends CI_Controller {
     
    
   }
+  
   public function add()
   {
     $this->load->model('AdminAcces');

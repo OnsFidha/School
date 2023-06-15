@@ -25,12 +25,24 @@ class ParentController extends CI_Controller {
 		$this->load->view('footer');
 
 	}
-    // public function createe(){
-	// 	$this->load->model('ParentEleve');
-	// 	$data['eleves']=$this->Eleve->getEleves();
-	// 	$this->load->view('parentEleve/ajouterParent',$data);
-	// }
+	public function modifier($id){
+		$this->load->model('ParentEleve');
+		$data['parent']=$this->ParentEleve->getParentById($id);
+		$this->load->view('menu');
+		$this->load->view('parentEleve/modifierParent',$data);
+		$this->load->view('footer');
 
+	}
+	public function validate_date_de_naissance($dateNaissance)
+    {
+        $current_date = date('Y-m-d');
+        if ($dateNaissance > $current_date) {
+            $this->form_validation->set_message('validate_date_de_naissance', 'Le %s ne peut pas être une date future');
+            return false;
+        }
+        
+        return true;
+    }
     public function ajouter() 
 	{
         $this->form_validation->set_rules(
@@ -50,7 +62,8 @@ class ParentController extends CI_Controller {
 				'min_length' => 'le nom doit contenir au moins 3 caractères',
 				'alpha' => 'le nom ne doit contenir que des caractères'
 			]);
-		$this->form_validation->set_rules('dateNaissance', 'dateNaissance', 'required');
+		$this->form_validation->set_rules('dateNaissance', 'date de naissance', 'required|callback_validate_date_de_naissance', array(
+            'required' => 'la %s est obligatoire')); 
 		$this->form_validation->set_rules(
 			'adresse', 'adresse',
 			'required',
@@ -58,13 +71,19 @@ class ParentController extends CI_Controller {
 				'required' =>'veuillez saisissez l\'adresse',
 			]);
 
-		$this->form_validation->set_rules('email', 'email', 'required');
-		$this->form_validation->set_rules('telephone', 'telephone', 'required');
-		$this->form_validation->set_rules('cin', 'cin', 'required');
+		$this->form_validation->set_rules('email', 'email', 'required',array(
+            'required' => "l' %s est obligatoire"));
+		$this->form_validation->set_rules('telephone', 'numéro de télèphone', 'required|is_valid_number' ,array(
+            'required' => 'le %s est obligatoire',
+            'is_valid_number'=>'Le %s doit contenir 8 chiffres et commencer par 2, 4, 5 ou 9'));
+		$this->form_validation->set_rules('cin','cin','required|exact_length[8]', array(
+            'required' => 'le %s est obligatoire',
+            'is_unique' => 'le %s déja existe',
+            'exact_length' => 'Le champ %s doit contenir exactement 8 chiffres'));
 
         if($this->form_validation->run()){
 		$eleveId = $this->input->post('eleveId');
-		echo" hiii".$eleveId;
+		
         $data = array(
             'prenom' => $this->input->post('prenom'),
             'nom' => $this->input->post('nom'),
@@ -78,14 +97,71 @@ class ParentController extends CI_Controller {
 
         $this->load->model('ParentEleve');
         $this->ParentEleve->insertParent($data);
-        
+		$this->session->set_flashdata('status', 'Parent ajouté avec success');
         redirect(base_url('parent/liste'));
 
         }else{
 			$this->create();
 		}
     }
+    public function update($id) 
+	{
+        $this->form_validation->set_rules(
+			'prenom','prenom',
+			'required|min_length[3]',
+			[
+				'required' =>'veuillez saisissez le prénom',
+				'min_length' => 'le prénom doit contenir au moins 3 caractères',
+				//'alpha' => 'le nom ne doit contenir que des caractères'
 
+			]);
+		$this->form_validation->set_rules(
+			'nom', 'nom',
+			'required|min_length[3]|alpha',
+			[
+				'required' =>'veuillez saisissez le nom',
+				'min_length' => 'le nom doit contenir au moins 3 caractères',
+				'alpha' => 'le nom ne doit contenir que des caractères'
+			]);
+		$this->form_validation->set_rules('dateNaissance', 'date de naissance', 'required|callback_validate_date_de_naissance', array(
+            'required' => 'la %s est obligatoire')); 
+		$this->form_validation->set_rules(
+			'adresse', 'adresse',
+			'required',
+			[
+				'required' =>'veuillez saisissez l\'adresse',
+			]);
+
+		$this->form_validation->set_rules('email', 'email', 'required',array(
+            'required' => "l' %s est obligatoire"));
+		$this->form_validation->set_rules('telephone', 'numéro de télèphone', 'required|is_valid_number' ,array(
+            'required' => 'le %s est obligatoire',
+            'is_valid_number'=>'Le %s doit contenir 8 chiffres et commencer par 2, 4, 5 ou 9'));
+		$this->form_validation->set_rules('cin','cin','required|exact_length[8]', array(
+            'required' => 'le %s est obligatoire',
+            'is_unique' => 'le %s déja existe',
+            'exact_length' => 'Le champ %s doit contenir exactement 8 chiffres'));
+
+        if($this->form_validation->run()){
+        $data = array(
+            'prenom' => $this->input->post('prenom'),
+            'nom' => $this->input->post('nom'),
+            'cin' => $this->input->post('cin'),
+            'telephone' => $this->input->post('telephone'),
+            'email' => $this->input->post('email'),
+            'adresse' => $this->input->post('adresse'),
+            'dateNaissance' => $this->input->post('dateNaissance'),
+            );
+
+        $this->load->model('ParentEleve');
+        $this->ParentEleve->updateParent($data,$id);
+		$this->session->set_flashdata('status', 'Elève modifié avec success');
+        redirect(base_url('parent/liste'));
+
+        }else{
+			$this->create();
+		}
+    }
 	public function supprimer($id)
 	{
 		$this->load->model('ParentEleve');

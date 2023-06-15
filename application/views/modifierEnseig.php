@@ -4,30 +4,28 @@
     <div class="card-body" >
       <h4>Modifier Enseignant</h4>
       <br>
-        <form id="formAccountSettings" action="<?php echo base_url('listeEnseignants/editer/'.$enseignant->id) ?>" method="POST">
-          <div class="d-flex align-items-start align-items-sm-center gap-4">
-            <div class="button-wrapper">
-              <label for="photo" class="btn btn-primary me-2 mb-4" tabindex="0">
-                <span class="d-none d-sm-block">Photo</span>
-                <i class="bx bx-upload d-block d-sm-none"></i>
-                <input
-                  type="file"
-                  id="photo"
-                  name="photo"
-                  class="account-file-input"
-                  accept="image/png, image/jpeg"
-                /> <small><?php echo form_error('photo'); ?></small>
-                </label>
-              <p class="text-muted mb-0"> JPG, GIF ou PNG. Max 800K</p>
-            </div>
+        <form id="formAccountSettings" action="<?php echo base_url('listeEnseignants/editer/'.$enseignant->id) ?>" enctype="multipart/form-data" method="POST">
+        <div class="mb-3 col-md-6">
+          <label class="form-label" for="photoId">Photo</label>
+          <div class="photoId">
+            <?php if ($enseignant->photo): ?>
+              <img style="width: 105px; height: 105px;" src="data:image;base64,<?php echo $enseignant->photo; ?>" alt="Photo">
+            <?php endif; ?>
           </div>
+          <input type="file" class="form-control" id="photo" name="photo" placeholder="Photo">
+          <small class="error"><?php echo form_error('photo') ?></small>
+        </div>
+
+
+
+
           <div class="row">
               <div class="mb-3 col-md-6">
                 <label for="nom" class="form-label">nom</label>
                 <input
                   class="form-control"
                   type="text"
-                  id="nom"
+                  id="nom"v
                   value="<?php echo $enseignant->nom; ?>"
                   name="nom"
                   autofocus
@@ -108,61 +106,65 @@
                 <small><?php echo form_error('dateNaissance'); ?></small>
               </div>
               <div class="mb-3 col-md-6">
-                <label for="salaire" class="form-label">Salaire</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="salaire"
-                  name="salaire"
-                  placeholder="231465"
-                  maxlength="12"
-                  value="<?php echo $enseignant->salaire?>">
-                    <small><?php echo form_error('salaire'); ?></small>
-              </div>
-              <div class="mb-3 col-md-6">
-                <label class="form-label" for="country">Type salaire</label>
-                <select id="typeSalaire" name="typeSalaire" class="select2 form-select">
-                  <option value="">--select le type</option>
-                  <option value="menseul" <?php if ($enseignant->typeSalaire == 'menseul') { echo 'selected'; }?>>Menseul</option>
-                  <option value="horaire" <?php if ($enseignant->typeSalaire == 'horaire') { echo 'selected'; }?> >Horaire</option>
-                </select>
-                <small><?php echo form_error('typeSalaire'); ?></small>
-              </div>
-              <!-- <div class="mb-3 col-md-6">
-                <label for="club" class="form-label">responsabe de club</label>
-                <select name="idClub" value='<?php echo $enseignant->idClub?>' id="club" class="select2 form-select">
-                  <option value="">--Select club</option>
-                  <option value="1">club1</option>
-                  
-                </select>
-                </div>                       
-                <div class="mb-3 col-md-6">
-                  <label for="matiere" class="form-label">Matiéres</label>
-                  <select name="matiere[]" id="matiere"  data-placeholder="-- Select matiéres --" class="multiple-select form-select" multiple>
-                    <option></option>
-                    <?php foreach($matieres as $row): ?>
-                      
-                      <?php if (in_array($row->id, $selected->id)) : ?>
-                          <option value="<?php echo $row->id ?>" selected><?php echo $row->nom ?></option>
-                      <?php else: ?>
-                          <option value="<?php echo $row->id ?>"><?php echo $row->nom ?></option>
-                      <?php endif; ?>
-                  <?php endforeach; ?>
+                  <label class="form-label" for="country">Type salaire</label><br>
+                  <select id="typeSalaire" name="typeSalaire" data-placeholder="--Select le type" class="select2 form-select">
+                      <option></option>
+                      <?php foreach ($types as $row): ?>
+                          <option value="<?php echo $row->id ?>" <?php if ($enseignant->typeSalaire == $row->id) echo 'selected' ?>><?php echo $row->type ?></option>
+                      <?php endforeach; ?>
                   </select>
                   <script>
                       $(document).ready(function() {
-                      $('#matiere').select2({
-                          theme: 'bootstrap'
-                      })
+                          $('#typeSalaire').select2({
+                              theme: 'bootstrap',
+                              minimumResultsForSearch: Infinity
+                          });
                       });
                   </script>
-                </div>
-              -->
-            </div>
-            <div class="mt-2">
+                  <small><?php echo form_error('typeSalaire'); ?></small>
+              </div>
+              <div class="mb-3 col-md-6">
+                  <label for="matiere" class="form-label">Matiéres</label>
+                  <select name="matiere[]" id="matiere" data-placeholder="--Sélectionner les matiéres" class="multiple-select form-select" multiple>
+                      <option></option>
+                      <?php foreach ($matieres as $row): ?>
+                          <option value="<?php echo $row->id ?>" <?php if (in_array($row->id, $enseignant->matieres)) echo 'selected' ?>><?php echo $row->nom ?></option>
+                      <?php endforeach; ?>
+                  </select>
+                  <small><?php echo form_error('matiere'); ?></small>
+              </div>
+              <div class="mb-3 col-md-6">
+                  <label for="classe" class="form-label">Classes</label>
+                  <select name="classe[]" id="classe" data-placeholder="--Sélectionner les classes" class="multiple-select form-select" multiple>
+                      <option></option>
+                      <?php foreach ($classes as $row): ?>
+                          <option value="<?php echo $row->id ?>" <?php if (in_array($row->id, $enseignant->classes)) echo 'selected' ?>><?php echo $row->nom ?></option>
+                      <?php endforeach; ?>
+                  </select>
+                  <small><?php echo form_error('classe'); ?></small>
+              </div>    
+                <script>
+                    $(document).ready(function() {
+                        $('#matiere').select2({
+                            theme: 'bootstrap'
+                        });
+                        $('#classe').select2({
+                            theme: 'bootstrap'
+                        });
+                        $('#genre').select2({
+                            theme: 'bootstrap',
+                            minimumResultsForSearch: Infinity
+                        });
+                        $('#typeSalaire').select2({
+                            theme: 'bootstrap',
+                            minimumResultsForSearch: Infinity
+                        });
+                    });
+                </script>
+          </div>
+          <div class="mt-2">
               <button type="submit" class="btn btn-primary me-2">modifier</button>
-              <!-- <button type="reset" class="btn btn-outline-secondary">annuler</button> -->
-            </div>
+          </div>
         </form>
     </div>
     </div>

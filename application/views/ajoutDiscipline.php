@@ -5,7 +5,7 @@
                 <h4>Ajouter une sanction</h4>
                         <div class="button-wrapper">
                             <div class="card-body mx-auto " >
-                                <form id="form"  accept-charset="UTF-8" class="mb-3"  style='padding-left:100px' action="<?php echo base_url('listeEvenement/add') ?>" method="POST">
+                                <form id="form"  accept-charset="UTF-8" class="mb-3"  style='padding-left:100px' action="<?php echo base_url('sanction/add') ?>" method="POST">
                                     <div class="mb-3 col-md-5">
                                         <label for="classe" class="form-label">classe</label>
                                         <select name="classe" id="classe" data-placeholder="-- Select classe --" class="select2 form-select">
@@ -19,6 +19,15 @@
                                     <div id='j'>
                                         <div class="mb-3 col-md-5">
                                             <label for="id_eleve" class="form-label">élève</label>
+                                            <select name="id_eleve" id="id_eleve" data-placeholder="-- Select élève --" class="select2 form-select">
+                                                <option></option>
+                                                <?php foreach ($eleves as $row) : ?>
+                                                    <option value="<?php echo $row->id ?>"><?php echo $row->nom ?> <?php echo $row->prenom ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3 col-md-5">
+                                            <label for="id_eleve" class="form-label">Matiere</label>
                                             <select name="id_eleve" id="id_eleve" data-placeholder="-- Select élève --" class="select2 form-select">
                                                 <option></option>
                                                 <?php foreach ($eleves as $row) : ?>
@@ -85,15 +94,15 @@
                                     <div class="mb-3 col-md-6">
                                         <label for="niveau" class="form-label">degré</label><br>
                                         <div class="form-check form-check-inline mt-3">
-                                            <input  class="form-check-input" type="radio" name="inlineRadioOptions" id="1" value="1">
+                                            <input  class="form-check-input" type="radio" name="degre" id="1" value="1">
                                             <label class="form-check-label" for="inlineRadio1">1</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="2" value="2">
+                                            <input class="form-check-input" type="radio" name="degre" id="2" value="2">
                                             <label class="form-check-label" for="inlineRadio2">2</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="3" value="3">
+                                            <input class="form-check-input" type="radio" name="degre" id="3" value="3">
                                             <label class="form-check-label" for="inlineRadio3">3</label>
                                         </div>
                                     </div> 

@@ -26,7 +26,8 @@ class Demande extends CI_Model {
         $this->db->update('demande', $data);
     }
 
-    public function updateDemande($id,$data){
+    public function updateDemande($id,$data)
+    {
         return $this->db->update('demande', $data,['id'=>$id]); 
     }
 

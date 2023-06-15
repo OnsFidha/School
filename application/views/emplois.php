@@ -118,9 +118,8 @@
                             <tr>
                                 <td class="align-middle">08:00</td>
                                 <td class="bg-light-gray">
-                                <span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">رياضيات </span>
-                                    <div class="margin-10px-top font-size14">8:00-10:00</div>
-                                    <div class="font-size13 text-light-gray">Ameni Hamdi</div>
+                               <div class="margin-10px-top font-size14"></div>
+                                    <div class="font-size13 text-light-gray"></div>
                                 </td> 
                                 <td class="bg-light-gray">
 

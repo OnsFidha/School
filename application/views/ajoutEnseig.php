@@ -65,9 +65,9 @@
                     <small><?php echo form_error('email'); ?></small>
                   </div>
                   <div class="mb-3 col-md-6">
-                    <label for="genre" class="form-label">Sexe</label>
-                    <select name="genre" id="genre" class="select2 form-select">
-                      <option value="">--select le genre</option>
+                    <label for="genre" class="form-label">Sexe</label><br>
+                    <select name="genre" id="genre" class="select2 form-select" data-placeholder="--Sélectionner le genre">
+                      <option value=""></option>
                       <option value="homme">Homme</option>
                       <option value="femme">Femme</option>
                     </select>
@@ -103,50 +103,31 @@
                         id="dateNaissnace" 
                         value="<?php echo set_value('dateNaissance')?>">
                     <small><?php echo form_error('dateNaissance'); ?></small>
-                    </div>
-                  <div class="mb-3 col-md-6">
-                    <label for="salaire" class="form-label">Salaire</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="salaire"
-                      name="salaire"
-                      placeholder="231465"
-                      maxlength="12"
-                      value="<?php echo set_value('salaire')?>">
-                        <small><?php echo form_error('salaire'); ?></small>
                   </div>
                   <div class="mb-3 col-md-6">
-                    <label class="form-label" for="country">Type salaire</label>
-                    <select id="typeSalaire" name="typeSalaire" 
-                      data-placeholder="--Select le type--" class="select2 form-select">
-                      <option></option>
-                      <option value="menseul">Menseul</option>
-                      <option value="horaire">Horaire</option>
+                    <label class="form-label" for="country">Type salaire</label><br>
+                    <select id="typeSalaire" name="typeSalaire" data-placeholder="--Select le type" class="select2 form-select">
+                        <option></option>
+                        <?php foreach ($types as $row): ?>
+                            <option value="<?php echo $row->id ?>" <?php if ($enseignant->typeSalaire == $row->id) echo 'selected' ?>><?php echo $row->type ?></option>
+                        <?php endforeach; ?>
                     </select>
                     <script>
                         $(document).ready(function() {
-                        $('#typeSalaire').select2({
-                              theme: 'bootstrap',
-                              minimumResultsForSearch: Infinity
-                        })
+                            $('#typeSalaire').select2({
+                                theme: 'bootstrap',
+                                minimumResultsForSearch: Infinity
+                            });
                         });
                     </script>
                     <small><?php echo form_error('typeSalaire'); ?></small>
                   </div>
-                  <!-- <div class="mb-3 col-md-6">
-                    <label for="club" class="form-label">responsabe de club</label>
-                    <select name="idClub" id="club" class="select2 form-select">
-                      <option value="">--Select club</option>
-                      <option value="1">club1</option>
-                      
-                    </select>
-                  </div>-->
+        
                   <div class="mb-3 col-md-6">
                     <label for="matiere" class="form-label">Matiéres</label>
-                    <select name="matiere[]" id="matiere"  data-placeholder="-- Select matiéres --" class="multiple-select form-select" multiple>
+                    <select name="matiere[]" id="matiere"  data-placeholder="--Sélectionner les matiéres" class="multiple-select form-select" multiple>
                       <option></option>
-                        <?php foreach($matieres as $row): ?>
+                        <?php foreach($matieres as $row):?>
                         <option value="<?php echo $row->id ?>"><?php echo $row->nom ?></option>
                         <?php endforeach; ?>
                     </select>
@@ -155,18 +136,30 @@
                         $('#matiere').select2({
                               theme: 'bootstrap'
                         })
+                        $('#genre').select2({
+                              theme: 'bootstrap',
+                              minimumResultsForSearch: Infinity
+                        })
+                   
                         });
                     </script>
                   </div>
-                  <!--
                   <div class="mb-3 col-md-6">
                     <label for="classe" class="form-label">Classes</label>
-                    <select name="idClasse" id="classe" class="select2 form-select">
-                      <option value="">--Select classes</option>
-                      <option value="1">club1</option>
-                
+                    <select name="classe[]" id="classe" class="multiple-select form-select" multiple data-placeholder="--Sélectionner les classes">
+                      <option ></option>
+                      <?php foreach($classes as $row):?>
+                          <option value="<?php echo $row->id ?>"> <?php echo $row->nom.'  '.$row->annee_Scolaire ?> </option>
+                      <?php endforeach; ?>
                     </select>
-                  </div> -->
+                    <script>
+                        $(document).ready(function() {
+                    $('#classe').select2({
+                              theme: 'bootstrap'
+                        })
+                        });
+                    </script>
+                  </div>
                   <div class="mt-2">
                     <button type="submit" class="btn btn-primary me-2">Ajouter</button>
                     <button type="reset" class="btn btn-outline-secondary">annuler</button>

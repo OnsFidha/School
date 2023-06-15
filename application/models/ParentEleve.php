@@ -19,6 +19,11 @@ class ParentEleve extends CI_Model {
     public function insertParent($data){
         return $this->db->insert('parent', $data);
     }
+    public function insertpe($data){
+         $this->db->insert('parent', $data);
+         return $id = $this->db->insert_id();
+    }
+    
 
     public function deleteParent($id){
         return $this->db->delete('parent',['id'=>$id]);

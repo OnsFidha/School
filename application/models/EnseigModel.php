@@ -1,6 +1,6 @@
 <?php 
 class EnseigModel extends CI_Model {
-    public function creer($data,$matieres)
+    public function creer($data,$matieres,$classe)
     {
         $this->db->insert('enseignants',$data);
         $id = $this->db->insert_id();
@@ -10,8 +10,24 @@ class EnseigModel extends CI_Model {
                 'id_enseignant'=>$id);
          $this->db->insert('mat-enseig',$d);
         }
+        foreach($classe as $m){
+            $d=array(
+                'id_classe'=>$m,
+                'id_enseignant'=>$id);
+         $this->db->insert('classe-enseig',$d);
+
+        }
         return true;
     }
+    public function getClasseByEnseignant($id_enseignant) 
+    {
+        $this->db->from('classes');
+        $this->db->join('classe-enseig', 'classes.id = classe-enseig.id_classe');
+        $this->db->where('classe-enseig.id_enseignant', $id_enseignant);
+        $query = $this->db->get();
+        $result = $query->result();
+        return $result;
+    } 
     public function supprimer($id){
         $this->db->where("id", $id);
         return $this->db->delete("enseignants");
@@ -29,10 +45,71 @@ class EnseigModel extends CI_Model {
         return $query->result();
         
     }
-    public function getById($id){
-        $this->db->where('id',$id);
-        $query= $this->db->get('enseignants');
-        return $query->row();
+    public function getById($id) {
+    $this->db->where('id', $id);
+    $query = $this->db->get('enseignants');
+    $enseignant = $query->row();
+    
+    // Récupérer les matières
+    $this->db->select('id_matiere');
+    $this->db->where('id_enseignant', $enseignant->id);
+    $query = $this->db->get('mat-enseig');
+    $matieres = $query->result();
+    $enseignant->matieres = array();
+    foreach ($matieres as $m) {
+        $enseignant->matieres[] = $m->id_matiere;
+    }
+    
+    // Récupérer les classes
+    $this->db->select('id_classe');
+    $this->db->where('id_enseignant', $enseignant->id);
+    $query = $this->db->get('classe-enseig');
+    $classes = $query->result();
+    $enseignant->classes = array();
+    foreach ($classes as $c) {
+        $enseignant->classes[] = $c->id_classe;
+    }
+    
+    // Récupérer la moyenne des scores
+    $this->db->select_avg('score');
+    $this->db->where('id_enseignant', $id);
+    $query = $this->db->get('score');
+    $row = $query->row();
+    $moyenneScore = $row->score;
+    
+    $enseignant->moyenneScore = $moyenneScore;
+    
+    return $enseignant;
+}    
+    public function updateMatieres($idEnseignant, $selectedMatieres) 
+    {
+        // Delete existing matieres for the enseignant
+        $this->db->where('id_enseignant', $idEnseignant);
+        $this->db->delete('mat-enseig');
+    
+        // Insert the selected matieres for the enseignant
+        foreach ($selectedMatieres as $matiere) {
+            $data = array(
+                'id_matiere' => $matiere,
+                'id_enseignant' => $idEnseignant
+            );
+            $this->db->insert('mat-enseig', $data);
+        }
+    }
+    public function updateClasses($idEnseignant, $selectedClasses) 
+    {
+        // Delete existing classes for the enseignant
+        $this->db->where('id_enseignant', $idEnseignant);
+        $this->db->delete('classe-enseig');
+    
+        // Insert the selected classes for the enseignant
+        foreach ($selectedClasses as $classe) {
+            $data = array(
+                'id_classe' => $classe,
+                'id_enseignant' => $idEnseignant
+            );
+            $this->db->insert('classe-enseig', $data);
+        }
     }
     public function getByIdUser($id){
         $this->db->where('id_user',$id);
@@ -54,5 +131,9 @@ class EnseigModel extends CI_Model {
         $unassignedEnseignants = $this->db->get('enseignants')->result();
 
         return $unassignedEnseignants;
+    }
+    public function getType(){
+        $query= $this->db->get('salaire');
+        return $query->result();
     }
 }

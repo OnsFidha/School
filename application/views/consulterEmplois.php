@@ -59,13 +59,14 @@
                                                 echo'<div style="margin-top: 10px;">'. $row->nom_enseignant . ' '.$row->prenom_enseignant
                                                 .'</div>';
                                             endif; endforeach;?>
-                                        </td> <td class="bg-light-gray">
+                                        </td> <td class="bg-light-gray" >
                                         <?php foreach($emplois as $row):
                                             if($row->jour=='vendredi' && $row->heure_debut=='08:00:00'):
                                                 echo '<span class="bg-pink padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">
                                                 '.$row->nom_matiere.'</br></span>';
                                                 echo'<div style="margin-top: 10px;">'. $row->nom_enseignant . ' '.$row->prenom_enseignant
                                                 .'</div>';
+                                                
                                             endif; endforeach;?>
                                         </td> <td class="bg-light-gray">
                                         <?php foreach($emplois as $row):

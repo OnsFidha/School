@@ -3,12 +3,13 @@
     <div class="card mx-auto " >
         <div class="card-body" >
                     <h4 > Ajouter un évènement</h4>   
-                    <div class="row">
+                  
                 <div class="col-xl">
                   <div class="button-wrapper">
                     <div class="card-body">      
                     <form id="form"  accept-charset="UTF-8" class="mb-3" action="<?php echo base_url('listeEvenement/add') ?>" method="POST">
-                        <div class="mb-3 col-md-6">
+                    <div class="row">
+                    <div class="mb-3 col-md-6">
                             <label for="nom" class="form-label">Nom</label>
                             <input 
                                 type="text"
@@ -35,7 +36,7 @@
                         <div class="mb-3 col-md-6">
                             <label for="description" class="form-label">Description</label>
                             <textarea
-                            type="text" cols="100" rows="4"
+                            type="text" cols="100" rows="3"
                                 class="form-control"
                                 id="description"
                                 name="description"
@@ -44,7 +45,18 @@
                        
                             <small><?php echo form_error('description'); ?></small>
                         </div>
-                       
+                        <div class="mb-3 col-md-6">
+                            <label for="organisateur" class="form-label">Organisateur</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="organisateur"
+                                name="organisateur"
+                                value="<?php echo set_value('organisateur')?>"
+                            
+                                autofocus
+                            /> <small><?php echo form_error('organisateur'); ?></small>
+                        </div>
                         <div class="mb-3 col-md-6">
                             <label for="lieu" class="form-label">lieu</label>
                             <input
@@ -58,18 +70,7 @@
                             /> <small><?php echo form_error('lieu'); ?></small>
                         </div>
                      
-                        <div class="mb-3 col-md-6">
-                            <label for="organisateur" class="form-label">Organisateur</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="organisateur"
-                                name="organisateur"
-                                value="<?php echo set_value('organisateur')?>"
-                            
-                                autofocus
-                            /> <small><?php echo form_error('organisateur'); ?></small>
-                        </div>
+                
                         <div class="mb-3 col-md-6">
                             <label for="avecInscri" class="form-label">obligation d'inscription</label></br>
                             <input class="form-check-input" name="avecInscri" type="hidden" value="0">
@@ -88,6 +89,7 @@
                             />
                             <small><?php echo form_error('nbreMax'); ?></small>
                         </div>
+                 
                         <script>
                             const checkbox = document.getElementById('switch');
                             const nbreMaxContainer = document.getElementById('nbreMaxContainer');

@@ -3,23 +3,20 @@
     <div class="card mx-auto " >
     <div class="card-body" >
     <h4 > Edit élève</h4>
-          <form action ="<?php echo base_url('eleve/update/'.$eleve->id)?>" method="POST">
+          <form action ="<?php echo base_url('eleve/update/'.$eleve->id)?>" enctype="multipart/form-data" method="POST">
            <div class="card-body">
             <div class="row">
-              <div class="mb-3 col-md-6">
-                    <label class="form-label" for="photoId">photo</label>
-                    <div class="photoId">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="photoId"
-                        name="photo"
-                        placeholder="photo"
-                        value="<?php echo $eleve->photo; ?>"
-                      />
-                    </div>
-                    <small class="error"><?php echo form_error('photo') ?></small>
-              </div>
+            <div class="mb-3 col-md-6">
+          <label class="form-label" for="photoId">Photo</label>
+          <div class="photoId">
+            <?php if ($eleve->photo): ?>
+              <img style="width: 105px; height: 105px;" src="data:image;base64,<?php echo $eleve->photo; ?>" alt="Photo">
+            <?php endif; ?>
+          </div>
+          <input type="file" class="form-control" id="photo" name="photo" >
+          <small class="error"><?php echo form_error('photo') ?></small>
+        </div>
+        <div class='row'>
               <!-- prenom --> 
               <div class="mb-3 col-md-6">
                 <label class="form-label" for="prenomId">Prenom</label>
@@ -55,8 +52,8 @@
                 <label class="form-label" for="sexeId">sexe</label>
                 <select id="sexeId" name="sexe" class="form-select">
                     <option value="">--Sélectionnez--</option>
-                    <option value="homme" <?php echo ($eleve->sexe == 'homme') ? 'selected' : ''; ?>>homme</option>
-                    <option value="femme" <?php echo ($eleve->sexe == 'femme') ? 'selected' : ''; ?>>femme</option>                            
+                    <option value="Garçon" <?php echo ($eleve->sexe == 'Garçon') ? 'selected' : ''; ?>>Garçon</option>
+                    <option value="Fille" <?php echo ($eleve->sexe == 'Fille') ? 'selected' : ''; ?>>Fille</option>                            
                   </select>
                 <small class="error"><?php echo form_error('sexe') ?></small>
               </div>
@@ -212,6 +209,40 @@
                 </select>
                 <small class="error"><?php echo form_error('classe') ?></small>
               </div>
+              <div class="mb-3 col-md-6">
+                <label class="form-label" for="inscriptionCantine">Inscription à la cantine</label>
+                <div class="isCantine">
+                  
+                  <input
+                    type="checkbox"
+                    class="form-check-input"
+                    id="isCantine"
+                    name="isCantine"
+                    value="<?php echo ($eleve->isCantine == 1) ? 'checked' : ''; ?>"
+                  />
+                  <label class="form-check-label" for="isCantine"></label>
+                </div>
+                <small class="error"><?php echo form_error('isCantine') ?></small>
+              </div>
+              <script>
+                        $(document).ready(function() {
+                    $('#classeId').select2({
+                              theme: 'bootstrap'
+                        })
+                        $('#parentId').select2({
+                              theme: 'bootstrap',
+                             
+                        })
+                        $('#groupeSanguinId').select2({
+                              theme: 'bootstrap',
+                              minimumResultsForSearch: Infinity
+                        })
+                        $('#sexeId').select2({
+                              theme: 'bootstrap',
+                              minimumResultsForSearch: Infinity
+                        })
+                        });
+                    </script>
               <div class="mt-2">
               <button type="submit" class="btn btn-primary">Modifier</button>
               </div>

@@ -70,6 +70,18 @@ class emploisModel extends CI_Model {
         $this->db->where('id',$id);
         $query= $this->db->get('emplois');
         return $query->row();
+    }
+    public function matieresParClasse($id_classe, $id_enseignant)
+    {
+        $this->db->select('matieres.nom,matieres.id');
+        $this->db->distinct();
+        $this->db->from('matieres');
+        $this->db->join('emplois', 'matieres.id = emplois.id_matiere');
+        $this->db->where('emplois.id_classe', $id_classe);
+        $this->db->where('emplois.id_enseignant', $id_enseignant);
+        $query = $this->db->get();
+
+        return $query->result();
     } 
     public function modifierEmplois($data,$id){
         return $this->db->update('emplois',$data,['id'=>$id]);
