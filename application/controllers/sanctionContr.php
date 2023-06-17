@@ -10,6 +10,7 @@ class sanctionContr extends CI_Controller {
 		$this->load->model('userModel');
 		$this->load->model('enseigModel');
 		$this->load->model('classeModel');
+		$this->load->model('MatiereModel');
 		$this->load->model('Eleve');
 	}
 	public function index()
@@ -37,9 +38,11 @@ class sanctionContr extends CI_Controller {
 		
 	}
     public function ajout()
-	{   $idUser=$this->session->userdata('auth_user')['id'];
+	{   
+		$idUser=$this->session->userdata('auth_user')['id'];
 		$enseigant= $this->enseigModel->getByIdUser($idUser);
 		$data['classes']= $this->classeModel->getClasseByEnseignant($enseigant->id);
+		$data['matieres']= $this->MatiereModel->getSelectedMatieresByEnseignant($enseigant->id);
 		$data['eleves']= $this->Eleve->getEleves();
 		$this->load->view('menu');
 		$this->load->view('ajoutDiscipline',$data);
@@ -48,7 +51,9 @@ class sanctionContr extends CI_Controller {
 	public function getEleve($id){
 		//$id=$this->input->post('classe');
 		$el= $this->Eleve->getEleveByClasse($id);
-		
+		$idUser=$this->session->userdata('auth_user')['id'];
+		$enseigant= $this->enseigModel->getByIdUser($idUser);
+		$data['matieres']= $this->MatiereModel->getSelectedMatieresByEnseignant($enseigant->id);
 		$data['eleves']=$el;
 		$string=$this->load->view('eleves',$data,true);
 		$response['eleves']=$string;
@@ -58,6 +63,8 @@ class sanctionContr extends CI_Controller {
 		
         $this->form_validation->set_rules('id_eleve','élève','required', array(
 			'required' => 'le %s est obligatoire'));
+			$this->form_validation->set_rules('id_matiere','matiére','required', array(
+				'required' => 'la %s est obligatoire'));
 		$this->form_validation->set_rules('type','type','required', array(
 			'required' => 'le %s est obligatoire'));
 		$this->form_validation->set_rules('remarque',"remarque",'required', array(
@@ -78,7 +85,8 @@ class sanctionContr extends CI_Controller {
 				'type'=>$this->input->post('type'),
 				'remarque'=>$this->input->post('remarque'),
 				'degre'=>$this->input->post('degre'),
-				'id_enseignant'=>$enseigant->id
+				'id_enseignant'=>$enseigant->id,
+				'id_matiere'=>$this->input->post('id_matiere'),
 			);
 			$this->load->model('Sanction');
 			

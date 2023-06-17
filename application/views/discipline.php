@@ -3,8 +3,10 @@
         <div class="card mx-auto " >
             <div class="card-body " >
             <h4> Discipline</h4>
-                <div class="card-body" style='padding-left: 250px;' >
-                        <div class="col-md-4 col-lg-4 mb-3">
+                <div class="card-body"  >
+                <div class="row justify-content-center" >
+        
+                        <div class="mb-3 col-md-3" >
                         <div class="card h-100 card shadow-none bg-transparent border border-danger mb-3">
                             <div class="card-body ">
                         
@@ -17,7 +19,7 @@
                             </div>
                         </div>
                         </div>
-                        <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="mb-3 col-md-3">
                         <div class="card h-100">
                         <div class="card-body card shadow-none bg-transparent border border-success  ">
                     
@@ -30,6 +32,7 @@
                             </div>
                         </div>
                         </div>
+                </div>
                 </div>
             </div>
         </div>

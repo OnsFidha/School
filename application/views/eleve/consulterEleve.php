@@ -96,22 +96,22 @@
                     <div class="tab-content">
                       <div class="tab-pane fade show active" id="navs-top-home" role="tabpanel">
                       <div class="content-wrapper">
-                      <?php if (empty($f)): ?>
-                        Non disponible
-                      <?php else: ?>
-                        <div class="row">
-                            <?php foreach ($f as $row): ?>
-                                <div class="col-md-6">
-                                    <div class="card shadow-none bg-transparent border border-danger mb-3" style="padding:10px">
-                                        <div class="card-body">
-                                            <p class="card-text">L'élève <?php echo $row->eleve_nom .' '.$row->eleve_prenom; ?> est absent le <?php echo date('d/m/Y', strtotime($row->date)); ?> à <?php echo date('H:i', strtotime($row->date)); ?> </p>
-                                            <p class="card-text">Pour le cours de <?php echo $row->matiere_nom; ?> dispensé(e) par l'enseignant(e) <?php echo $row->enseignant_nom.' '.$row->enseignant_prenom; ?>.</p>
+                        <?php if (empty($f)): ?>
+                            Non disponible
+                        <?php else: ?>
+                            <div class="row">
+                                <?php foreach ($f as $row): ?>
+                                    <div class="col-md-6">
+                                        <div class="card shadow-none bg-transparent border border-danger mb-3" style="padding:10px">
+                                            <div class="card-body">
+                                                <p class="card-text">L'élève <?php echo $row->eleve_nom .' '.$row->eleve_prenom; ?> est absent le <?php echo date('d/m/Y', strtotime($row->date)); ?> à <?php echo date('H:i', strtotime($row->date)); ?> </p>
+                                                <p class="card-text">Pour le cours de <?php echo $row->matiere_nom; ?> dispensé(e) par l'enseignant(e) <?php echo $row->enseignant_nom.' '.$row->enseignant_prenom; ?>.</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php endforeach; ?>
-                            <?php endif;?>
-                        </div>
+                                <?php endforeach; ?>
+                                <?php endif;?>
+                            </div>
 
                       </div>
 
@@ -122,6 +122,13 @@
                       <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
                         <p>
                           Notes 
+                          <div class="card-body">
+                                  
+                                  <a href="<?php echo base_url('eleve/bul/'.$row->id.'/1')?>" class="card-link">consuter bulletin de notes tri 1</a><br>
+                                  <a href="<?php echo base_url('eleve/bul/'.$row->id.'/2')?>" class="card-link">consuter bulletin de notes tri 2</a><br>
+                                  <a href="<?php echo base_url('eleve/bul/'.$row->id.'/3')?>" class="card-link">consuter bulletin de notes tri 3</a>
+  
+                                  </div>
                         </p>
                         <p class="mb-0">
                           <br><br><br>

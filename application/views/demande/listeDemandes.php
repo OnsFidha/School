@@ -38,15 +38,17 @@
                                 </td>
                                 <td><?php echo $row->date;?></td>
                                 <td>
+                                    <style>.no-border {
+                                            border: none;}
+                                    </style>
                                     <a href="<?php echo base_url('demande/consulter/'.$row->id)?>"><span class="badge bg-label-info me-1"><i class='bx bx-info-circle'></i></a>
                                     
-                                    <a href="<?php echo base_url('demande/accepter/'.$row->id)?>" <?php if($row->etat == 1 || $row->etat == 0) { echo 'disabled'; } ?> class='deleteBtn'>
+                                    <button href="<?php echo base_url('demande/accepter/'.$row->id)?>" <?php if($row->etat == 1 || $row->etat == 0) { echo 'disabled'; } ?> class='deleteBtn no-border'>
                                         <span class="badge bg-label-success me-1"><i class='bx bxs-check-square'></i></span>
-                                    </a>
-                                    <a href="<?php echo base_url('demande/refuser/'.$row->id)?>" class='deleteBt' <?php if($row->etat == 1 || $row->etat == 0) { echo 'disabled'; } ?>>
+                                    </button>
+                                    <button href="<?php echo base_url('demande/refuser/'.$row->id)?>" class='deleteBt no-border' <?php if($row->etat == 1 || $row->etat == 0) { echo 'disabled'; } ?>>
                                         <span class="badge bg-label-danger me-1"><i class='bx bxs-x-square'></i></span>
-                                    </a>
-
+                                    </button>
                                 </td>
                             </tr>
                         <?php

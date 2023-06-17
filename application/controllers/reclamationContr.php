@@ -14,9 +14,24 @@ class reclamationContr extends CI_Controller {
         $this->load->model('AdminAcces');
 		$this->load->model('Reclamation');
 		$data['reclamations']=$this->Reclamation->lister();
-        print_r($data['reclamations']);
 		$this->load->view('menu');
 		$this->load->view('listeReclamation',$data);
 		$this->load->view('footer');
 	}
+    public function get($id)
+	{   
+        $this->load->model('AdminAcces');
+		$this->load->model('Reclamation');
+		$data['reclamations']=$this->Reclamation->consulter($id);
+		$this->load->view('menu');
+		$this->load->view('consultRec',$data);
+		$this->load->view('footer');
+	}
+    public function traiter($id) 
+    {	
+        $this->load->model('Reclamation');
+        $etat='1';
+		$data['reclamations']=$this->Reclamation->updateEtat($id,$etat);
+        redirect('listeReclamation');
+    }
 }

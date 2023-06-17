@@ -54,7 +54,7 @@ $route['default_controller'] = 'loginContr';
 //login
 $route['login'] = 'loginContr';
 $route['login/connecter'] = 'loginContr/login';
-$route['admin']= 'adminPageContr/index';
+$route['admin']= 'statContr/index';
 $route['logout']= 'adminPageContr/logout';
 
 // eleve
@@ -115,7 +115,8 @@ $route['menu/consulter/(:any)'] = 'MenuController/consulterMenu/$1';
 $route['menu/modifier/(:any)'] = 'MenuController/consulterMenu/$1';
 //reclamation
 $route['listeReclamation'] = 'reclamationContr/index';
-
+$route['listeReclamation/consulter/(:any)'] = 'reclamationContr/get/$1';
+$route['listeReclamation/traite/(:any)'] = 'reclamationContr/traiter/$1';
 
 //club
 $route['club/creer']= 'ClubController/creer';
@@ -130,6 +131,12 @@ $route['club/modifier/(:any)'] = 'ClubController/modifier/$1';
 $route['enseignant/classes'] = 'EnseignantContr/classesDeEnseignant';
 $route['classe/matieres/(:any)'] = 'EnseignantContr/matieresEnseignantParClasse/$1';
 $route['bulletin/ajouter'] = 'BulletinController/ajouterBulletin';
+$route['bulletin'] = 'BulletinController/classesDeEnseignant';
+$route['eleve/(:any)'] = 'BulletinController/get/$1';
+$route['eleve/bul/(:any)/(:any)'] = 'BulletinController/getbul/$1/$2';
+
+
+
 
 //enseignant
 $route['espaceEnseignant'] = 'espaceEnseignant/index';
@@ -149,23 +156,29 @@ $route['listeComptes/modifier/(:any)'] = 'compteContr/modifier/$1';
 $route['listeComptes/editer/(:any)'] ['POST']= 'compteContr/editer/$1';
 $route['modifier'] = 'compteContr/edit';
 $route['modifier/(:any)'] ['POST']= 'compteContr/update/$1';
+
 //classe
 $route['listeClasses'] = 'classeContr/index';
 $route['listeClasses/ajouter'] = 'classeContr/ajouter';
 $route['listeClasses/add'] = 'classeContr/add';
+
 //matiere
 $route['listeMatieres']= 'matiereContr';
 $route['listeMatieres/ajouter']= 'matiereContr/ajouter';
 $route['listeMatieres/add']= 'matiereContr/register';
 $route['listeMatieres/effacer/(:any)']= 'matiereContr/delete/$1';
+
 //emplois
 $route['listeEmplois']= 'emploisContr/get';
 $route['emploisE']= 'emploisContr/consulterr';
 $route['listeEmplois/consulter/(:any)']= 'emploisContr/consulter/$1';
 $route['emplois'] = 'emploisContr';
 $route['emplois/add/(:any)'] = 'emploisContr/btn/$1';
+$route['listeEmplois/modifier/(:any)']= 'emploisContr/modifier/$1';
+$route['listeEmplois/update/(:any)']= 'emploisContr/update/$1';
 //$route['listeEmplois']= 'listeEnseigContr/creer/$1';
 //$route['add']['POST'] = 'emploisContr/add';
+
 //encaissement
 $route['eleve/facture/(:any)'] = 'EncaissementController/afficherFacture/$1';
 $route['facture/payer/(:any)/(:any)'] = 'EncaissementController/payerFacture/$1/$2';
@@ -176,8 +189,10 @@ $route['menu/notification/(:any)'] = 'MenuController/notifierMenu/$1';
 //
 $route['register']['GET'] = 'registerContr/index';
 $route['register']['POST'] = 'registerContr/register';
+
 //assiduit
 $route['ficheAppel']='assiduiteContr/index';
+
 // partie enseignant
 $route['enseigZone'] = 'enseignantContr';
 $route['404_override'] = '';

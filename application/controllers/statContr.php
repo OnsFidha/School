@@ -1,15 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class espaceEnseignant extends CI_Controller {
-	public function __construct() 
+class statContr extends CI_Controller {
+    public function __construct() 
     {
-        parent::__construct();
-		$this->load->model('EnseigModel');
-        $this->load->model('EnseignAcces');
-	}
-	public function index()
-	{
+      parent::__construct();
+      $this->load->model('EnseigModel');
+    }
+    public function index()
+    {
         $this->load->view('menu'); 
         $this->load->model('Eleve');
         $resultats= $this->Eleve->calculerNombreEleves();
@@ -19,6 +18,7 @@ class espaceEnseignant extends CI_Controller {
         $data['resultats']=$resultats;
         $this->load->view('stat',$data); 
         $this->load->view('footer'); 
-	
-	}
+    }
+
+
 }

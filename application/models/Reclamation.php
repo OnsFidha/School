@@ -13,7 +13,16 @@ class Reclamation extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    public function consulter($id){
+        $this->db->select('reclamation.*, parent.nom AS nomParent, parent.prenom AS prenomParent');
+        $this->db->from('reclamation');
+        $this->db->join('parent', 'reclamation.id_parent = parent.id');
+        $this->db->where('reclamation.id', $id); // Specify the table name for 'id' column
+        $query = $this->db->get();
+        return $query->row();        
+    }
     
+        
     public function updateEtat($id, $etat)
     {
         $data = ['etat' => $etat];

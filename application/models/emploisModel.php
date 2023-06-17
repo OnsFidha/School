@@ -11,12 +11,30 @@ class emploisModel extends CI_Model {
         $this->db->where('id_classe',$idC);
         $query= $this->db->get('classe-enseig');
         $res= $query->row();
-        if(!$res){
-        $d=array(
-            'id_classe'=>$idC,
-            'id_enseignant'=>$idE);
-     $this->db->insert('classe-enseig',$d);
-        }
+        return true;
+    }
+    public function update($id, $data)
+    {
+        // Retrieve the current value of id_classe
+        $this->db->select('id_classe');
+        $this->db->where('id', $id);
+        $query = $this->db->get('emplois');
+        $result = $query->row();
+        $currentIdClasse = $result->id_classe;
+    
+        // Prepare the data for update
+        $data = array(
+            'jour' => $data['jour'],
+            'heure_debut' => $data['heure_debut'],
+            'heure_fin' => $data['heure_fin'],
+            'id_matiere' => $data['id_matiere'],
+            'id_enseignant' => $data['id_enseignant'],
+            'id_classe' => $currentIdClasse, // Set the current value of id_classe
+        );
+    
+        // Perform the update
+        $this->db->where('id', $id);
+        $this->db->update('emplois', $data);
         return true;
     }
     public function check_class_availability($jour, $heure_debut, $heure_fin, $id_classe) {

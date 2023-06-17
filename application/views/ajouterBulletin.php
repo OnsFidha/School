@@ -19,7 +19,7 @@
                             <td><?php echo $eleve['nom'] . " " . $eleve['prenom'] ?></td>
                             <td>
                                 <div class="btn-group" id="note-<?php echo $eleve['id']; ?>" role="group" aria-label="">
-                                    <input type="number"  required min="0" max="20" class="form-control student-note" data-student="<?php echo $eleve['id']; ?>">
+                                <input type="number" required min="0" max="20" class="form-control student-note" data-student="<?php echo $eleve['id']; ?>">
                                 </div>
                             </td>
                             <td>
@@ -44,18 +44,38 @@
     $(document).ready(function() {
         var mat = $('#mat').val();
         var ca = $('#ca').val();
-        alert(ca)
+       
         $('#submit-btn').click(function() {
             var bul = [];
+            var allNotesFilled = true; // Variable pour vérifier si toutes les notes sont remplies
+
             $('.student-note').each(function() {
                 var studentId = $(this).data('student');
                 var note = $(this).val();
+
+                if (note === '') {
+                    allNotesFilled = false;
+                    return false; // Sortir de la boucle each() si une note est vide
+                }
+
+                if (note < 0 || note > 20) {
+                    allNotesFilled = false;
+                    alert('Veuillez saisir une note entre 0 et 20 ');
+                    return false; // Sortir de la boucle each() si une note est hors des limites
+                }
+
                 bul.push({
                     studentId: studentId,
                     note: note
                 });
             });
-            var app =[];
+
+            if (!allNotesFilled) {
+                alert('Veuillez remplir toutes les notes correctement.');
+                return; // Arrêter l'exécution de la fonction si une note est vide ou hors des limites
+            }
+
+            var app = [];
             $('.student-app').each(function() {
                 var studentId = $(this).data('student');
                 var rem = $(this).val();
@@ -64,25 +84,26 @@
                     rem: rem
                 });
             });
-            
-            // Perform your desired action with the collected notes
-            // For example, send them to a server using AJAX
+
             $.ajax({
                 url: "<?php echo base_url('BulletinController/saisir')?>",
                 method: 'POST',
                 data: {
-                    ca:ca,
-                    mat:mat,
-                    bul:bul,
+                    ca: ca,
+                    mat: mat,
+                    bul: bul,
                     app: app
                 },
                 success: function(response) {
-                 
+                    alert('Note ajoutée avec succès');
                 },
                 error: function() {
-                    // Handle any errors that occurred during the request
+                    alert('Veuillez vérifier les notes.');
+                    window.location.href = "<?php echo base_url('EnseignantContr/classesDeEnseignant')?>";
                 }
             });
         });
     });
 </script>
+
+

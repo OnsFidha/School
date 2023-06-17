@@ -49,12 +49,8 @@ class enseignantContr extends CI_Controller {
         $idUser = $this->session->userdata('auth_user')['id'];
         $idEnseignant=$this->EnseigModel->getByIdUser($idUser)->id;
         $data['classes']=$this->classeModel->getClasseByEnseignant($idEnseignant);
-
-        print_r($data['classes']);
         $this->load->view('listeClassesEnseignant', $data);
-        
         $this->load->view('footer');
-
     }
     public function matieresEnseignantParClasse($idClasse)
     {
