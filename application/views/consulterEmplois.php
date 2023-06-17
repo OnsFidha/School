@@ -2,7 +2,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
     <div class="card mx-auto ">
     <div class="card-body" >
-        <h4 class="text-center">Emplois du temps de la classe <?php echo $emplois[0]->nom?></h4>
+        <h4 class="text-center">Emploi du temps de la classe <?php echo $emplois[0]->nom?></h4>
         </br>
         <div class ="card-header">
         <h6  style="text-align: right; padding-right: 50px;">  Salle numéro <?php echo $emplois[0]->salle_classe?></h6><br>

@@ -105,6 +105,8 @@ $route['demande/ajouter'] = 'demandeController/ajouter';
 $route['test/store']= 'testController/store';
 $route['demande/consulter/(:any)'] = 'demandeController/get/$1';
 $route['demande/finaliser/(:any)'] = 'demandeController/finaliser/$1';
+//demande ajout mobile
+$route['demande/inscription'] = 'demandeController/creerDemande';
 
 //menu
 $route['menu/form']= 'MenuController/index';
@@ -114,9 +116,9 @@ $route['menu/consulter']= 'MenuController/consulterMenu';
 $route['menu/consulter/(:any)'] = 'MenuController/consulterMenu/$1';
 $route['menu/modifier/(:any)'] = 'MenuController/consulterMenu/$1';
 //reclamation
-$route['listeReclamation'] = 'reclamationContr/index';
-$route['listeReclamation/consulter/(:any)'] = 'reclamationContr/get/$1';
-$route['listeReclamation/traite/(:any)'] = 'reclamationContr/traiter/$1';
+$route['listeReclamation'] = 'ReclamationController/index';
+$route['listeReclamation/consulter/(:any)'] = 'ReclamationController/get/$1';
+$route['listeReclamation/traite/(:any)'] = 'ReclamationController/traiter/$1';
 
 //club
 $route['club/creer']= 'ClubController/creer';
@@ -195,5 +197,22 @@ $route['ficheAppel']='assiduiteContr/index';
 
 // partie enseignant
 $route['enseigZone'] = 'enseignantContr';
+//demande ajout mobile
+$route['demande/inscription'] = 'demandeController/creerDemande';
+
+//login parrent mobile
+$route['loginparent']= 'loginContr/loginParent';
+
+//menu consulter mobile a changer methode "consulterMenuAPI"
+$route['menu/consulter/(:any)'] = 'MenuController/consulterMenuAPI/$1';
+
+//reclamation mobile 
+$route['reclamation/reclamer']= 'ReclamationController/reclamer';
+
+
+//score 
+$route['enseignantsparent/(:any)'] = 'enseignantContr/getEnsByParent/$1';
+$route['score/ajouter'] = 'ScoreController/ajouterScore';
+$route['score/modifier/(:any)'] = 'ScoreController/modifierScore/$1';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

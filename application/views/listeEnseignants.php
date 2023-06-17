@@ -11,13 +11,13 @@
           <table class="table">
             <thead>
               <tr>
-                <th>photo</th>
-                <th>nom</th>
-                <th>prenom</th>
-                <th>email</th>
-                <th>classe</th>
-                <th>Actions</th> 
-                <th>Compte</th>
+                <th style='color:black;font-weight:bolder'>photo</th>
+                <th style='color:black;font-weight:bolder'>nom</th>
+                <th style='color:black;font-weight:bolder'>prenom</th>
+                <th style='color:black;font-weight:bolder'>email</th>
+                <th style='color:black;font-weight:bolder'>classe</th>
+                <th style='color:black;font-weight:bolder'>Actions</th> 
+                <th style='color:black;font-weight:bolder'>Compte</th>
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">

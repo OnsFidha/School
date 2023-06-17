@@ -156,7 +156,7 @@ class emploisContr extends CI_Controller {
      {
       $id=$this->session->userdata('auth_user')['id'];
       $idE=$this->enseigModel->getByIdUser($id)->id;
-      $data['emplois'] = $this->emploisModel->getEmploisByEnseig($idE);
+      $data['emplois']=$this->emploisModel->getEmploisByEnseig($idE);
       $this->load->view('menu');
       $this->load->view('EmploisEnseig', $data);
       $this->load->view('footer');

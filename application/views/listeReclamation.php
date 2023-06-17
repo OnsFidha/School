@@ -9,12 +9,12 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Nom Parent</th>
-                            <th>Type</th>
-                            <th>Contenu</th>
-                            <th>Etat</th>
-                            <th>Date </th>
-                            <th>Actions</th>
+                            <th style='color:black;font-weight:bolder'>Nom Parent</th>
+                            <th style='color:black;font-weight:bolder'>Type</th>
+                            <th style='color:black;font-weight:bolder'>Contenu</th>
+                            <th style='color:black;font-weight:bolder'>Etat</th>
+                            <th style='color:black;font-weight:bolder'>Date </th>
+                            <th style='color:black;font-weight:bolder'>Actions</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">

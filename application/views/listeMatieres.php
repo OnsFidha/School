@@ -11,10 +11,10 @@
         <table class="table">
           <thead>
             <tr>
-              <th>nom</th>
-              <th>coefficient</th>
-              <th>nombre_heures</th>
-              <th>regroupement</th>
+              <th style='color:black;font-weight:bolder'>nom</th>
+              <th style='color:black;font-weight:bolder'>coefficient</th>
+              <th style='color:black;font-weight:bolder'>nombre_heures</th>
+              <th style='color:black;font-weight:bolder'>regroupement</th>
 
             </tr>
           </thead>

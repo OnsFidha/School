@@ -12,11 +12,11 @@
             <thead>
               <tr>
                
-                <th>Nom</th>
-                <th>Date</th>
-                <th>Lieu</th>
-                <th>Organisateur</th>
-                <th>Actions</th> 
+                <th style='color:black;font-weight:bolder'>Nom</th>
+                <th style='color:black;font-weight:bolder'>Date</th>
+                <th style='color:black;font-weight:bolder'>Lieu</th>
+                <th style='color:black;font-weight:bolder'>Organisateur</th>
+                <th style='color:black;font-weight:bolder'>Actions</th> 
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">

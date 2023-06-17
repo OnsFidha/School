@@ -42,6 +42,15 @@ class enseignantContr extends CI_Controller {
             $this->load->view('consulterEnse.php', $data);
             $this->load->view('footer');
     }
+    public function getEnsByParent($idParent)
+    {
+        $enseignants = $this->EnseigModel->getEnsByParent($idParent);
+
+        $this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($enseignants))
+			;
+    }
     public function classesDeEnseignant()
     {
         $this->load->model('EnseignAcces');

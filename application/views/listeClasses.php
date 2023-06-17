@@ -11,10 +11,10 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th>nom</th>
-                  <th>niveau</th>
-                  <th>annee_scolaire</th>
-                  <th>salle_classe</th>
+                  <th style='color:black;font-weight:bolder'>nom</th>
+                  <th style='color:black;font-weight:bolder'>niveau</th>
+                  <th style='color:black;font-weight:bolder'>annee_scolaire</th>
+                  <th style='color:black;font-weight:bolder'>salle_classe</th>
                 </tr>
               </thead>
               <tbody class="table-border-bottom-0">

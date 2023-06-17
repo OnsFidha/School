@@ -175,5 +175,22 @@ class EnseigModel extends CI_Model {
     
         return $teachersPerClass;
     }
-
+    public function getEnsByParent($idParent) 
+    {
+        $this->db->select('enseignants.id, enseignants.nom, enseignants.prenom, enseignants.photo, GROUP_CONCAT(DISTINCT matieres.nom SEPARATOR ", ") AS matiere, score.id as id_score, score.score');
+        $this->db->from('eleve');
+        $this->db->join('classe-enseig', 'eleve.id_classe = classe-enseig.id_classe');
+        $this->db->join('enseignants', 'classe-enseig.id_enseignant = enseignants.id');
+        $this->db->join('mat-enseig', 'enseignants.id = mat-enseig.id_enseignant');
+        $this->db->join('matieres', 'mat-enseig.id_matiere = matieres.id');
+        $this->db->join('score', 'score.id_enseignant = enseignants.id AND score.id_parent = eleve.id_parent', 'left');
+        $this->db->where('eleve.id_parent', $idParent);
+        $this->db->group_by('enseignants.id');
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            return $query->result();
+        } else {
+            return array();
+        }
+    }
 }

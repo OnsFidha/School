@@ -8525,6 +8525,10 @@ button.list-group-item-gray.active {
   display: flex;
   line-height: 1.54;
 }
+.th{
+  color:black;
+  font-weight:bolder
+}
 .card-action .card-header .card-action-title {
   flex-grow: 1;
   margin-right: 0.5rem;

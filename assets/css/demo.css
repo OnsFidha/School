@@ -62,7 +62,10 @@
 .demo-vertical-spacing-lg.demo-only-element > :first-child {
   margin-top: 0 !important;
 }
-
+.th{
+  color:black;
+  font-weight:bolder
+}
 .demo-vertical-spacing-xl > * {
   margin-top: 5rem !important;
   margin-bottom: 0 !important;

@@ -26,7 +26,6 @@ class loginContr extends CI_Controller {
       }
       $this->load->view('login.php');
     }  
-
     public function loginParent()
     {
       $email=$this->input->post('email');
@@ -35,10 +34,12 @@ class loginContr extends CI_Controller {
         'email'=>$email,
         'mot_de_passe'=>$password,
       );
-      // $this->load->model('UserModel');
-      // $this->load->library('session');
+      
        $user= new UserModel;
        $result=$user->loginUser($data);
+       $this->load->model('ParentEleve');
+       $parent= $this->ParentEleve->getByIdUser($result->id);
+       $idparent=$parent->id;
        if ($result!=FALSE) 
        { 
         
@@ -48,20 +49,26 @@ class loginContr extends CI_Controller {
             'nom'=>$result->nom,
             'prenom'=>$result->prenom,
             'email'=>$result->email,
-            'role'=>$result->role
+            'role'=>$result->role,
+            'idparent'=>$idparent,
           ];
         if($auth_userdetails['role']=='parent'){
+ 
+        $this->session->set_userdata( 'parentData',$auth_userdetails );
+        $this->output
+              ->set_content_type('application/json')
+              ->set_output(json_encode($auth_userdetails));
         
             $response = array(
               'success' => true,
               'message' => 'login true.',  
-            'user'=>   $auth_userdetails );
-            $this->output
-              ->set_content_type('application/json')
-              ->set_output(json_encode($response));
-        
-        }}
-        else{
+              'user'=>   $auth_userdetails,
+              'parent'=>$parent 
+            );
+            
+        }
+      }
+       else{
           $response = array(
             'success' => false,
             'message' => 'login false.'

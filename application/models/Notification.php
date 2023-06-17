@@ -2,7 +2,8 @@
 
 class Notification extends CI_Model {
 
-    function notify($to,$data){
+    function notify($to,$data)
+    {
         $api_key="AAAAKvCx7Mw:APA91bHwCE5QlZuHVot3B6ga4nGe3tuRR1eGojNrJEQhXOceEBAmwaskFpnYQqQnWHktKHCeTmsBuWuSFBorJVzdTOlOmbBN1T0-_tGsCSe204rx_cACq-RAY6V8YMvgDvfcXmQaD8sX";
         $url="https://fcm.googleapis.com/fcm/send";
 
@@ -29,6 +30,4 @@ class Notification extends CI_Model {
         }
         curl_close($ch);
     }
-
-
 }

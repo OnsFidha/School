@@ -8,11 +8,11 @@
           <table class="table">
             <thead>
               <tr>
-                <th>nom</th>
-                <th>prenom</th>
-                <th>email</th>
-                <th>role</th>
-                <th>Actions</th>
+                <th style='color:black;font-weight:bolder'>nom</th>
+                <th style='color:black;font-weight:bolder'>prenom</th>
+                <th style='color:black;font-weight:bolder'>email</th>
+                <th style='color:black;font-weight:bolder'> role</th>
+                <th style='color:black;font-weight:bolder'>Actions</th>
               </tr>
             </thead>
             <tbody class="table-border-bottom-0">

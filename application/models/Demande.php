@@ -6,7 +6,6 @@ class Demande extends CI_Model {
     {
         $this->db->insert('demande',$data);
     }
-
     public function getDemandes()
     {
         $query= $this->db->get('demande');

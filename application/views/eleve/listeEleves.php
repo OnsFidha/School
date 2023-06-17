@@ -10,13 +10,13 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Photo</th>
-                                        <th>Nom</th>
-                                        <th>Prenom</th>
-                                        <th>Date de Naissance</th>
-                                        <th>Age</th>
-                                        <th>Actions</th>
+                                        <th style='color:black;font-weight:bolder'>Id</th>
+                                        <th style='color:black;font-weight:bolder'>Photo</th>
+                                        <th style='color:black;font-weight:bolder'>Nom</th>
+                                        <th style='color:black;font-weight:bolder'>Prenom</th>
+                                        <th style='color:black;font-weight:bolder'>Date de Naissance</th>
+                                        <th style='color:black;font-weight:bolder'>Age</th>
+                                        <th  style='color:black;font-weight:bolder'>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">

@@ -10,14 +10,14 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Nom</th>
-                            <th>Prenom</th>
-                            <th>Date de Naissance</th>
-                            <th>Cin</th>
-                            <th>Telephone</th>
-                            <th>Email</th>
-                            <th>Compte</th>
-                            <th>Actions</th>
+                            <th style='color:black;font-weight:bolder'>Nom</th>
+                            <th style='color:black;font-weight:bolder'>Prenom</th>
+                            <th style='color:black;font-weight:bolder'>Date de Naissance</th>
+                            <th style='color:black;font-weight:bolder'>Cin</th>
+                            <th style='color:black;font-weight:bolder'>Telephone</th>
+                            <th style='color:black;font-weight:bolder'>Email</th>
+                            <th style='color:black;font-weight:bolder'>Compte</th>
+                            <th style='color:black;font-weight:bolder'>Actions</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">

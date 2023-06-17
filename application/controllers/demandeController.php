@@ -7,7 +7,8 @@ class demandeController extends CI_Controller {
         parent::__construct();
        
     }
-	public function index(){
+	public function index()
+	{
 		$this->load->model('Demande');
 		$data=$this->Demande->getDemandes();
 		$this->load->view('menu');
@@ -77,8 +78,8 @@ class demandeController extends CI_Controller {
 		if($demande->etat=='2'){
 			$this->Demande->updateDemandeEtat($id,3);}
 		elseif($demande->etat=='3'){
-			$this->finaliser($id);
 			$this->Demande->updateDemandeEtat($id,1);
+			$this->finaliser($id);
 		}
 		//echo $this->email->print_debugger();
 		redirect(base_url('demande/liste'));
@@ -172,5 +173,54 @@ class demandeController extends CI_Controller {
 			$this->Demande->updateDemandeEtat($id,1);
 			redirect(base_url('demande/liste'));
     }
-    
+    public function creerDemande() 
+	{
+        $prenomParent = $this->input->post('prenomParent');
+        $nomParent = $this->input->post('nomParent');
+        $cin = $this->input->post('cin');
+        $telephone = $this->input->post('telephone');
+        $email = $this->input->post('email');
+        $adresse = $this->input->post('adresse');
+        $prenomEnfant = $this->input->post('prenomEnfant');
+        $nomEnfant = $this->input->post('nomEnfant');
+        $sexe = $this->input->post('sexe');
+        $dateNaissance = $this->input->post('dateNaissance');
+        $taille = $this->input->post('taille');
+        $poids = $this->input->post('poids');
+        $groupeSanguin = $this->input->post('groupeSanguin');
+        $allergies = $this->input->post('allergies');
+        $medicaments = $this->input->post('medicaments');
+        $isCantine = $this->input->post('isCantine');
+        
+
+        $this->load->model('Demande');
+        $data = array(
+            'prenomParent' => $prenomParent,
+            'nomParent' => $nomParent,
+            'cin' => $cin,
+            'telephone' => $telephone,
+            'email' => $email,
+            'adresse' => $adresse,
+            'prenomEnfant' => $prenomEnfant,
+            'nomEnfant' => $nomEnfant,
+            'sexe'=>$sexe,
+            'dateNaissance'=>$dateNaissance,
+            'taille' => $taille,
+            'poids' => $poids,
+            'groupeSanguin' => $groupeSanguin,
+            'allergies' => $allergies,
+            'medicaments' => $medicaments,
+            'medicaments' => $medicaments,
+            'isCantine'=>$isCantine,
+        );
+        $this->Demande->insert($data);
+
+        $response = array(
+            'success' => true,
+            'message' => 'User registered successfully.'
+        );
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($response));
+    }
 }

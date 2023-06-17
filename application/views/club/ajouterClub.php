@@ -62,7 +62,7 @@
                           <!-- enseignant --> 
                           <div class="mb-3 col-md-6">
 
-                            <label class="form-label" for="enseignantId">Chef du Club</label>
+                            <label class="form-label" for="enseignantId">Responsable du Club</label>
 
                             <select id="enseignantId" name="enseignantId" class="form-select">
                             <option value="">--Sélectionnez--</option>

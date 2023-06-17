@@ -2,9 +2,9 @@
 
 class Reclamation extends CI_Model {
 
-    public function inserer($data){
+    public function inserer($data)
+    {
         return $this->db->insert('reclamation', $data);
-        
     }
     public function lister(){
         $this->db->select('reclamation.*, parent.nom AS nomParent, parent.prenom AS prenomParent');

@@ -12,10 +12,10 @@
                                 <thead>
                                     <tr>
                                         <!-- <th>Id</th> -->
-                                        <th>Nom</th>
+                                        <th style='color:black;font-weight:bolder'>Nom</th>
                                         <!-- <th>description</th>
                                         <th>Chef</th> -->
-                                        <th>Actions</th>
+                                        <th style='color:black;font-weight:bolder'>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">

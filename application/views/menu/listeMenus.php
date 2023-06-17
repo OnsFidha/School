@@ -10,11 +10,11 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Semaine</th>
-                                <th>Premier Jour</th>
-                                <th>Dernier Jour</th>
-                                <th>Eleves Iscrits</th>
-                                <th>Actions</th>
+                                <th style='color:black;font-weight:bolder'>Semaine</th>
+                                <th style='color:black;font-weight:bolder'>Premier Jour</th>
+                                <th style='color:black;font-weight:bolder'>Dernier Jour</th>
+                                <th style='color:black;font-weight:bolder'>Eleves Iscrits</th>
+                                <th style='color:black;font-weight:bolder'>Actions</th>
                             </tr>
                         </thead>
                         <tbody class="table-border-bottom-0">

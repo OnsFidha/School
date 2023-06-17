@@ -6,7 +6,7 @@ class classeContr extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('classeModel');
-        $this->load->model('AdminAcces');
+       // $this->load->model('AdminAcces');
     }
     public function index()
     {
