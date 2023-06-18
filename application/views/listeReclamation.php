@@ -22,7 +22,7 @@
                         foreach ($reclamations as $row) {
                         ?>  
                             <tr>
-                                <td><?php echo $row->nomParent.$row->prenomParent;?></td>
+                                <td><?php echo $row->nomParent.' '.$row->prenomParent;?></td>
                                 <td><?php echo $row->type;?></td>
                                 <td><?php echo $row->contenu;?></td>
                                 <td>
