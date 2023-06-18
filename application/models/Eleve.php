@@ -2,10 +2,12 @@
 
 class Eleve extends CI_Model {
   
-    public function deleteEleve($id){
+    public function deleteEleve($id)
+    {
         return $this->db->delete('eleve',['id'=>$id]);
     }
-    public function updateEleve($data,$id){
+    public function updateEleve($data,$id)
+    {
         return $this->db->update('eleve', $data,['id'=>$id]); 
     }
     public function getNumberOfStudentsPerClass()
@@ -31,27 +33,34 @@ class Eleve extends CI_Model {
     
         return $numberOfStudents;
     }
-    
-    
-    public function getEleveById($id){
+    public function getEleveById($id)
+    {
         $query = $this->db->get_where('eleve',['id'=>$id]);
         return $query->row();        
     }
-
-    public function getEnfantsParent($id){
+    public function getEnfantsParent($id)
+    {
         $query = $this->db->get_where('eleve',['id_parent'=>$id]);
         return $query->result();       
     }
-
     public function getEleves(){
         $query= $this->db->get('eleve');
         return $query->result();
     }
-
-    public function insertEleve($data){
+    public function getAlle()
+    {
+        $this->db->select('dossiermedical.allergies');
+        $this->db->from('eleve');
+        $this->db->join('dossiermedical', 'eleve.id_dossiermedical = dossierMedical.id', 'left');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function insertEleve($data)
+    {
         return $this->db->insert('eleve', $data);
     }
-    public function getEleveByClasse($id){
+    public function getEleveByClasse($id)
+    {
         $this->db->select('eleve.*');
         $this->db->join('classes', 'eleve.id_classe = classes.id');
        $this->db->where("id_classe", $id);

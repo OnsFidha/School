@@ -66,7 +66,7 @@
                                                     <div class="mis-repo-title">Elève</div>
                                                     <!-- <div class="mis-repo-image" style="background-image: url('/images/male-icon-large.png');"></div> -->
                                                     <div class="mis-repo-name">
-                                                        <span><strong><?php echo $row->nom .'  '.$row->prenom?></strong></span>
+                                                        <span><strong><?php echo $row->nom .'  '.$row->prenom?></strong><br> classe<strong><br> <?php echo  $row->classeNom?></strong></span>
                                                     
                                                     </div>
                                                 </div>
@@ -129,7 +129,7 @@
                                                     <div class="mis-repo-title">Elève</div>
                                                     <!-- <div class="mis-repo-image" style="background-image: url('/images/male-icon-large.png');"></div> -->
                                                     <div class="mis-repo-name">
-                                                        <span><strong><?php echo $row->nom .'  '.$row->prenom?></strong></span>
+                                                        <span><strong><?php echo $row->nom .'  '.$row->prenom?> </strong><br> classe<br> <strong><?php echo  $row->classeNom?></strong></span>
                                                     </div>
                                                 </div>
                                             </div>

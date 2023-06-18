@@ -25,7 +25,8 @@ class emploisContr extends CI_Controller {
       $this->load->view('emplois',$data);
       $this->load->view('footer');  
   }
-  public function getEnseign(){
+  public function getEnseign()
+  {
       $id=$this->input->post('matiere');
       $teachers= $this->emploisModel->getTeachersBySubject($id);
       $data['ens']=$teachers;
@@ -84,7 +85,7 @@ class emploisContr extends CI_Controller {
           $this->session->set_flashdata('erreur',$total_duration);
           $this->btn($id_classe); 
       } else {
-        $this->session->set_flashdata('erreur',"Total duration is $total_duration hours.");
+        $this->session->set_flashdata('erreur',"Nombre totale d'heure est $total_duration hr.");
           if($session_count > 0){
                           // session already exists, return false to trigger validation error
                           $this->session->set_flashdata('erreur',"L'enseignant n'est disponible a cette");
@@ -149,7 +150,8 @@ class emploisContr extends CI_Controller {
     $this->load->view('consulterEmplois', $data);
     $this->load->view('footer');
     
-  }  public function consulterr()
+  }  
+  public function consulterr()
   {
     $this->load->model('emploisModel');
      if ($this->session->userdata('role') == 'enseignant')
@@ -179,14 +181,11 @@ class emploisContr extends CI_Controller {
   }
   function  modifier($id) 
   {
-
     $data['id']=$id;
     $data['emplois']=$this->emploisModel->getByClass($id);
     $this->load->view('menu');
     $this->load->view('emploisun',$data);
     $this->load->view('footer');
-
-    
   }
   function update($id){
     $data['matieres']= $this->MatiereModel->getAll();
@@ -275,4 +274,17 @@ class emploisContr extends CI_Controller {
               }}
           }}
   }
+  public function effacer($id)
+  {   
+      $this->load->model('AdminAcces');
+      $this->emploisModel->deleteEmplois($id);
+      $this->get();
+  }
+  public function delete($id,$i)
+  {   
+      $this->load->model('AdminAcces');
+      $this->emploisModel->deleteSeance($id);
+      $this->index($i);
+  }
+  
 }

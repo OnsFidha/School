@@ -23,7 +23,11 @@ class ParentEleve extends CI_Model {
          $this->db->insert('parent', $data);
          return $id = $this->db->insert_id();
     }
-    
+    public function getByIdUser($id){
+        $this->db->where('id_user',$id);
+        $query= $this->db->get('parent');
+        return $query->row();
+    }
 
     public function deleteParent($id){
         return $this->db->delete('parent',['id'=>$id]);

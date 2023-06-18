@@ -30,7 +30,7 @@
                                             <!-- count(select id_eleve from eleve where isCantine==1) -->
                                             <div class="icon-with-text">
                                                 <i class="bx bxs-user"></i>
-                                                <span>25 élèves</span>
+                                                <span>8 élèves</span>
                                             </div>
                                         </a>
 

@@ -128,6 +128,7 @@ $route['club/consulter/(:any)'] = 'ClubController/consulter/$1';
 $route['club/supprimer/(:any)'] = 'ClubController/supprimerClub/$1';
 $route['club/modconst/(:any)'] = 'ClubController/consulter/$1';
 $route['club/modifier/(:any)'] = 'ClubController/modifier/$1';
+$route['club'] = 'ClubController/get';
 
 //bulletin de notes
 $route['enseignant/classes'] = 'EnseignantContr/classesDeEnseignant';
@@ -163,12 +164,17 @@ $route['modifier/(:any)'] ['POST']= 'compteContr/update/$1';
 $route['listeClasses'] = 'classeContr/index';
 $route['listeClasses/ajouter'] = 'classeContr/ajouter';
 $route['listeClasses/add'] = 'classeContr/add';
+$route['classe']= 'matiereContr/get';
+$route['eleveby/(:any)']= 'matiereContr/eleve/$1';
 
 //matiere
 $route['listeMatieres']= 'matiereContr';
 $route['listeMatieres/ajouter']= 'matiereContr/ajouter';
 $route['listeMatieres/add']= 'matiereContr/register';
 $route['listeMatieres/effacer/(:any)']= 'matiereContr/delete/$1';
+
+$route['matiere']= 'matiereContr/getM';
+
 
 //emplois
 $route['listeEmplois']= 'emploisContr/get';
@@ -178,6 +184,8 @@ $route['emplois'] = 'emploisContr';
 $route['emplois/add/(:any)'] = 'emploisContr/btn/$1';
 $route['listeEmplois/modifier/(:any)']= 'emploisContr/modifier/$1';
 $route['listeEmplois/update/(:any)']= 'emploisContr/update/$1';
+$route['listeEmplois/effacer/(:any)']= 'emploisContr/effacer/$1';
+
 //$route['listeEmplois']= 'listeEnseigContr/creer/$1';
 //$route['add']['POST'] = 'emploisContr/add';
 
@@ -194,9 +202,11 @@ $route['register']['POST'] = 'registerContr/register';
 
 //assiduit
 $route['ficheAppel']='assiduiteContr/index';
+$route['listeAppel']='assiduiteContr/get';
 
 // partie enseignant
 $route['enseigZone'] = 'enseignantContr';
+
 //demande ajout mobile
 $route['demande/inscription'] = 'demandeController/creerDemande';
 
@@ -204,15 +214,20 @@ $route['demande/inscription'] = 'demandeController/creerDemande';
 $route['loginparent']= 'loginContr/loginParent';
 
 //menu consulter mobile a changer methode "consulterMenuAPI"
-$route['menu/consulter/(:any)'] = 'MenuController/consulterMenuAPI/$1';
+$route['menu/(:any)/consulter'] = 'MenuController/consulterMenuAPI/$1';
+$route['menu/consulter/(:any)'] = 'MenuController/consulterMenu/$1';
 
 //reclamation mobile 
 $route['reclamation/reclamer']= 'ReclamationController/reclamer';
 
+//new route
+$route['parent/(:any)/enfant'] = 'ParentController/consulterEnfantsAPI/$1';
+$route['eleve/(:any)/absence'] = 'EleveController/getAbsenceEleve/$1';
 
 //score 
 $route['enseignantsparent/(:any)'] = 'enseignantContr/getEnsByParent/$1';
 $route['score/ajouter'] = 'ScoreController/ajouterScore';
 $route['score/modifier/(:any)'] = 'ScoreController/modifierScore/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

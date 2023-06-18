@@ -34,6 +34,7 @@
                                 type="time" 
                                 class="form-control "
                                 id="heure_debut"
+                                step="3600"
                                 name="heure_debut"
                                 value="<?php echo set_value('heure_debut')?>"
                                 autofocus
@@ -45,6 +46,7 @@
                                 type="time"
                                 class="form-control"
                                 id="heure_fin"
+                                step="3600"
                                 name="heure_fin"
                                 value="<?php echo set_value('heure_fin')?>"
                                 autofocus

@@ -43,18 +43,25 @@
                                 autofocus
                             /> <small><?php echo form_error('nombre_heures'); ?></small>
                         </div>
-                        <div class="mb-3">
-                            <label for="regroupement" class="form-label">le regroupement</label>
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="regroupement"
-                                name="regroupement"
-                                value="<?php echo set_value('regroupement')?>"
-                            
-                                autofocus
-                            /> <small><?php echo form_error('nombre_heures'); ?></small>
+                        <div class="mb-3 ">
+                            <label for="regroupement" class="form-label">Matière</label>
+                            <select class="form-select" id="regroupement" name="regroupement">
+                                <option></option>
+                                <option value="العلوم والتكنولوجيا">العلوم والتكنولوجيا</option>
+                                <option value="مجال التنشئة">مجال التنشئة</option>
+                                <option value="اللغة العربية">اللغة العربية</option>
+                                <option value="Français">Français</option>
+                                <option value="Anglais">Anglais</option>
+                            </select>
                         </div>
+                        <script>
+                                    $(document).ready(function() {
+                                    $('#regroupement').select2({
+                                        theme: 'bootstrap',
+                                        minimumResultsForSearch: Infinity
+                                    })
+                                    });
+                                </script>
                         <div class="mb-3">
                             <label for="fiche_matiere" class="form-label">fiche matiére </label>
                             <input

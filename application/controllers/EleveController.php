@@ -168,10 +168,12 @@ class EleveController extends CI_Controller {
 	{
 		$this->load->model('Eleve');
 		$dataEleve= $this->Eleve->getEleveById($id);
+		$this->load->model('Sanction');
 
+	
+	
 		$this->load->model('DossierMedical');
 		$dataDossier= $this->DossierMedical->getDossierMedicalById($dataEleve->id_dossiermedical);
-
 		$data=[
 			'eleve'=>$dataEleve,
 			'dossier'=>$dataDossier
@@ -180,6 +182,10 @@ class EleveController extends CI_Controller {
 		$data['emplois'] = $this->emploisModel->getByClass($dataEleve->id_classe);
 		$this->load->model('FicheAppel');
 		$data['f'] = $this->FicheAppel->getbyEleve($dataEleve->id);
+		$data['sanction']=$this->Sanction->get($id);
+	
+		$this->load->model('Gratification');
+		$data['gratif']=$this->Gratification->get($id);	
 		$this->load->view('menu');
 		$this->load->view('eleve/consulterEleve',$data);
 		$this->load->view('footer');
@@ -279,5 +285,17 @@ class EleveController extends CI_Controller {
 		$this->load->model('Eleve');
 		$this->Eleve->deleteEleve($id);
 		redirect(base_url('eleve/liste'));
+	}
+	public function getAbsenceEleve($id)
+	{
+		$this->load->model('Eleve');
+		$dataEleve= $this->Eleve->getEleveById($id);
+		$this->load->model('emploisModel');
+		$this->load->model('FicheAppel');
+		$data = $this->FicheAppel->getbyEleves($dataEleve->id);
+		$this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($data));
+	
 	}
 }

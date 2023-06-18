@@ -2,7 +2,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="card mx-auto " >
             <div class="card-body" >
-                <h4>Leurs enfants</h4>
+                <h4>Ses enfants</h4>
                     <div class="row mb-5 text-center">
                         <?php
                         foreach ($enfants as $enfant) {

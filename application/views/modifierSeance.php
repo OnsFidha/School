@@ -34,7 +34,7 @@
                                 class="form-control "
                                 id="heure_debut"
                                 name="heure_debut"
-                           
+                                step="3600"
                                 value="<?php echo $emplois->heure_debut; ?>"
                                 autofocus
                             /> <small><?php echo form_error('heure_debut'); ?></small>
@@ -46,7 +46,7 @@
                                 class="form-control"
                                 id="heure_fin"
                                 name="heure_fin"
-                                
+                                step="3600"
                                 value="<?php echo $emplois->heure_fin; ?>"
                                 autofocus
                             /> <small><?php echo form_error('heure_fin'); ?></small>

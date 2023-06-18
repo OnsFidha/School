@@ -7,8 +7,24 @@
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <!-- <a href="<?php echo base_url('parent/create')?>" class="badge bg-label-primary me-1">Ajouter Parent</a> -->
                     </div>
+                    <div style="text-align: right;">
+                    <select name='a' id='a'class="mb-3 col-md-2 text-center" >
+                        <option>consulter allergies</option>
+                        <?php foreach ($array['a'] as $value): ?>
+                            <?php if ($value->allergies !== "rien" && $value->allergies !== "none"): ?>
+                                <option value="<?php echo $value->allergies; ?>"><?php echo $value->allergies; ?></option>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </select></div>
                     <div class="card-body">
-                        
+       
+                    <script>
+                        $(document).ready(function() {
+                        $('#a').select2({
+                              theme: 'bootstrap',
+                              minimumResultsForSearch: Infinity
+                        })})
+                        </script>
                     <div class="row">
                         <div class="mb-3 col-md-6">
                         <div class="row">

@@ -2,7 +2,7 @@
 
 class Reclamation extends CI_Model {
 
-    public function inserer($data)
+    public function insert($data)
     {
         return $this->db->insert('reclamation', $data);
     }

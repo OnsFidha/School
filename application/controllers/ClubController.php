@@ -5,7 +5,12 @@ class ClubController extends CI_Controller {
     public function __construct() 
     {
         parent::__construct();
-        $this->load->model('AdminAcces');
+        //$this->load->model('AdminAcces');
+        $this->load->model('Club');
+        $this->load->model('MatiereModel');
+        $this->load->model('Eleve');
+        $this->load->model('EnseigModel');
+     
     }
     
     public function index(){
@@ -24,22 +29,23 @@ class ClubController extends CI_Controller {
         $this->load->view('footer');
 	}
 
-    public function insererClub(){
+    public function insererClub()
+    {
         
-        // $this->form_validation->set_rules(
-		// 	'niveau','niveau',
-		// 	'required',
-		// 	[
-		// 		'required' =>'veuillez saisissez le prénom',
-		// 	]);
-		// $this->form_validation->set_rules(
-		// 	'nom', 'nom',
-		// 	'required',
-		// 	[
-		// 		'required' =>'veuillez saisissez le nom'
-		// 	]);
-		// $this->form_validation->set_rules('anneeScolaire', 'anneeScolaire', 'required');
-        //if($this->form_validation->run()){
+        $this->form_validation->set_rules(
+			'niveau','niveau',
+			'required',
+			[
+				'required' =>'veuillez saisissez le prénom',
+			]);
+		$this->form_validation->set_rules(
+			'nom', 'nom',
+			'required',
+			[
+				'required' =>'veuillez saisissez le nom'
+			]);
+		$this->form_validation->set_rules('anneeScolaire', 'anneeScolaire', 'required');
+        if($this->form_validation->run()){
 
         $data = array(
             'nom' => $this->input->post('nom'),
@@ -50,13 +56,11 @@ class ClubController extends CI_Controller {
 
         $this->load->model('Club');
         $this->Club->inserer($data);
-        
-        redirect(base_url('club/creer'));
-
-        // }else{
-			// $this->creer();
-		// }
-                
+		$this->index();        
+        }
+        else {
+        $this->creer();
+        }
     }
 
     public function consulter($id){
@@ -117,5 +121,12 @@ class ClubController extends CI_Controller {
         $this->load->view('footer');
         
     }
-
+    public function get(){
+        $idUser = $this->session->userdata('auth_user')['id'];
+        $idEnseignant=$this->EnseigModel->getByIdUser($idUser)->id;
+		$data['club']=$this->Club->clubByEn($idEnseignant);
+        $this->load->view('menu');
+        $this->load->view('club',$data);
+        $this->load->view('footer');
+    }
 }

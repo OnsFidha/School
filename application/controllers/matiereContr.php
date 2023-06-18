@@ -5,8 +5,9 @@ class matiereContr extends CI_Controller {
     public function __construct() 
     {
         parent::__construct();
-        $this->load->model('AdminAcces');
+        $this->load->model('EnseigModel');
         $this->load->model('MatiereModel');
+        $this->load->model('Eleve');
     }
     public function index()
     {
@@ -15,6 +16,15 @@ class matiereContr extends CI_Controller {
           $this->load->view('listeMatieres',$data);
           $this->load->view('footer');
     }
+    public function get()
+	{    
+        $idUser = $this->session->userdata('auth_user')['id'];
+        $idEnseignant=$this->EnseigModel->getByIdUser($idUser)->id;
+		$data['classe']=$this->EnseigModel->getClasseByEnseignant($idEnseignant);
+        $this->load->view('menu');
+        $this->load->view('classeBy',$data);
+        $this->load->view('footer');
+	}
     public function ajouter()
     {
         $this->load->view('menu');
@@ -73,4 +83,19 @@ class matiereContr extends CI_Controller {
 		$this->MatiereModel->supprimer($id);
 		redirect(base_url('listeMatieres'));
 	}
+    public function getM()
+    {    
+        $idUser = $this->session->userdata('auth_user')['id'];
+        $idEnseignant=$this->EnseigModel->getByIdUser($idUser)->id;
+		$data['mat']=$this->MatiereModel->getSelectedMatieresByEnseignant($idEnseignant);
+        $this->load->view('menu');
+        $this->load->view('Matieres',$data);
+        $this->load->view('footer');
+	}
+    public function  eleve($id){
+        $data['enfants']=$this->Eleve->getEleveByClasse($id);
+        $this->load->view('menu');
+        $this->load->view('elevees',$data);
+        $this->load->view('footer');
+    }
 }

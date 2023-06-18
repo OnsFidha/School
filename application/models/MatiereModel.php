@@ -11,7 +11,7 @@ class MatiereModel extends CI_Model {
     } 
     public function getSelectedMatieresByEnseignant($id_enseignant) 
     {
-        $this->db->select('matieres.id, matieres.nom');
+        $this->db->select(' matieres.*');
         $this->db->from('matieres');
         $this->db->join('mat-enseig', 'matieres.id = mat-enseig.id_matiere');
         $this->db->where('mat-enseig.id_enseignant', $id_enseignant);

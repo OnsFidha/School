@@ -5,11 +5,15 @@ class MenuController extends CI_Controller {
     public function __construct() 
     {
         parent::__construct();
-        $this->load->model('AdminAcces');}
+       // $this->load->model('AdminAcces');
+       $this->load->model('Eleve');
+    
+    }
     public function index()
     {
+        $data['a']=$this->Eleve->getAlle();
         $this->load->view('menu');
-        $this->load->view('menu/ajouterMenu');
+        $this->load->view('menu/ajouterMenu',$data);
         $this->load->view('footer');
     }
 

@@ -6,13 +6,20 @@ class Gratification extends CI_Model {
         return $this->db->insert('gratification', $data);
         
     }
-
-    public function lister(){
-        $this->db->select('gratification.*,eleve.nom,eleve.prenom');
-        $this->db->join('eleve', 'eleve.id = gratification.id_eleve');
-        $query= $this->db->get('gratification');
+    public function get($idEleve) {
+        $this->db->where('id_eleve', $idEleve);
+        $query = $this->db->get('gratification');
         return $query->result();
     }
+    public function lister() {
+        $this->db->select('gratification.*, eleve.nom, eleve.prenom, classes.nom AS classeNom');
+       
+        $this->db->join('eleve', 'eleve.id = gratification.id_eleve');
+        $this->db->join('classes', 'classes.id = eleve.id_classe');
+        $query = $this->db->get('gratification');
+        return $query->result();
+    }
+    
 
 
 

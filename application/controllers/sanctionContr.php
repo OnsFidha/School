@@ -17,6 +17,7 @@ class sanctionContr extends CI_Controller {
 	{   
 		$this->load->model('Sanction');
 		$data['sanction']=$this->Sanction->lister();
+	
 		$this->load->model('Gratification');
 		$data['gratif']=$this->Gratification->lister();
 		$this->load->view('menu');

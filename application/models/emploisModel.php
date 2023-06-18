@@ -37,14 +37,16 @@ class emploisModel extends CI_Model {
         $this->db->update('emplois', $data);
         return true;
     }
-    public function check_class_availability($jour, $heure_debut, $heure_fin, $id_classe) {
+    public function check_class_availability($jour, $heure_debut, $heure_fin, $id_classe) 
+    {
         $query = $this->db->query("SELECT COUNT(*) AS count FROM emplois WHERE
          jour = '$jour' AND id_classe = '$id_classe'
            AND (heure_debut = '$heure_debut' OR  heure_fin = '$heure_fin' )");
         $result = $query->row();
         return $result->count ;
     }
-    public function count_sessions($id_enseignant, $heure_debut, $heure_fin,$jour,$id_classe) {
+    public function count_sessions($id_enseignant, $heure_debut, $heure_fin,$jour,$id_classe) 
+    {
         $query = $this->db->query("SELECT COUNT(*) AS num_sessions FROM emplois 
             WHERE id_enseignant = '$id_enseignant'
            
@@ -59,11 +61,13 @@ class emploisModel extends CI_Model {
         $result = $query->row();
         return $result->num_sessions;
     }
-    public function supprimer($id){
+    public function supprimer($id)
+    {
         $this->db->where("id", $id);
         return $this->db->delete("emplois");
     }
-    public function getTeachersBySubject($matiere_id) {
+    public function getTeachersBySubject($matiere_id)
+    {
         $query = $this->db->query("SELECT e.*
         FROM enseignants e
         JOIN `mat-enseig` em ON e.id = em.id_enseignant
@@ -71,11 +75,13 @@ class emploisModel extends CI_Model {
         return $query->result_array();
    
     }
-    public function getAll(){
+    public function getAll()
+    {
         $query= $this->db->get('emplois');
         return $query->result();
     }
-    public function getByClass($id){
+    public function getByClass($id)
+    {
         $this->db->select('emplois.*,classes.nom,classes.salle_classe, matieres.nom as nom_matiere, enseignants.nom as nom_enseignant,enseignants.prenom as prenom_enseignant');
         $this->db->join('matieres', 'emplois.id_matiere = matieres.id');
         $this->db->join('classes', 'emplois.id_classe = classes.id');
@@ -84,7 +90,18 @@ class emploisModel extends CI_Model {
         $query= $this->db->get('emplois');
         return $query->result();
     }
-    public function getById($id){
+    public function deleteEmplois($id) {
+        $this->db->where('id_classe', $id);
+        $this->db->delete('emplois');
+        return true;
+    }
+    public function deleteSeance($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('emplois');
+        return true;
+    }
+    public function getById($id)
+    {
         $this->db->where('id',$id);
         $query= $this->db->get('emplois');
         return $query->row();
@@ -139,7 +156,7 @@ class emploisModel extends CI_Model {
         foreach ($query->result() as $row) {
             $total_seconds += $row->total_seconds;
             if ($total_seconds > $nombre_heures) {
-                return "Error: Total duration of hours exceeded allowed amount.";
+                return "La durée totale des heures dépasse la limite autorisée.";
             }
         }
         $heure_debut = new DateTime($d);
@@ -152,7 +169,7 @@ class emploisModel extends CI_Model {
         // Add the duration of the existing schedule to the input duration
         $total_duration = $total_seconds + $duree_saisie;
         if ($total_duration > $nombre_heures) {
-            return "Error: Total duration of hours exceeded allowed amount.";
+            return "La durée totale des heures dépasse la limite autorisée.";
         } else {
             return $total_duration;
         }
@@ -168,7 +185,7 @@ class emploisModel extends CI_Model {
     }
     public function getEmploisByEnseig($id)
     {
-        $this->db->select('emplois.*,matieres.nom,classes.salle_classe');
+        $this->db->select('emplois.*,matieres.nom,classes.salle_classe,classes.nom AS class');
         $this->db->from('emplois');
         $this->db->join('matieres', 'emplois.id_matiere = matieres.id');
         $this->db->join('classes', 'emplois.id_classe = classes.id');

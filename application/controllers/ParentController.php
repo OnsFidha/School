@@ -104,6 +104,15 @@ class ParentController extends CI_Controller {
 			$this->create();
 		}
     }
+	public function consulterEnfantsAPI($id)
+	{
+		$this->load->model('Eleve');
+		$dataEnfants=$this->Eleve->getEnfantsParent($id);
+			$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($dataEnfants))
+			;
+	}
     public function update($id) 
 	{
         $this->form_validation->set_rules(

@@ -10,7 +10,12 @@ class Club extends CI_Model {
         $query= $this->db->get('club');
         return $query->result();
     }
-
+    public function clubByEn($id){
+        $this->db->where('id_enseignant', $id);
+        $query = $this->db->get('club');
+        return $query->result();
+    }
+    
     public function modifier($data,$id){
         return $this->db->update('club', $data,['id'=>$id]); 
     }
